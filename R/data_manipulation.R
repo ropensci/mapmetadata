@@ -1,6 +1,6 @@
 #' json_table_to_df
 #'
-#' Internal Function: This function is called within the browse_metadata and map_metadata functions. \cr \cr
+#' Internal Function: This function is called within the map.R function. \cr \cr
 #' It reads in the nested lists from the json and extracts information needed into a dataframe. \cr \cr
 #' It does this for one specific table in a dataset. \cr \cr
 #'
@@ -26,7 +26,7 @@ json_table_to_df <- function(dataset, n) {
 
 #' count_empty_desc
 #'
-#' Internal Function: This function is called within the browse_metadata function. \cr \cr
+#' Internal Function: This function is called within the map.R function. \cr \cr
 #' It reads in a data frame that summarises one table of the dataset. \cr \cr
 #' It counts missing variable descriptions, based on specified criteria.
 #'
@@ -64,7 +64,7 @@ count_empty_desc <- function(table_df, table_colname) {
 
 #' join_outputs
 #'
-#' Internal Function: This function is called within the map_metadata_compare function. \cr \cr
+#' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' Joins output dataframes from two sessions, on the column DataElement.
 #'
 #' @param session_1 Dataframe from session 1

@@ -14,7 +14,7 @@ The csv was manually created
 data(domain_list)
 }
 \description{
-Internal Dataset: A simplified list of domains, to demo the function map_metadata.R \cr \cr
+Internal Dataset: A simplified list of domains, to demo the function map.R \cr \cr
 This data was created with these two steps:
 \enumerate{
  \item \code{domain_list <- read.csv('browseMetadata/inst/inputs/domain_list_demo.csv',header=FALSE)}

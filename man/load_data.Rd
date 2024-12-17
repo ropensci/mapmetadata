@@ -7,18 +7,18 @@
 load_data(json_file, domain_file, look_up_file)
 }
 \arguments{
-\item{json_file}{As defined in map_metadata}
+\item{json_file}{As defined in map.R}
 
-\item{domain_file}{As defined in map_metadata}
+\item{domain_file}{As defined in map.R}
 
-\item{look_up_file}{As defined in map_metadata}
+\item{look_up_file}{As defined in map.R}
 }
 \value{
-A list of 5: all inputs needed for the map_metadata function to run.
+A list of 5: all inputs needed for the map.R function to run.
 }
 \description{
-Internal Function: This function is called within the map_metadata function. \cr \cr
-It collects the inputs needed for the map_metadata function (defaults or user inputs)
+Internal Function: This function is called within the map.R function. \cr \cr
+It collects the inputs needed for the map.R function (defaults or user inputs)
 If some inputs are NULL, it loads the default inputs. If defaults not available, it prints error for the user.
 If inputs are not NULL, it loads the user-specified inputs.
 }

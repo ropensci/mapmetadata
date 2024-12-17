@@ -1,6 +1,6 @@
 readline <- NULL
 
-#' map_metadata
+#' map
 #'
 #' This function will read in the metadata file for a chosen dataset, loop
 #' through all the data elements, and ask the user to catergorise/label each
@@ -39,20 +39,24 @@ readline <- NULL
 #' @examples
 #' \dontrun{
 #' # Demo run requires no function inputs but requires user interaction
-#' map_metadata()
+#' map()
 #' }
 #' @export
 #' @importFrom dplyr %>% add_row
 #' @importFrom cli cli_h1 cli_alert_info cli_alert_success
-#' @importFrom utils packageVersion write.csv
+#' @importFrom utils packageVersion write.csv browseURL
 #' @importFrom ggplot2 ggsave
+#' @importFrom plotly plot_ly layout
+#' @importFrom htmlwidgets saveWidget
+#' @importFrom tidyr pivot_longer
 
-map_metadata <- function(
+map <- function(
     json_file = NULL,
     domain_file = NULL,
     look_up_file = NULL,
     output_dir = getwd(),
     table_copy = TRUE) {
+
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
@@ -68,6 +72,81 @@ map_metadata <- function(
   ## Read in prepared output data frames
   log_output_df <- get("log_output_df")
   output_df <- get("output_df")
+
+  # SECTION 1 - PLOT MISSINGNESS FOR EACH TABLE IN DATASET ----
+
+  ## Counts of empty description fields for each table
+  count_empty <- data.frame(Empty = c("No", "Yes"))
+
+  ntables <- nrow(dataset$childDataClasses)
+  ntables_digits <- nchar(ntables)
+
+  for (dc in 1:ntables) {
+    cat("\n")
+    table_name <- dataset$childDataClasses$label[dc]
+    cli_alert_info(paste0(
+      "Processing Table {dc} of {ntables} (",
+      table_name, ")"
+    ))
+
+    ## Use 'json_table_to_df.R' to extract table from meta_json into a df
+    table_df <- json_table_to_df(dataset = dataset, n = dc)
+
+    ## Use 'count_empty_desc.R' to count number of empty descriptions
+    table_colname <- paste0(table_name, "(", dc, ")")
+    count_empty_table <- count_empty_desc(table_df, table_colname)
+
+    ## Add to group dataframe for later plotting
+    count_empty[[table_colname]] <- count_empty_table[[table_colname]]
+  } # end of loop through each table
+
+
+  # BAR CHART DISPLAYING COUNTS OF MISSING DESCRIPTIONS FOR ALL TABLES ----
+  count_empty_long <- count_empty %>%
+    pivot_longer(cols = -Empty, names_to = "Table", values_to = "N_Variables")
+
+  barplot_html <- plot_ly(count_empty_long,
+                          x = ~Table,
+                          y = ~N_Variables,
+                          color = ~Empty,
+                          colors = c("grey", "darkturquoise"),
+                          type = "bar",
+                          text = ~N_Variables,
+                          textposition = "inside", # Position text inside the bars
+                          texttemplate = "%{text}", # Ensure text displayed as is
+                          textfont = list(color = "black", size = 10)
+  ) %>%
+    layout(
+      barmode = "stack",
+      title = paste0("\n", dataset_name, " contains ", ntables, " table(s)"),
+      xaxis = list(title = "Table"),
+      yaxis = list(title = "N_Variables"),
+      legend = list(title = list(text = "Empty Description"))
+    )
+
+  # SAVE PLOTS ----
+
+  original_wd <- getwd()
+  setwd(output_dir) # saveWidget has a bug with paths & saving
+  base_fname <- paste0(gsub(" ", "", dataset_name))
+
+  ## Save the bar plot to a HTML file
+  bar_fname <- paste0("BROWSE_bar_", base_fname, ".html")
+  saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
+
+  ## Save the data that made the bar plot to a csv file
+  bar_data_fname <- paste0("BROWSE_bar_", base_fname, ".csv")
+  write.csv(count_empty_long, bar_data_fname, row.names = FALSE)
+
+  setwd(original_wd) # saveWidget has a bug with paths & saving
+
+  # OUTPUTS ----
+  cat("\n")
+  browseURL(bar_fname)
+  cli_alert_info("A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).")
+  cli_alert_info("Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.")
+  cat("\n")
+  readline("Press any key to continue ")
 
   ## Use 'ref_plot.R' to plot domains for the user's ref (save df for later use)
   df_plots <- ref_plot(data$domains)

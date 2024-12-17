@@ -1,6 +1,6 @@
 #' Internal: Output dataframe
 #'
-#' Internal Dataset: Empty output dataframe for map_metadata.R to fill. Created by: \cr \cr
+#' Internal Dataset: Empty output dataframe for map.R to fill. Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{output_df <- data.frame(timestamp = character(0),
 #'  table = character(0),
@@ -24,7 +24,7 @@
 
 #' Internal: Output log dataframe
 #'
-#' Internal Dataset: Empty log output dataframe for map_metadata.R to fill. Created by: \cr \cr
+#' Internal Dataset: Empty log output dataframe for map.R to fill. Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{log_output_df <- data.frame(timestamp = character(1),
 #'  browseMetadata = character(1),
@@ -51,7 +51,7 @@
 
 #' Internal: List of Domains
 #'
-#' Internal Dataset: A simplified list of domains, to demo the function map_metadata.R \cr \cr
+#' Internal Dataset: A simplified list of domains, to demo the function map.R \cr \cr
 #' This data was created with these two steps:
 #' \enumerate{
 #'  \item \code{domain_list <- read.csv('browseMetadata/inst/inputs/domain_list_demo.csv',header=FALSE)}
@@ -70,7 +70,7 @@
 
 #' Internal: JSON Metadata File
 #'
-#' Example metadata for a health dataset, to demo the function map_metadata.R \cr \cr
+#' Example metadata for a health dataset, to demo the function map.R \cr \cr
 #' This data was created with these five steps:
 #' \enumerate{
 #'   \item Go to https://modelcatalogue.cs.ox.ac.uk/hdruk_live/#/catalogue/dataModel/16920b16-e24c-49f9-b4df-3dc85779822b/dataClasses
@@ -94,7 +94,7 @@
 #' Internal: Auto-categorisations
 #'
 #' A list of pre-defined pairings between data element and domain code. \cr \cr
-#' For each data element that map_metadata processes: \cr \cr
+#' For each data element that map.R processes: \cr \cr
 #' If it is contained within this look-up table, it uses the auto-categorised domain code rather than asking the user to categorise.\cr\cr
 #' This data was created with these two steps:
 #' \enumerate{

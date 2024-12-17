@@ -1,13 +1,13 @@
 #' load_data
 #'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
-#' It collects the inputs needed for the map_metadata function (defaults or user inputs)
+#' Internal Function: This function is called within the map.R function. \cr \cr
+#' It collects the inputs needed for the map.R function (defaults or user inputs)
 #' If some inputs are NULL, it loads the default inputs. If defaults not available, it prints error for the user.
 #' If inputs are not NULL, it loads the user-specified inputs.
-#' @param json_file As defined in map_metadata
-#' @param domain_file As defined in map_metadata
-#' @param look_up_file As defined in map_metadata
-#' @return A list of 5: all inputs needed for the map_metadata function to run.
+#' @param json_file As defined in map.R
+#' @param domain_file As defined in map.R
+#' @param look_up_file As defined in map.R
+#' @return A list of 5: all inputs needed for the map.R function to run.
 #' @keywords internal
 #' @importFrom cli cli_alert_info cli_alert_danger
 #' @importFrom jsonlite fromJSON
@@ -21,7 +21,7 @@ load_data <- function(json_file, domain_file, look_up_file) {
     domains <- get("domain_list")
     domain_list_desc <- "DemoList"
     cat("\n")
-    cli_alert_info("Running map_metadata in demo mode using package data files")
+    cli_alert_info("Running demo mode using package data files")
     cat("\n ")
     demo_mode <- TRUE
   } else if (is.null(json_file) || is.null(domain_file)) { # if only one of json_file and domain_file is NULL, throw error
@@ -51,7 +51,7 @@ load_data <- function(json_file, domain_file, look_up_file) {
 
 #' copy_previous
 #'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
+#' Internal Function: This function is called within the map.R function. \cr \cr
 #' It searches for previous OUTPUT files in the output_dir, that match the dataset name. \cr \cr
 #' If files exist, it removes duplicates and autos, and stores the rest of the data elements in a dataframe. \cr \cr
 #'

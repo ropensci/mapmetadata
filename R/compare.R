@@ -1,6 +1,6 @@
 #' valid_comparison
 #'
-#' Internal Function: This function is called within the map_metadata_compare function. \cr \cr
+#' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' It reads two inputs to see if they are equal. \cr \cr
 #' If the test is 'warning' status and inputs are not equal it gives warning but continues. \cr \cr
 #' If the test is 'danger' status and inputs are not equal it stops and exits, with error message. \cr \cr
@@ -33,7 +33,7 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 
 #' concensus_on_mismatch
 #'
-#' Internal Function: This function is called within the map_metadata_compare function. \cr \cr
+#' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' For a specific data element, it compares the domain code categorisation between two sessions.
 #' If the categorisation differs, it prompts the user for a new consensus decision by presenting the json metadata. \cr \cr
 #'

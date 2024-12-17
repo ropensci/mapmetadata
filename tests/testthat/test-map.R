@@ -1,4 +1,4 @@
-test_that("map_metadata function works correctly with user input", {
+test_that("map function works correctly with user input", {
   # Setup
   temp_dir <- withr::local_tempdir()
 
@@ -9,17 +9,17 @@ test_that("map_metadata function works correctly with user input", {
   local_mocked_bindings(
     readline = function(prompt) {
       response <- switch(prompt,
-        "Press any key to continue " = "", # line 109 in map_metadata
-        "Optional free text note about this table (or press enter to continue): " = "demo run" # line 109 in map_metadata
+        "Press any key to continue " = "", # line 109 in map.R
+        "Optional free text note about this table (or press enter to continue): " = "demo run" # line 109 in map.R
       )
     }
   )
 
   local_mocked_bindings(
     user_prompt = function(prompt_text, any_keys) {
-      if (prompt_text == "Enter your initials: ") { # line 93 in map_metadata
+      if (prompt_text == "Enter your initials: ") { # line 93 in map.R
         response <- "demo"
-      } else if (prompt_text == "Would you like to review your categorisations? (y/n): ") { # line 238 in map_metadata
+      } else if (prompt_text == "Would you like to review your categorisations? (y/n): ") { # line 238 in map.R
         response <- "n"
       }
       return(response)
@@ -44,8 +44,8 @@ test_that("map_metadata function works correctly with user input", {
     }
   )
 
-  # Run the map_metadata function
-  map_metadata(output_dir = temp_dir, table_copy = FALSE)
+  # Run the map.R function
+  map(output_dir = temp_dir, table_copy = FALSE)
 
   # Dynamically determine the filenames generated during the test run
   log_file <- list.files(temp_dir, pattern = "LOG_NationalCommunityChildHealthDatabase\\(NCCHD\\)_CHILD_.*\\.csv", full.names = TRUE)

@@ -1,4 +1,4 @@
-test_that("map_metadata_convert function outputs files correctly", {
+test_that("map_convert function outputs files correctly", {
   # Setup
   temp_dir <- withr::local_tempdir()
   file_in <- system.file("outputs/OUTPUT_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55.csv", package = "browseMetadata")
@@ -8,7 +8,7 @@ test_that("map_metadata_convert function outputs files correctly", {
   file.copy(file_in, file.path(temp_dir, basename(file_in)))
 
   # Run the function
-  map_metadata_convert(output_csv = basename(file_in), output_dir = temp_dir)
+  map_convert(output_csv = basename(file_in), output_dir = temp_dir)
 
   # Read the expected and actual output files
   expected_output <- read.csv(file_out)

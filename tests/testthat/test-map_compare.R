@@ -1,4 +1,4 @@
-test_that("map_metadata function works correctly with user input", {
+test_that("map_comare function works correctly with user input", {
   # Setup
   temp_dir <- withr::local_tempdir()
 
@@ -18,7 +18,7 @@ test_that("map_metadata function works correctly with user input", {
   )
 
   # Run the function - requires user interaction
-  map_metadata_compare(
+  map_compare(
     session_dir = demo_session_dir,
     session1_base = demo_session1_base,
     session2_base = demo_session2_base,
