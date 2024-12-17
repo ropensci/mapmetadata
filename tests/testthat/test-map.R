@@ -45,7 +45,7 @@ test_that("map function works correctly with user input", {
   )
 
   # Run the map.R function
-  map(output_dir = temp_dir, table_copy = FALSE)
+  map(output_dir = temp_dir, table_copy = FALSE, long_output = FALSE)
 
   # Dynamically determine the filenames generated during the test run
   log_file <- list.files(temp_dir, pattern = "LOG_NationalCommunityChildHealthDatabase\\(NCCHD\\)_CHILD_.*\\.csv", full.names = TRUE)
