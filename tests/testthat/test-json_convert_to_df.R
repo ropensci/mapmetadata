@@ -2,8 +2,8 @@
 example_json_file <- system.file("inputs/national_community_child_health_database_(ncchd)_20240405T130125.json", package = "browseMetadata")
 dataset <- jsonlite::fromJSON(example_json_file)$dataModel
 
-test_that("json_table_to_df gives expected output for 8th index", {
-  result <- json_table_to_df(dataset, 8)
+test_that("json_convert_to_df gives expected output for 8th index", {
+  result <- json_convert_to_df(dataset, 8)
 
   expected <- data.frame(
     label = c("SECTOR", "PROV_UNIT_CD", "CLIENT_ID_E", "TEST_DT", "TEST_RESULT_CD", "TEST_CD", "AVAIL_FROM_DT", "TDATE_EST"),

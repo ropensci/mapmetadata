@@ -20,9 +20,9 @@ map_compare(
 
 \item{session2_base}{Base file name for session 2 e.g. 'NationalCommunityChildHealthDatabase(NCCHD)_BLOOD_TEST_2024-07-08-12-03-30'}
 
-\item{json_file}{The full path to the metadata file used when running map.R (should be the same for session 1 and session 2)}
+\item{json_file}{The full path to the metadata file used when running metadata_map (should be the same for session 1 and session 2)}
 
-\item{domain_file}{The full path to the domain file used when running map.R (should be the same for session 1 and session 2)}
+\item{domain_file}{The full path to the domain file used when running metadata_map (should be the same for session 1 and session 2)}
 
 \item{output_dir}{The path to the directory where the concensus output file will be saved. By default, the session_dir is used.}
 }
@@ -30,7 +30,7 @@ map_compare(
 It returns a csv output, which represents the consensus decisions between session 1 and session 2
 }
 \description{
-This function is to be used after running the map.R function. \cr \cr
+This function is to be used after running the metadata_map function. \cr \cr
 It compares csv outputs from two sessions, finds their differences, and asks for a consensus. \cr \cr
 }
 \examples{

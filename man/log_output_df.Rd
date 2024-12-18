@@ -14,7 +14,7 @@ The dataframe was manually created as package data, using the above code.
 data(log_output_df)
 }
 \description{
-Internal Dataset: Empty log output dataframe for map.R to fill. Created by: \cr \cr
+Internal Dataset: Empty log output dataframe for metadata_map to fill. Created by: \cr \cr
 \enumerate{
  \item \code{log_output_df <- data.frame(timestamp = character(1),
  browseMetadata = character(1),

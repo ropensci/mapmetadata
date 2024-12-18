@@ -1,20 +1,20 @@
-#' load_data
+#' data_load
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
-#' It collects the inputs needed for the map.R function (defaults or user inputs)
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
+#' It collects the inputs needed for the metadata_map function (defaults or user inputs)
 #' If some inputs are NULL, it loads the default inputs. If defaults not available, it prints error for the user.
 #' If inputs are not NULL, it loads the user-specified inputs.
-#' @param json_file As defined in map.R
-#' @param domain_file As defined in map.R
-#' @param look_up_file As defined in map.R
-#' @return A list of 5: all inputs needed for the map.R function to run.
+#' @param json_file As defined in metadata_map
+#' @param domain_file As defined in metadata_map
+#' @param look_up_file As defined in metadata_map
+#' @return A list of 5: all inputs needed for the metadata_map function to run.
 #' @keywords internal
 #' @importFrom cli cli_alert_info cli_alert_danger
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils read.csv
 #' @importFrom tools file_path_sans_ext
 
-load_data <- function(json_file, domain_file, look_up_file) {
+data_load <- function(json_file, domain_file, look_up_file) {
   # Collect meta_json and domains
   if (is.null(json_file) && is.null(domain_file)) { # if both json_file and domain_file are NULL, use demo data
     meta_json <- get("json_metadata")
@@ -49,9 +49,9 @@ load_data <- function(json_file, domain_file, look_up_file) {
   list(meta_json = meta_json, domains = domains, domain_list_desc = domain_list_desc, demo_mode = demo_mode, lookup = lookup)
 }
 
-#' copy_previous
+#' output_copy
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It searches for previous OUTPUT files in the output_dir, that match the dataset name. \cr \cr
 #' If files exist, it removes duplicates and autos, and stores the rest of the data elements in a dataframe. \cr \cr
 #'
@@ -62,7 +62,7 @@ load_data <- function(json_file, domain_file, look_up_file) {
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info
 
-copy_previous <- function(dataset_name, output_dir) {
+output_copy <- function(dataset_name, output_dir) {
   o_search <- paste0("^OUTPUT_", gsub(" ", "", dataset_name), "*")
   csv_list <- data.frame(file = list.files(output_dir, pattern = o_search))
   if (nrow(csv_list) != 0) {

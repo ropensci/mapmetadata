@@ -1,4 +1,4 @@
-test_that("map_comare function works correctly with user input", {
+test_that("map_compare function works correctly with user input", {
   # Setup
   temp_dir <- withr::local_tempdir()
 

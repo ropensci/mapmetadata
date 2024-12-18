@@ -16,7 +16,7 @@ If FALSE, only these are allowed: Y, y, N and n.}
 It returns variable text, depending on any_keys.
 }
 \description{
-Internal Function: This function is called within the map.R function. \cr \cr
+Internal Function: This function is called within the metadata_map function. \cr \cr
 It prompts a response from the user. \cr \cr
 }
 \keyword{internal}

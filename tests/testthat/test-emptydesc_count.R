@@ -1,4 +1,4 @@
-test_that("count_empty_desc correctly counts empty descriptions", {
+test_that("emptydesc_count correctly counts empty descriptions", {
   # Sample input data frame
   table_df <- data.frame(
     label = c("var1", "var2", "var3", "var4", "var5"),
@@ -14,7 +14,7 @@ test_that("count_empty_desc correctly counts empty descriptions", {
   )
 
   # Call the function
-  result <- count_empty_desc(table_df, "table_colname")
+  result <- emptydesc_count(table_df, "table_colname")
 
   # Check if the result matches the expected output
   expect_equal(result, expected_output)

@@ -1,13 +1,13 @@
 #' map_compare
 #'
-#' This function is to be used after running the map.R function. \cr \cr
+#' This function is to be used after running the metadata_map function. \cr \cr
 #' It compares csv outputs from two sessions, finds their differences, and asks for a consensus. \cr \cr
 #'
 #' @param session_dir This directory should contain 2 csv files for each session (LOG_ and OUTPUT_), 4 csv files in total.
 #' @param session1_base Base file name for session 1 e.g. 'NationalCommunityChildHealthDatabase(NCCHD)_BLOOD_TEST_2024-07-05-16-07-38'
 #' @param session2_base Base file name for session 2 e.g. 'NationalCommunityChildHealthDatabase(NCCHD)_BLOOD_TEST_2024-07-08-12-03-30'
-#' @param json_file The full path to the metadata file used when running map.R (should be the same for session 1 and session 2)
-#' @param domain_file The full path to the domain file used when running map.R (should be the same for session 1 and session 2)
+#' @param json_file The full path to the metadata file used when running metadata_map (should be the same for session 1 and session 2)
+#' @param domain_file The full path to the domain file used when running metadata_map (should be the same for session 1 and session 2)
 #' @param output_dir The path to the directory where the concensus output file will be saved. By default, the session_dir is used.
 #' @return It returns a csv output, which represents the consensus decisions between session 1 and session 2
 #' @export
@@ -132,10 +132,10 @@ map_compare <- function(session_dir, session1_base, session2_base, json_file, do
   }
   table_n <- table_find$table_n[table_find$table_label == csv_1a$table[1]]
 
-  table_df <- json_table_to_df(dataset = meta_json$data, n = table_n)
+  table_df <- json_convert_to_df(dataset = meta_json$data, n = table_n)
 
   # JOIN DATAFRAMES FROM SESSIONS IN ORDER TO COMPARE ----
-  ses_join <- join_outputs(session_1 = csv_1b, session_2 = csv_2b)
+  ses_join <- outputs_join(session_1 = csv_1b, session_2 = csv_2b)
 
   # FIND MISMATCHES AND ASK FOR CONCENSUS DECISION ----
   for (datavar in seq_len(nrow(ses_join))) {

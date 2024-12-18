@@ -36,7 +36,7 @@ user_categorisation_loop(
 An output dataframe containing information about the table, data elements and categorisations
 }
 \description{
-Internal Function: This function is called within the map.R function. \cr \cr
+Internal Function: This function is called within the metadata_map function. \cr \cr
 Given a specific table and a number of data elements to search, it checks for 3 different sources of domain categorisation: \cr \cr
 1 - If data elements match those in the look-up table, auto categorise them \cr \cr
 2 - If data elements match to previous table output, copy them \cr \cr

@@ -1,6 +1,6 @@
-#' json_table_to_df
+#' json_convert_to_df
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It reads in the nested lists from the json and extracts information needed into a dataframe. \cr \cr
 #' It does this for one specific table in a dataset. \cr \cr
 #'
@@ -9,7 +9,7 @@
 #' @return A dataframe for that specific table, including data label, description and type.
 #' @keywords internal
 
-json_table_to_df <- function(dataset, n) {
+json_convert_to_df <- function(dataset, n) {
   json_table <- dataset$childDataClasses$childDataElements[n]
   json_table_df <- json_table[[1]]
 
@@ -24,9 +24,9 @@ json_table_to_df <- function(dataset, n) {
   table_df
 }
 
-#' count_empty_desc
+#' emptydesc_count
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It reads in a data frame that summarises one table of the dataset. \cr \cr
 #' It counts missing variable descriptions, based on specified criteria.
 #'
@@ -37,7 +37,7 @@ json_table_to_df <- function(dataset, n) {
 #' @importFrom tidyr complete
 #' @keywords internal
 
-count_empty_desc <- function(table_df, table_colname) {
+emptydesc_count <- function(table_df, table_colname) {
   table_df["empty"] <- NA
 
   for (data_v in seq_len(nrow(table_df))) {
@@ -62,7 +62,7 @@ count_empty_desc <- function(table_df, table_colname) {
   count_empty_table
 }
 
-#' join_outputs
+#' outputs_join
 #'
 #' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' Joins output dataframes from two sessions, on the column DataElement.
@@ -74,7 +74,7 @@ count_empty_desc <- function(table_df, table_colname) {
 #' @keywords internal
 
 
-join_outputs <- function(session_1, session_2) {
+outputs_join <- function(session_1, session_2) {
   ses_join <- left_join(session_1, session_2, suffix = c("_ses1", "_ses2"), join_by(data_element))
   ses_join <- select(ses_join, contains("_ses"), "data_element")
   ses_join$domain_code_join <- NA

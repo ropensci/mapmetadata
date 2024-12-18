@@ -3,7 +3,7 @@ scan <- NULL
 
 #' Internal: user_categorisation
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It displays data properties to the user and requests a categorisation into a domain. \cr \cr
 #' An optional note can be included with the categorisation.
 #'
@@ -71,7 +71,7 @@ user_categorisation <- function(data_element, data_desc, data_type, domain_code_
 
 #' Internal: user_categorisation_loop
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' Given a specific table and a number of data elements to search, it checks for 3 different sources of domain categorisation: \cr \cr
 #' 1 - If data elements match those in the look-up table, auto categorise them \cr \cr
 #' 2 - If data elements match to previous table output, copy them \cr \cr
@@ -149,7 +149,7 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
 
 #' Internal: user_prompt
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It prompts a response from the user. \cr \cr
 #'
 #' @param prompt_text Text to display to the user, to prompt their response.
@@ -179,7 +179,7 @@ user_prompt <- function(prompt_text, any_keys) {
 
 #' Internal: user_prompt_list
 #'
-#' Internal Function: This function is called within the map.R function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It prompts a response from the user, in the form of a list. \cr \cr
 #' It checks if the user has given the an input within the allowed range - if not, it re-sends prompt. \cr \cr
 #'

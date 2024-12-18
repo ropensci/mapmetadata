@@ -1,4 +1,4 @@
-test_that("copy_previous works correctly when there are files to copy from", {
+test_that("output_copy works correctly when there are files to copy from", {
   # Create a temporary directory
   temp_dir <- withr::local_tempdir()
 
@@ -15,7 +15,7 @@ test_that("copy_previous works correctly when there are files to copy from", {
   )
 
   # Call the function
-  result <- copy_previous("TestDataset", temp_dir)
+  result <- output_copy("TestDataset", temp_dir)
 
   # Check the results
   expect_true(result$df_prev_exist)
@@ -25,12 +25,12 @@ test_that("copy_previous works correctly when there are files to copy from", {
   expect_equal(result$df_prev$note, c("note1", "note2", "note4"))
 })
 
-test_that("copy_previous works correctly when there are no files to copy from", {
+test_that("output_copy works correctly when there are no files to copy from", {
   # Create a temporary directory
   temp_dir <- withr::local_tempdir()
 
   # Call the function
-  result <- copy_previous("TestDataset", temp_dir)
+  result <- output_copy("TestDataset", temp_dir)
 
   # Check the results
   expect_null(result$df_prev)

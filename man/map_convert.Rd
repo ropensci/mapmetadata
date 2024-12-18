@@ -7,7 +7,7 @@
 map_convert(output_csv, output_dir)
 }
 \arguments{
-\item{output_csv}{The name of the 'OUTPUT_' csv file that was created from map.R}
+\item{output_csv}{The name of the 'OUTPUT_' csv file that was created from metadata_map}
 
 \item{output_dir}{The location of output_csv}
 }

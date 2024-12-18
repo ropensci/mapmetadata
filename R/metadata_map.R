@@ -1,10 +1,10 @@
 readline <- NULL
 
-#' map
+#' metadata_map
 #'
 #' This function will read in the metadata file for a chosen dataset, loop
-#' through all the data elements, and ask the user to catergorise/label each
-#' data element as belonging to one or more domains. The domains will appear
+#' through all the data elements, and ask the user to map (to categorise) each
+#' data element to one or more domains. The domains will appear
 #' in the Plots tab for the user's reference. \cr \cr
 #' These categorisations will be saved to a csv file, alongside a log file which
 #' summarises the session details. To speed up this process, some
@@ -28,12 +28,14 @@ readline <- NULL
 #' should only be listed once in the file.
 #' @param output_dir The path to the directory where the two csv output files
 #' will be saved. By default, the current working directory is used.
-#' @param table_copy Turn on copying between tables (TRUE or FALSE, default
-#' TRUE). If TRUE, categorisations you made for all other tables in this dataset
-#' will be copied over (if 'OUTPUT_' files are found in output_dir). This can be
-#'  useful when the same data elements (variables) appear across multiple
-#'  tables within one dataset; copying from one table to the next will save the
-#'  user time, and ensure consistency of categorisations across tables.
+#' @param table_copy Turn on copying between tables (default TRUE).
+#' If TRUE, categorisations you made for all other tables in this dataset will
+#' be copied over (if 'OUTPUT_' files are found in output_dir). This can be
+#' useful when the same data elements (variables) appear across multiple
+#' tables within one dataset; copying from one table to the next will save the
+#' user time, and ensure consistency of categorisations across tables.
+#' @param long_output Run map_convert.R to create a new longer output
+#' 'L-OUTPUT_' which gives each categorisation its own row. Default TRUE.
 #' @return The function will return two csv files: 'OUTPUT_' which contains the
 #' mappings and 'LOG_' which contains details about the dataset and session.
 #' @examples
@@ -50,20 +52,21 @@ readline <- NULL
 #' @importFrom htmlwidgets saveWidget
 #' @importFrom tidyr pivot_longer
 
-map <- function(
+metadata_map <- function(
     json_file = NULL,
     domain_file = NULL,
     look_up_file = NULL,
     output_dir = getwd(),
-    table_copy = TRUE) {
+    table_copy = TRUE,
+    long_output = TRUE) {
 
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
   # DEFINE INPUTS AND OUTPUTS ----
 
-  ## Use 'load_data.R' to collect inputs (defaults or user inputs)
-  data <- load_data(json_file, domain_file, look_up_file)
+  ## Use 'data_load.R' to collect inputs (defaults or user inputs)
+  data <- data_load(json_file, domain_file, look_up_file)
 
   ## Extract Dataset from json_file
   dataset <- data$meta_json$dataModel
@@ -89,12 +92,12 @@ map <- function(
       table_name, ")"
     ))
 
-    ## Use 'json_table_to_df.R' to extract table from meta_json into a df
-    table_df <- json_table_to_df(dataset = dataset, n = dc)
+    ## Use 'json_convert_to_df.R' to extract table from meta_json into a df
+    table_df <- json_convert_to_df(dataset = dataset, n = dc)
 
-    ## Use 'count_empty_desc.R' to count number of empty descriptions
+    ## Use 'emptydesc_count.R' to count number of empty descriptions
     table_colname <- paste0(table_name, "(", dc, ")")
-    count_empty_table <- count_empty_desc(table_df, table_colname)
+    count_empty_table <- emptydesc_count(table_df, table_colname)
 
     ## Add to group dataframe for later plotting
     count_empty[[table_colname]] <- count_empty_table[[table_colname]]
@@ -213,9 +216,9 @@ map <- function(
     cli_alert_info("Reference outputs from browse_metadata for information about the table")
     cat("\n")
 
-    ### Use 'copy_previous.R' to copy from previous output(s) if they exist
+    ### Use 'output_copy.R' to copy from previous output(s) if they exist
     if (table_copy == TRUE) {
-      copy_prev <- copy_previous(dataset_name, output_dir)
+      copy_prev <- output_copy(dataset_name, output_dir)
       df_prev_exist <- copy_prev$df_prev_exist
       df_prev <- copy_prev$df_prev
     } else {
@@ -227,8 +230,8 @@ map <- function(
       "(or press enter to continue): "
     ))
 
-    ###  Use 'json_table_to_df.R' to extract table from meta_json into a df
-    table_df <- json_table_to_df(dataset = dataset, n = dc)
+    ###  Use 'json_convert_to_df.R' to extract table from meta_json into a df
+    table_df <- json_convert_to_df(dataset = dataset, n = dc)
 
     ### Ask user which data elements to process
 
@@ -379,8 +382,8 @@ map <- function(
       row.names = FALSE
     )
     cat("\n")
-    cli_alert_success("Final categorisations saved in:\n{csv_fname}")
-    cli_alert_success("Session log saved in:\n{csv_log_fname}")
+    cli_alert_success("Final categorisations saved as:\n{csv_fname}")
+    cli_alert_success("Session log saved as:\n{csv_log_fname}")
 
     ### Create and save a summary plot
     end_plot_save <- end_plot(
@@ -395,5 +398,12 @@ map <- function(
       units = "in"
     )
     cli_alert_success("A summary plot has been saved:\n{png_fname}")
+
+    ### Create long output
+    if (long_output == TRUE){
+      map_convert(csv_fname, output_dir)
+      cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
+    }
+
   } # end of loop for each table
 } # end of function
