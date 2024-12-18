@@ -200,6 +200,12 @@ user_prompt_list <- function(prompt_text, list_allowed, empty_allowed) {
         cli_alert_info(prompt_text)
         cat("\n")
         list_to_process <- scan(file = "", what = 0)
+
+        # Check if list_to_process is 0 and exit if true
+        if (all(list_to_process) == 0) {
+          return(NULL)
+        }
+
         list_to_process_in_range_1 <- (all(list_to_process %in% list_allowed))
         if (empty_allowed == FALSE) {
           list_to_process_in_range_2 <- (all(length(list_to_process) != 0))

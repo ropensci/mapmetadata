@@ -198,9 +198,9 @@ metadata_map <- function(
     prompt_text =
       paste(
         "Found", n_tables, "table(s) in this dataset.", "Enter table numbers",
-        "you want to process (one table number on each line):"
+        "you want to process (one table number on each line). Enter '0' to exit."
       ),
-    list_allowed = seq(from = 1, to = n_tables, by = 1),
+    list_allowed = seq(from = 0, to = n_tables, by = 1),
     empty_allowed = FALSE
   )
 
