@@ -4,7 +4,7 @@ df_plots <- list(code = code, "")
 
 test_that("user_categorisation_loop handles auto categorisation", {
   # Mock data
-  table_df <- data.frame(label = c("Element1", "Element2"), description = c("Desc1", "Desc2"), type = c("Type1", "Type2"))
+  table_df <- data.frame(Column.name = c("Element1", "Element2"), Column.description = c("Desc1", "Desc2"), Data.type = c("Type1", "Type2"))
   lookup <- data.frame(data_element = c("Element1", "Element2"), domain_code = c(1, 2))
 
   # Call the function

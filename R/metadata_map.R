@@ -1,4 +1,6 @@
 readline <- NULL
+menu <- NULL
+select.list <- NULL
 
 #' metadata_map
 #'
@@ -45,7 +47,7 @@ readline <- NULL
 #' @export
 #' @importFrom dplyr %>% filter
 #' @importFrom cli cli_h1 cli_alert_info cli_alert_success
-#' @importFrom utils packageVersion write.csv browseURL
+#' @importFrom utils packageVersion write.csv browseURL menu select.list
 #' @importFrom ggplot2 ggsave
 #' @importFrom htmlwidgets saveWidget
 
@@ -123,222 +125,168 @@ metadata_map <- function(
     stop()
   }
 
-  ## Use 'user_prompt.R' to get user initials for the log file
-  user_initials <- user_prompt(
-    prompt_text = "Enter your initials: ", any_keys = TRUE
-  )
+  ## Get user initials for the log file
+  user_initials <- readline(prompt = "Enter your initials: ")
 
-  ## WHICH TABLES FROM THE DATASET?
+  ## CHOOSE TABLE TO PROCESS
 
-  ### Use 'user_prompt_list.R' to ask user which tables to process
+  chosen_table_n <- menu(levels(dataset$Section),title = 'Enter the table number you want to process:')
+  table_name <- levels(dataset$Section)[chosen_table_n]
   cat("\n")
-  for (dc in 1:n_tables) {
-    table_name <- levels(dataset$Section)[dc]
-    cat(dc, ". ", table_name, "\n", sep = "")
+  cli_alert_info("Processing Table {chosen_table_n} of {n_tables} ({table_name})")
+  cat("\n")
+
+  #### Use 'output_copy.R' to copy from previous output(s) if they exist
+  if (table_copy == TRUE) {
+    copy_prev <- output_copy(dataset_name, output_dir)
+    df_prev_exist <- copy_prev$df_prev_exist
+    df_prev <- copy_prev$df_prev
+  } else {
+    df_prev_exist <- FALSE
   }
 
-  n_tables_process <- user_prompt_list(
-    prompt_text =
-      paste("Enter table numbers you want to process (one table number on each line)."),
-    list_allowed = seq(from = 1, to = n_tables, by = 1),
-    empty_allowed = FALSE
-  )
+  table_note <- readline(paste(
+    "Optional free text note about this table",
+    "(or press enter to continue): "
+  ))
 
-  ## PROCESS EACH CHOSEN TABLE
+  ####  Extract table from metadata
+  table_df <- dataset %>% filter(Section == levels(dataset$Section)[chosen_table_n])
 
-  ### Extract each Table
-  for (dc in unique(n_tables_process)) {
-    table_name <- levels(dataset$Section)[dc]
-    cat("\n")
-    cli_alert_info("Processing Table {dc} of {n_tables} ({table_name})")
-    cat("\n")
+  #### If demo, only process the first 20 elements
+  if (data$demo_mode == TRUE) {
+    start_v <- 1
+    end_v <- min(20, nrow(table_df))
+  } else {
+    start_v <- 1
+    end_v <- nrow(table_df)
+  }
 
-    #### Use 'output_copy.R' to copy from previous output(s) if they exist
-    if (table_copy == TRUE) {
-      copy_prev <- output_copy(dataset_name, output_dir)
-      df_prev_exist <- copy_prev$df_prev_exist
-      df_prev <- copy_prev$df_prev
-    } else {
-      df_prev_exist <- FALSE
+  #### Use 'user_categorisation_loop.R' to copy or request from user
+
+  output_df <- user_categorisation_loop(start_v,
+                                        end_v,
+                                        table_df,
+                                        df_prev_exist,
+                                        df_prev,
+                                        lookup = data$lookup,
+                                        df_plots,
+                                        output_df)
+
+  output_df$timestamp <- timestamp_now
+  output_df$table <- table_name
+
+
+  #### Review auto categorized data elements
+  cat("\n")
+  cli_alert_info('These are the auto categorised data elements:')
+  cat("\n")
+  output_auto <- subset(output_df, note == "AUTO CATEGORISED")
+  output_auto <- output_auto[, c("data_element", "domain_code", "note")]
+  print(output_auto,row.names = FALSE)
+
+  auto_elements <- output_df$data_element[output_df$note == "AUTO CATEGORISED"]
+
+  auto_row_names <- select.list(auto_elements,
+                                 multiple = TRUE,
+                                 title = "\nSelect those you want to manually edit:")
+
+  auto_row <- which(output_df$data_element %in% auto_row_names)
+
+  if (length(auto_row) != 0) {
+    for (data_v_auto in auto_row) {
+      ##### collect user responses with with 'user_categorisation.R'
+      decision_output <- user_categorisation(
+        table_df$Column.name[data_v_auto],
+        table_df$Column.description[data_v_auto],
+        table_df$Data.type[data_v_auto],
+        max(df_plots$code$code)
+      )
+      ##### input user responses into output
+      output_df$domain_code[data_v_auto] <- decision_output$decision
+      output_df$note[data_v_auto] <- decision_output$decision_note
     }
+  }
 
-    table_note <- readline(paste(
-      "Optional free text note about this table",
-      "(or press enter to continue): "
-    ))
-
-    ####  Extract table from metadata
-    table_df <- dataset %>% filter(Section == levels(dataset$Section)[dc])
-
-    #### Ask user which data elements to process
+  ### Review user categorized data elements (optional)
+  cat("\n")
+  review_cats <- menu(c('Yes','No'),title = '\nWould you like to review your categorisations?')
+  if (review_cats == 1) {
+    output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
+    output_not_auto["note (first 12 chars)"] <-
+      substring(output_not_auto$note, 1, 11)
+    cli_alert_info('These are the data elements you categorised:')
     cat("\n")
-    cli_alert_info(paste(
-      "There are", as.character(nrow(table_df)),
-      "data elements (variables) in this table."
-    ))
+    print(output_not_auto[, c("data_element", "domain_code", "note (first 12 chars)")], row.names = FALSE)
 
-    if (data$demo_mode == TRUE) {
-      start_v <- 1
-      end_v <- min(20, nrow(table_df))
-    } else {
-      #### Use 'user_prompt_list.R' to ask user which data elements
-      start_end_v <- 0
-      start_v <- 0
-      end_v <- 0
-      while (length(start_end_v) != 2 || start_v > end_v) {
-        start_end_v <- user_prompt_list(
-          prompt_text = "Which data elements do you want to process? 1:[start integer] and 2:[end integer]",
-          list_allowed = seq(from = 1, to = nrow(table_df), by = 1),
-          empty_allowed = FALSE
-        )
-        start_v <- start_end_v[1]
-        end_v <- start_end_v[2]
-      }
-    }
+    not_auto_elements <- output_df$data_element[output_df$note != "AUTO CATEGORISED"]
 
-    #### Use 'user_categorisation_loop.R' to copy or request from user
+    not_auto_row_names <- select.list(not_auto_elements,
+                                   multiple = TRUE,
+                                   title = "\nSelect those you want to edit:")
 
-    output_df <- user_categorisation_loop(start_v,
-      end_v,
-      table_df,
-      df_prev_exist,
-      df_prev,
-      lookup = data$lookup,
-      df_plots,
-      output_df
-    )
+    not_auto_row <- which(output_df$data_element %in% not_auto_row_names)
 
-    output_df$timestamp <- timestamp_now
-    output_df$table <- table_name
-
-
-    #### Review auto categorized data elements
-    #### Use 'user_prompt_list.R' to ask the user which rows to edit
-    cat("\n")
-    output_auto <- subset(output_df, note == "AUTO CATEGORISED")
-    output_auto <- output_auto[, c("data_element", "domain_code", "note")]
-    print(output_auto)
-
-    auto_row <- user_prompt_list(
-      prompt_text = paste(
-        "These are the auto categorised data elements.",
-        "Enter row numbers for those you want to edit: "
-      ),
-      list_allowed = which(output_df$note == "AUTO CATEGORISED"),
-      empty_allowed = TRUE
-    )
-
-    if (length(auto_row) != 0) {
-      for (data_v_auto in unique(auto_row)) {
-        ##### collect user responses with with 'user_categorisation.R'
+    if (length(not_auto_row) != 0) {
+      for (data_v_not_auto in not_auto_row) {
+        #####  collect user responses with with 'user_categorisation.R'
         decision_output <- user_categorisation(
-          table_df$Column.name[data_v_auto],
-          table_df$Column.description[data_v_auto],
-          table_df$Data.type[data_v_auto],
+          table_df$Column.name[data_v_not_auto],
+          table_df$Column.description[data_v_not_auto],
+          table_df$Data.type[data_v_not_auto],
           max(df_plots$code$code)
         )
         ##### input user responses into output
-        output_df$domain_code[data_v_auto] <- decision_output$decision
-        output_df$note[data_v_auto] <- decision_output$decision_note
+        output_df$domain_code[data_v_not_auto] <- decision_output$decision
+        output_df$note[data_v_not_auto] <- decision_output$decision_note
       }
     }
+  }
 
-    ### Review user categorized data elements (optional)
-    #### Use 'user_prompt.R' to ask the user if they want to review|
-    #### Use 'user_prompt_list.R' to ask the user which rows to edit
-    review_cats <- user_prompt(
-      prompt_text = "Would you like to review your categorisations? (y/n): ",
-      any_keys = FALSE
-    )
-    if (review_cats == "Y" || review_cats == "y") {
-      output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
-      output_not_auto["note (first 12 chars)"] <-
-        substring(output_not_auto$note, 1, 11)
-      print(output_not_auto[
-        ,
-        c(
-          "data_element",
-          "domain_code",
-          "note (first 12 chars)"
-        )
-      ])
-      not_auto_row <- user_prompt_list(
-        prompt_text = paste(
-          "These are the data elements you categorised.",
-          "Enter row numbers for those you want to edit: "
-        ),
-        list_allowed = which(output_df$note != "AUTO CATEGORISED"),
-        empty_allowed = TRUE
-      )
-      if (length(not_auto_row) != 0) {
-        for (data_v_not_auto in unique(not_auto_row)) {
-          #####  collect user responses with with 'user_categorisation.R'
-          decision_output <- user_categorisation(
-            table_df$Column.name[data_v_not_auto],
-            table_df$Column.description[data_v_not_auto],
-            table_df$Data.type[data_v_not_auto],
-            max(df_plots$code$code)
-          )
-          ##### input user responses into output
-          output_df$domain_code[data_v_not_auto] <- decision_output$decision
-          output_df$note[data_v_not_auto] <- decision_output$decision_note
-        }
-      }
-    }
+  ### Fill in log output
+  log_output_df$timestamp <- timestamp_now
+  log_output_df$browseMetadata <- packageVersion("browseMetadata")
+  log_output_df$initials <- user_initials
+  log_output_df$domain_list_desc <- data$domain_list_desc
+  log_output_df$dataset <- dataset_name
+  log_output_df$table <- table_name
+  log_output_df$table_note <- table_note
 
-    ### Fill in log output
-    log_output_df$timestamp <- timestamp_now
-    log_output_df$browseMetadata <- packageVersion("browseMetadata")
-    log_output_df$initials <- user_initials
-    log_output_df$domain_list_desc <- data$domain_list_desc
-    log_output_df$dataset <- dataset_name
-    log_output_df$table <- table_name
-    log_output_df$table_note <- table_note
+  ### Create output file names
+  csv_fname <- paste0("MAPPING_",gsub(" ", "", dataset_name),"_",
+                      gsub(" ", "", table_name),"_",timestamp_now_fname,".csv")
 
-    ### Create output file names
-    csv_fname <- paste0(
-      "MAPPING_", gsub(" ", "", dataset_name), "_",
-      gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
-    )
-    csv_log_fname <- paste0(
-      "MAPPING_LOG_", gsub(" ", "", dataset_name), "_",
-      gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
-    )
-    png_fname <- paste0(
-      "MAPPING_PLOT_", gsub(" ", "", dataset_name), "_",
-      gsub(" ", "", table_name), "_", timestamp_now_fname, ".png"
-    )
+  csv_log_fname <- paste0("MAPPING_LOG_",gsub(" ", "", dataset_name),"_",
+                          gsub(" ", "", table_name),"_",
+                          timestamp_now_fname,".csv")
 
-    ### Save final categorisations for this Table
-    write.csv(output_df, paste(output_dir, csv_fname, sep = "/"),
-      row.names = FALSE
-    )
-    write.csv(log_output_df, paste(output_dir, csv_log_fname, sep = "/"),
-      row.names = FALSE
-    )
-    cat("\n")
-    cli_alert_success("Final categorisations saved as:\n{csv_fname}")
-    cli_alert_success("Session log saved as:\n{csv_log_fname}")
+  png_fname <- paste0("MAPPING_PLOT_",gsub(" ", "", dataset_name),"_",
+                      gsub(" ", "", table_name),"_",timestamp_now_fname,".png")
 
-    ### Create and save a summary plot
-    end_plot_save <- end_plot(
-      df = output_df, table_name,
-      ref_table = df_plots$domain_table
-    )
-    ggsave(
-      plot = end_plot_save,
-      paste(output_dir, png_fname, sep = "/"),
-      width = 14,
-      height = 8,
-      units = "in"
-    )
-    cli_alert_success("A summary plot has been saved:\n{png_fname}")
+  ### Save final categorisations for this Table
+  write.csv(output_df, paste(output_dir, csv_fname, sep = "/"), row.names = FALSE)
+  write.csv(log_output_df,
+            paste(output_dir, csv_log_fname, sep = "/"),
+            row.names = FALSE)
+  cat("\n")
+  cli_alert_success("Final categorisations saved as:\n{csv_fname}")
+  cli_alert_success("Session log saved as:\n{csv_log_fname}")
 
-    ### Create long output
-    if (long_output == TRUE){
-      map_convert(csv_fname, output_dir)
-      cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
-    }
+  ### Create and save a summary plot
+  end_plot_save <- end_plot(df = output_df, table_name, ref_table = df_plots$domain_table)
+  ggsave(
+    plot = end_plot_save,
+    paste(output_dir, png_fname, sep = "/"),
+    width = 14,
+    height = 8,
+    units = "in"
+  )
+  cli_alert_success("A summary plot has been saved:\n{png_fname}")
 
-  } # end of loop for each table
+  ### Create long output
+  if (long_output == TRUE) {
+    map_convert(csv_fname, output_dir)
+    cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
+  }
+
 } # end of function
