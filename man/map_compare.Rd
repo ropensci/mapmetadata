@@ -8,7 +8,7 @@ map_compare(
   session_dir,
   session1_base,
   session2_base,
-  json_file,
+  metadata_file,
   domain_file,
   output_dir = session_dir
 )
@@ -20,7 +20,7 @@ map_compare(
 
 \item{session2_base}{Base file name for session 2 e.g. 'NationalCommunityChildHealthDatabase(NCCHD)_BLOOD_TEST_2024-07-08-12-03-30'}
 
-\item{json_file}{The full path to the metadata file used when running metadata_map (should be the same for session 1 and session 2)}
+\item{metadata_file}{The full path to the metadata file used when running metadata_map (should be the same for session 1 and session 2)}
 
 \item{domain_file}{The full path to the domain file used when running metadata_map (should be the same for session 1 and session 2)}
 
@@ -37,9 +37,9 @@ It compares csv outputs from two sessions, finds their differences, and asks for
 \dontrun{
 # Locate file paths for the example files in the package
 demo_session_dir <- system.file("outputs", package = "browseMetadata")
-demo_session1_base <- "NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55"
-demo_session2_base <- "NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-23-52"
-demo_json_file <- system.file("inputs", "national_community_child_health_database_(ncchd)_20240405T130125.json", package = "browseMetadata")
+demo_session1_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55"
+demo_session2_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45"
+demo_metadata_file <- system.file("inputs", "360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "browseMetadata")
 demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "browseMetadata")
 
 # Run the function - requires user interaction
@@ -47,7 +47,7 @@ map_compare(
   session_dir = demo_session_dir,
   session1_base = demo_session1_base,
   session2_base = demo_session2_base,
-  json_file = demo_json_file,
+  metadata_file = demo_metadata_file,
   domain_file = demo_domain_file
 )
 }

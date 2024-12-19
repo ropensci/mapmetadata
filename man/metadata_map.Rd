@@ -5,7 +5,7 @@
 \title{metadata_map}
 \usage{
 metadata_map(
-  json_file = NULL,
+  csv_file = NULL,
   domain_file = NULL,
   look_up_file = NULL,
   output_dir = getwd(),
@@ -14,24 +14,19 @@ metadata_map(
 )
 }
 \arguments{
-\item{json_file}{The metadata file. This should be a json download from the
-metadata catalogue. By default, 'data/json_metadata.rda' is used - run
-'?json_metadata' to see how it was created.}
-
-\item{domain_file}{The domain list file. This should be a csv file created by
-the user, with each domain listed on a separate line, no header. By default,
-'data/domain_list.rda' is used - run '?domain_list' to see how it was created.
+\item{domain_file}{This should be a csv file created by the user, with each
+domain on a separate line, no header. Default is 'data/domain_list.rda'
+- run '?domain_list' to see how it was created.
 Note that 4 domains will be added automatically (NO MATCH/UNSURE, METADATA,
 ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.}
 
-\item{look_up_file}{The look-up table file. By default, 'data/look-up.rda'
-is used - run '?look_up' to see how it was created. The lookup file makes
-auto-categorisations intended for variables that appear regularly in health
-datasets. It only works for 1:1. mappings right now, i.e. DataElement
-should only be listed once in the file.}
+\item{look_up_file}{The lookup file makes auto-categorisations intended for
+variables that appear regularly in health datasets. It only works for 1:1
+mappings right now, i.e. DataElement should only be listed once in the file.
+Default is 'data/look-up.rda' - run '?look_up' to see how it was created.}
 
 \item{output_dir}{The path to the directory where the two csv output files
-will be saved. By default, the current working directory is used.}
+will be saved. Default is the current working directory.}
 
 \item{table_copy}{Turn on copying between tables (default TRUE).
 If TRUE, categorisations you made for all other tables in this dataset will
@@ -41,7 +36,11 @@ tables within one dataset; copying from one table to the next will save the
 user time, and ensure consistency of categorisations across tables.}
 
 \item{long_output}{Run map_convert.R to create a new longer output
-'L-OUTPUT_' which gives each categorisation its own row. Default TRUE.}
+'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.}
+
+\item{metadata_file}{This should be a csv download from HDRUK gateway
+(0_Dataset_Structural_Metadata.csv). Deafult is 'data/metadata.rda' - run
+'?metadata' to see how it was created.}
 }
 \value{
 The function will return two csv files: 'OUTPUT_' which contains the
@@ -63,6 +62,6 @@ function in a demo mode.
 \examples{
 \dontrun{
 # Demo run requires no function inputs but requires user interaction
-map()
+metadata_map()
 }
 }

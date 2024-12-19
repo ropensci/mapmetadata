@@ -20,7 +20,7 @@ user_categorisation_loop(
 
 \item{end_v}{Index of data element to end}
 
-\item{table_df}{Dataframe with the table information, extracted from json metadata}
+\item{table_df}{Dataframe with the table information, extracted from metadata file}
 
 \item{df_prev_exist}{Boolean to indicate with previous dataframes exist (to copy from)}
 

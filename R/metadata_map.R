@@ -13,21 +13,20 @@ readline <- NULL
 #' table to another. \cr \cr
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
-#' @param json_file The metadata file. This should be a json download from the
-#' metadata catalogue. By default, 'data/json_metadata.rda' is used - run
-#' '?json_metadata' to see how it was created.
-#' @param domain_file The domain list file. This should be a csv file created by
-#' the user, with each domain listed on a separate line, no header. By default,
-#' 'data/domain_list.rda' is used - run '?domain_list' to see how it was created.
+#' @param metadata_file This should be a csv download from HDRUK gateway
+#' (0_Dataset_Structural_Metadata.csv). Deafult is 'data/metadata.rda' - run
+#' '?metadata' to see how it was created.
+#' @param domain_file This should be a csv file created by the user, with each
+#' domain on a separate line, no header. Default is 'data/domain_list.rda'
+#' - run '?domain_list' to see how it was created.
 #' Note that 4 domains will be added automatically (NO MATCH/UNSURE, METADATA,
 #' ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.
-#' @param look_up_file The look-up table file. By default, 'data/look-up.rda'
-#' is used - run '?look_up' to see how it was created. The lookup file makes
-#' auto-categorisations intended for variables that appear regularly in health
-#' datasets. It only works for 1:1. mappings right now, i.e. DataElement
-#' should only be listed once in the file.
+#' @param look_up_file The lookup file makes auto-categorisations intended for
+#' variables that appear regularly in health datasets. It only works for 1:1
+#' mappings right now, i.e. DataElement should only be listed once in the file.
+#' Default is 'data/look-up.rda' - run '?look_up' to see how it was created.
 #' @param output_dir The path to the directory where the two csv output files
-#' will be saved. By default, the current working directory is used.
+#' will be saved. Default is the current working directory.
 #' @param table_copy Turn on copying between tables (default TRUE).
 #' If TRUE, categorisations you made for all other tables in this dataset will
 #' be copied over (if 'OUTPUT_' files are found in output_dir). This can be
@@ -35,25 +34,23 @@ readline <- NULL
 #' tables within one dataset; copying from one table to the next will save the
 #' user time, and ensure consistency of categorisations across tables.
 #' @param long_output Run map_convert.R to create a new longer output
-#' 'L-OUTPUT_' which gives each categorisation its own row. Default TRUE.
+#' 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.
 #' @return The function will return two csv files: 'OUTPUT_' which contains the
 #' mappings and 'LOG_' which contains details about the dataset and session.
 #' @examples
 #' \dontrun{
 #' # Demo run requires no function inputs but requires user interaction
-#' map()
+#' metadata_map()
 #' }
 #' @export
-#' @importFrom dplyr %>% add_row
+#' @importFrom dplyr %>% filter
 #' @importFrom cli cli_h1 cli_alert_info cli_alert_success
 #' @importFrom utils packageVersion write.csv browseURL
 #' @importFrom ggplot2 ggsave
-#' @importFrom plotly plot_ly layout
 #' @importFrom htmlwidgets saveWidget
-#' @importFrom tidyr pivot_longer
 
 metadata_map <- function(
-    json_file = NULL,
+    csv_file = NULL,
     domain_file = NULL,
     look_up_file = NULL,
     output_dir = getwd(),
@@ -63,93 +60,56 @@ metadata_map <- function(
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
-  # DEFINE INPUTS AND OUTPUTS ----
+  # SECTION 1 - DEFINE & PREPARE INPUTS ----
 
   ## Use 'data_load.R' to collect inputs (defaults or user inputs)
-  data <- data_load(json_file, domain_file, look_up_file)
+  data <- data_load(csv_file, domain_file, look_up_file)
 
-  ## Extract Dataset from json_file
-  dataset <- data$meta_json$dataModel
-  dataset_name <- dataset$label
+  ## Extract Dataset from csv_file
+  dataset <- data$metadata
+  dataset_name <- data$metadata_desc
 
-  ## Read in prepared output data frames
-  log_output_df <- get("log_output_df")
-  output_df <- get("output_df")
+  ## Convert the Section column to a factor
+  dataset$Section <- as.factor(dataset$Section)
 
-  # SECTION 1 - PLOT MISSINGNESS FOR EACH TABLE IN DATASET ----
+  ## Calculate the number of unique tables in the Section column
+  n_tables <- length(levels(dataset$Section))
 
-  ## Counts of empty description fields for each table
-  count_empty <- data.frame(Empty = c("No", "Yes"))
+  ## Print info about dataset to user
+  cli_alert_info("Processing dataset: {dataset_name}")
+  cli_alert_info("There are {n_tables} tables in this dataset")
 
-  ntables <- nrow(dataset$childDataClasses)
-  ntables_digits <- nchar(ntables)
+  # SECTION 2 - CREATE SUMMARY BAR PLOT FOR DATASET ----
 
-  for (dc in 1:ntables) {
-    cat("\n")
-    table_name <- dataset$childDataClasses$label[dc]
-    cli_alert_info(paste0(
-      "Processing Table {dc} of {ntables} (",
-      table_name, ")"
-    ))
+  ## Use 'empty_count.R' to count empty variable descriptions
+  empty_count_df <- empty_count(dataset)
 
-    ## Use 'json_convert_to_df.R' to extract table from meta_json into a df
-    table_df <- json_convert_to_df(dataset = dataset, n = dc)
-
-    ## Use 'emptydesc_count.R' to count number of empty descriptions
-    table_colname <- paste0(table_name, "(", dc, ")")
-    count_empty_table <- emptydesc_count(table_df, table_colname)
-
-    ## Add to group dataframe for later plotting
-    count_empty[[table_colname]] <- count_empty_table[[table_colname]]
-  } # end of loop through each table
-
-
-  # BAR CHART DISPLAYING COUNTS OF MISSING DESCRIPTIONS FOR ALL TABLES ----
-  count_empty_long <- count_empty %>%
-    pivot_longer(cols = -Empty, names_to = "Table", values_to = "N_Variables")
-
-  barplot_html <- plot_ly(count_empty_long,
-                          x = ~Table,
-                          y = ~N_Variables,
-                          color = ~Empty,
-                          colors = c("grey", "darkturquoise"),
-                          type = "bar",
-                          text = ~N_Variables,
-                          textposition = "inside", # Position text inside the bars
-                          texttemplate = "%{text}", # Ensure text displayed as is
-                          textfont = list(color = "black", size = 10)
-  ) %>%
-    layout(
-      barmode = "stack",
-      title = paste0("\n", dataset_name, " contains ", ntables, " table(s)"),
-      xaxis = list(title = "Table"),
-      yaxis = list(title = "N_Variables"),
-      legend = list(title = list(text = "Empty Description"))
-    )
-
-  # SAVE PLOTS ----
-
+  ## Use 'empty_plot.R' to create bar plot then save it
+  barplot_html <- empty_plot(empty_count_df,n_tables)
   original_wd <- getwd()
   setwd(output_dir) # saveWidget has a bug with paths & saving
-  base_fname <- paste0(gsub(" ", "", dataset_name))
-
-  ## Save the bar plot to a HTML file
-  bar_fname <- paste0("BROWSE_bar_", base_fname, ".html")
+  base_fname <-  paste0("BAR_", gsub(" ", "", dataset_name),"_",
+                        timestamp_now_fname)
+  bar_fname <- paste0(base_fname, ".html")
   saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
-
-  ## Save the data that made the bar plot to a csv file
-  bar_data_fname <- paste0("BROWSE_bar_", base_fname, ".csv")
-  write.csv(count_empty_long, bar_data_fname, row.names = FALSE)
-
+  bar_data_fname <- paste0(base_fname, ".csv")
+  write.csv(empty_count_df, bar_data_fname, row.names = FALSE)
   setwd(original_wd) # saveWidget has a bug with paths & saving
 
-  # OUTPUTS ----
+  ## Display outputs to the user
   cat("\n")
   browseURL(bar_fname)
   cli_alert_info("A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).")
   cli_alert_info("Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.")
+
+  # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
+
   cat("\n")
-  readline("Press any key to continue ")
+  readline("Press 'Esc' key to finish here, or press any other key to continue with mapping variables")
+
+  ## Read in prepared output data frames
+  log_output_df <- get("log_output_df")
+  output_df <- get("output_df")
 
   ## Use 'ref_plot.R' to plot domains for the user's ref (save df for later use)
   df_plots <- ref_plot(data$domains)
@@ -168,55 +128,32 @@ metadata_map <- function(
     prompt_text = "Enter your initials: ", any_keys = TRUE
   )
 
-  # DISPLAY DATASET ----
+  ## WHICH TABLES FROM THE DATASET?
 
-  cli_h1("Dataset Name")
-  cat(dataset_name)
-  cli_h1("Dataset File Exported By")
-  cat(paste(
-    data$meta_json$exportMetadata$exportedBy,
-    "at", data$meta_json$exportMetadata$exportedOn
-  ))
-  cat("\n\n")
-  cli_alert_info("Reference outputs from browse_metadata for information about the dataset")
+  ### Use 'user_prompt_list.R' to ask user which tables to process
   cat("\n")
-  readline("Press any key to continue ")
-
-  # WHICH TABLES FROM THE DATASET? ----
-  ## Use 'user_prompt_list.R' to ask user which tables to process
-  n_tables <- nrow(dataset$childDataClasses)
-  table_list_df <- data.frame(table_name = character(0), table_number = integer(0))
   for (dc in 1:n_tables) {
-    table_list_df <- table_list_df %>% add_row(
-      table_number = dc,
-      table_name = dataset$childDataClasses$label[dc]
-    )
+    table_name <- levels(dataset$Section)[dc]
+    cat(dc, ". ", table_name, "\n", sep = "")
   }
 
-  print(table_list_df, row.names = FALSE)
   n_tables_process <- user_prompt_list(
     prompt_text =
-      paste(
-        "Found", n_tables, "table(s) in this dataset.", "Enter table numbers",
-        "you want to process (one table number on each line). Enter '0' to exit."
-      ),
-    list_allowed = seq(from = 0, to = n_tables, by = 1),
+      paste("Enter table numbers you want to process (one table number on each line)."),
+    list_allowed = seq(from = 1, to = n_tables, by = 1),
     empty_allowed = FALSE
   )
 
-  # PROCESS EACH CHOSEN TABLE ----
-  ## Extract each Table
+  ## PROCESS EACH CHOSEN TABLE
+
+  ### Extract each Table
   for (dc in unique(n_tables_process)) {
+    table_name <- levels(dataset$Section)[dc]
     cat("\n")
-    cli_alert_info("Processing Table {dc} of {n_tables}")
-    cli_h1("Table Name")
-    table_name <- dataset$childDataClasses$label[dc]
-    cat(table_name, "\n", fill = TRUE)
-    cat("\n")
-    cli_alert_info("Reference outputs from browse_metadata for information about the table")
+    cli_alert_info("Processing Table {dc} of {n_tables} ({table_name})")
     cat("\n")
 
-    ### Use 'output_copy.R' to copy from previous output(s) if they exist
+    #### Use 'output_copy.R' to copy from previous output(s) if they exist
     if (table_copy == TRUE) {
       copy_prev <- output_copy(dataset_name, output_dir)
       df_prev_exist <- copy_prev$df_prev_exist
@@ -230,11 +167,11 @@ metadata_map <- function(
       "(or press enter to continue): "
     ))
 
-    ###  Use 'json_convert_to_df.R' to extract table from meta_json into a df
-    table_df <- json_convert_to_df(dataset = dataset, n = dc)
+    ####  Extract table from metadata
+    table_df <- dataset %>% filter(Section == levels(dataset$Section)[dc])
 
-    ### Ask user which data elements to process
-
+    #### Ask user which data elements to process
+    cat("\n")
     cli_alert_info(paste(
       "There are", as.character(nrow(table_df)),
       "data elements (variables) in this table."
@@ -259,7 +196,7 @@ metadata_map <- function(
       }
     }
 
-    ### Use 'user_categorisation_loop.R' to copy or request from user
+    #### Use 'user_categorisation_loop.R' to copy or request from user
 
     output_df <- user_categorisation_loop(start_v,
       end_v,
@@ -275,7 +212,7 @@ metadata_map <- function(
     output_df$table <- table_name
 
 
-    ### Review auto categorized data elements
+    #### Review auto categorized data elements
     #### Use 'user_prompt_list.R' to ask the user which rows to edit
     cat("\n")
     output_auto <- subset(output_df, note == "AUTO CATEGORISED")
@@ -295,9 +232,9 @@ metadata_map <- function(
       for (data_v_auto in unique(auto_row)) {
         ##### collect user responses with with 'user_categorisation.R'
         decision_output <- user_categorisation(
-          table_df$label[data_v_auto],
-          table_df$description[data_v_auto],
-          table_df$type[data_v_auto],
+          table_df$Column.name[data_v_auto],
+          table_df$Column.description[data_v_auto],
+          table_df$Data.type[data_v_auto],
           max(df_plots$code$code)
         )
         ##### input user responses into output
@@ -337,9 +274,9 @@ metadata_map <- function(
         for (data_v_not_auto in unique(not_auto_row)) {
           #####  collect user responses with with 'user_categorisation.R'
           decision_output <- user_categorisation(
-            table_df$label[data_v_not_auto],
-            table_df$description[data_v_not_auto],
-            table_df$type[data_v_not_auto],
+            table_df$Column.name[data_v_not_auto],
+            table_df$Column.description[data_v_not_auto],
+            table_df$Data.type[data_v_not_auto],
             max(df_plots$code$code)
           )
           ##### input user responses into output
@@ -353,8 +290,6 @@ metadata_map <- function(
     log_output_df$timestamp <- timestamp_now
     log_output_df$browseMetadata <- packageVersion("browseMetadata")
     log_output_df$initials <- user_initials
-    log_output_df$metadata_version <- dataset$documentationVersion
-    log_output_df$metadata_last_updated <- dataset$lastUpdated
     log_output_df$domain_list_desc <- data$domain_list_desc
     log_output_df$dataset <- dataset_name
     log_output_df$table <- table_name
@@ -362,15 +297,15 @@ metadata_map <- function(
 
     ### Create output file names
     csv_fname <- paste0(
-      "OUTPUT_", gsub(" ", "", dataset_name), "_",
+      "MAPPING_", gsub(" ", "", dataset_name), "_",
       gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
     )
     csv_log_fname <- paste0(
-      "LOG_", gsub(" ", "", dataset_name), "_",
+      "MAPPING_LOG_", gsub(" ", "", dataset_name), "_",
       gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
     )
     png_fname <- paste0(
-      "PLOT_", gsub(" ", "", dataset_name), "_",
+      "MAPPING_PLOT_", gsub(" ", "", dataset_name), "_",
       gsub(" ", "", table_name), "_", timestamp_now_fname, ".png"
     )
 

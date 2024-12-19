@@ -3,9 +3,9 @@ test_that("map_compare function works correctly with user input", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "browseMetadata")
-  demo_session1_base <- "NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55"
-  demo_session2_base <- "NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-23-52"
-  demo_json_file <- system.file("inputs", "national_community_child_health_database_(ncchd)_20240405T130125.json", package = "browseMetadata")
+  demo_session1_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55"
+  demo_session2_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45"
+  demo_metadata_file <- system.file("inputs", "360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "browseMetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "browseMetadata")
 
   # mock concensus_on_mismatch
@@ -22,15 +22,15 @@ test_that("map_compare function works correctly with user input", {
     session_dir = demo_session_dir,
     session1_base = demo_session1_base,
     session2_base = demo_session2_base,
-    json_file = demo_json_file,
+    metadata_file = demo_metadata_file,
     domain_file = demo_domain_file,
     output_dir = temp_dir
   )
 
   consensus_files <- list.files(temp_dir, pattern = "^CONSENSUS_", full.names = TRUE)
   concensus_df <- read.csv(consensus_files[1])
-  demo_1_df <- read.csv(paste0(demo_session_dir, "/", "OUTPUT_", demo_session1_base, ".csv"))
-  demo_2_df <- read.csv(paste0(demo_session_dir, "/", "OUTPUT_", demo_session2_base, ".csv"))
+  demo_1_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_", demo_session1_base, ".csv"))
+  demo_2_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_", demo_session2_base, ".csv"))
 
   expect_equal(nrow(concensus_df), 20)
   expect_equal(ncol(concensus_df), 13)

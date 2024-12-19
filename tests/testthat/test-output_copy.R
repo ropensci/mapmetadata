@@ -5,13 +5,13 @@ test_that("output_copy works correctly when there are files to copy from", {
   # Create test CSV files
   # Criteria for test files: one must have 'AUTO CATEGORISED' as Note, overlap in DataElements across files, different timestamps across files)
   utils::write.csv(data.frame(timestamp = "2024-08-22-13-35-40", data_element = c("DataElement1", "DataElement2"), note = c("note1", "note2")),
-    file = file.path(temp_dir, "OUTPUT_TestDataset_1.csv"), row.names = FALSE
+    file = file.path(temp_dir, "MAPPING_TestDataset_1.csv"), row.names = FALSE
   )
   utils::write.csv(data.frame(timestamp = "2024-09-22-13-00-05", data_element = c("DataElement1", "DataElement3"), note = c("note3", "note4")),
-    file = file.path(temp_dir, "OUTPUT_TestDataset_2.csv"), row.names = FALSE
+    file = file.path(temp_dir, "MAPPING_TestDataset_2.csv"), row.names = FALSE
   )
   utils::write.csv(data.frame(timestamp = "2024-10-22-11-12-02", data_element = c("DataElement4", "DataElement2"), note = c("AUTO CATEGORISED", "note5")),
-    file = file.path(temp_dir, "OUTPUT_TestDataset_3.csv"), row.names = FALSE
+    file = file.path(temp_dir, "MAPPING_TestDataset_3.csv"), row.names = FALSE
   )
 
   # Call the function

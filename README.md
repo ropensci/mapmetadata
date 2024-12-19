@@ -1,4 +1,6 @@
-# browseMetadata
+# mmetadata (map metadata)
+
+ *Mapping from variables to concepts*
 
 <a href="https://aim-rsf.github.io/browseMetadata/"><img src="man/figures/logo.png" align="right" height="120" alt="browseMetadata website" /></a>
 
@@ -11,10 +13,8 @@
 
 # Table of Contents
 
-1. [What is the `browseMetadata` package?](#what-is-the-browsemetadata-package)
-   - [Browse metadata](#browse-metadata)
-   - [Map metadata](#map-metadata)
-2. [Getting started with `browseMetadata`](#getting-started-with-browsemetadata)
+1. [What is the `mmetaddata` package?](#what-is-the-mmetaddata-package)
+2. [Getting started with `mmetaddata`](#getting-started-with-mmetaddata)
    - [Installation and set-up](#installation-and-set-up)
    - [Demo (using the `R Studio` IDE)](#demo-using-the-r-studio-ide)
      - [`browseMetadata()`](#browsemetadata-1)
@@ -28,28 +28,19 @@
 9. [Contributing](#contributing)
 10. [Acknowledgements](#acknowledgements-)
 
-## What is the `browseMetadata` package?
+## What is the `mmetaddata` package?
 
-The `browseMetadata` package allows researchers to explore publicly available metadata from the [Health Data Research Gateway](https://healthdatagateway.org/search?search=&datasetSort=latest&tab=Datasets) and the connected [Metadata Catalogue](https://maurosandbox.com/hdruk/#/home). This tool helps researchers plan projects by interacting with metadata prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/browseMetadata/articles/HealthMetadata.html).
+For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/browseMetadata/articles/HealthMetadata.html).
 
-At the early stages of a project, researchers can use this tool to **browse** datasets and **categorise** variables.
+One comprehensive open resource is the [Health Data Research Gateway](https://healthdatagateway.org/search?search=&datasetSort=latest&tab=Datasets), managed by [Health Data Research UK](https://www.hdruk.ac.uk/) in collaboration with the [UK Health Data Research Alliance](https://ukhealthdata.org/). The gateway can help a researcher address questions such as: *What datasets are available? What are the features of these datasets? Which datasets fit my research? How do I access these datasets? How have these datasets been used by the community before, and do they link to others? What publications, or other resources exist, using these datasets?* 
 
-### Browse metadata
+This `mmetadata` (map metadata) package uses structural metadata files, downloaded from the Health Data Research Gateway. In theory, any metadata file with the same structure as the the files downloaded from this gateway can be used with this package. The `mmetadata` package goes beyond just browsing structural metadata, and helps a researcher interact with this metadata and map it to their research concepts. Firstly, it creates a plot (see example below) displaying number of variables in each table, number of tables, and the completeness of the metadata (i.e. whether the description for each variable in a table exists). 
 
-*What datasets are available? Which datasets fit my research?*
-
-The tool summarises datasets and their tables, and displays how many variables within each table have descriptions. 
+Secondly, it helps the researcher address the question *Which variables map onto with my research domains?*  (e.g. socioeconomic, childhood adverse events, diagnoses, culture and community). With `mmetadata`, users can map (categorise) each variable into predefined research domains. Research domains could otherwise be called concepts or latent variables. To speed up this manual mapping/categorisation process, the package automatically categorises variables that frequently occur in health datasets (e.g. ID, Sex, Age). The package also accounts for variables that appear across multiple tables within a dataset and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/browseMetadata/main/inst/outputs/BROWSE_bar_NationalCommunityChildHealthDatabase_(NCCHD)_V16.0.0.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
-### Map metadata
-
-*Which variables align with my research domains?*  
-(e.g. socioeconomic, childhood adverse events, diagnoses, culture and community)
-
-After browsing, users can categorise each variable into predefined research domains. To speed up this manual process, the function automatically categorises frequently used variables (e.g. ID, Sex, Age). The function also accounts for variables that appear across multiple tables and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.
-
-## Getting started with `browseMetadata`
+## Getting started with `mmetaddata`
 
 ### Installation and set-up
 
@@ -57,20 +48,20 @@ Run in the R console:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("aim-rsf/browseMetadata")
+devtools::install_github("aim-rsf/mmetaddata")
 ```
 
 Load the library:
 
 ``` r
-library(browseMetadata)
+library(mmetaddata)
 ```
 
 ### Demo (using the `R Studio` IDE)
 
 Fo a longer more detailed demo, see the [Getting Started](https://aim-rsf.github.io/browseMetadata/articles/browseMetadata.html) page on the package website. 
 
-There are four main functions you can interact with: `browse_metadata()`, `map_metadata()`, `map_metadata_compare()`, and `map_metadata_convert()`. For more information on any function, type `?function_name`. For example: `?browse_metadata`.
+There are three main functions you can interact with: `map()`, `map_compare()`, and `map_convert()`. For more information on any function, type `?function_name`. For example: `?map`.
 
 #### `browse_metadata()`
 

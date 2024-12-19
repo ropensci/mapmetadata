@@ -78,7 +78,7 @@ user_categorisation <- function(data_element, data_desc, data_type, domain_code_
 #' 3 - If no match for 1 or 2, data elements are categorised by the user \cr \cr
 #' @param start_v Index of data element to start
 #' @param end_v Index of data element to end
-#' @param table_df Dataframe with the table information, extracted from json metadata
+#' @param table_df Dataframe with the table information, extracted from metadata file
 #' @param df_prev_exist Boolean to indicate with previous dataframes exist (to copy from)
 #' @param df_prev Previous dataframes to copy from (or NULL)
 #' @param lookup The lookup table to enable auto categorisations
@@ -94,18 +94,18 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
     cat("\n \n")
     cli_alert_info(paste(length(data_v:end_v), "left to process"))
     cli_alert_info("Data element {data_v} of {nrow(table_df)}")
-    this_data_element <- table_df$label[data_v]
+    this_data_element <- table_df$Column.name[data_v]
     this_data_element_n <- paste(
       as.character(data_v), "of",
       as.character(nrow(table_df))
     )
     data_v_index <- which(lookup$data_element ==
-      table_df$label[data_v]) # we should code this to ignore the case
+      table_df$Column.name[data_v]) # we should code this to ignore the case
     lookup_subset <- lookup[data_v_index, ]
     ##### search if data element matches any data elements from previous table
     if (df_prev_exist == TRUE) {
       data_v_index <- which(df_prev$data_element ==
-        table_df$label[data_v])
+        table_df$Column.name[data_v])
       df_prev_subset <- df_prev[data_v_index, ]
     } else {
       df_prev_subset <- data.frame()
@@ -131,9 +131,9 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
     } else {
       ###### 3 - collect user responses with 'user_categorisation.R'
       decision_output <- user_categorisation(
-        table_df$label[data_v],
-        table_df$description[data_v],
-        table_df$type[data_v],
+        table_df$Column.name[data_v],
+        table_df$Column.description[data_v],
+        table_df$Data.type[data_v],
         max(df_plots$code$code)
       )
       output_df <- output_df %>% add_row(
@@ -200,12 +200,6 @@ user_prompt_list <- function(prompt_text, list_allowed, empty_allowed) {
         cli_alert_info(prompt_text)
         cat("\n")
         list_to_process <- scan(file = "", what = 0)
-
-        # Check if list_to_process is 0 and exit if true
-        if (all(list_to_process) == 0) {
-          return(NULL)
-        }
-
         list_to_process_in_range_1 <- (all(list_to_process %in% list_allowed))
         if (empty_allowed == FALSE) {
           list_to_process_in_range_2 <- (all(length(list_to_process) != 0))

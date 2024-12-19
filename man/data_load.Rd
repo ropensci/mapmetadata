@@ -4,17 +4,17 @@
 \alias{data_load}
 \title{data_load}
 \usage{
-data_load(json_file, domain_file, look_up_file)
+data_load(csv_file, domain_file, look_up_file)
 }
 \arguments{
-\item{json_file}{As defined in metadata_map}
+\item{csv_file}{As defined in metadata_map}
 
 \item{domain_file}{As defined in metadata_map}
 
 \item{look_up_file}{As defined in metadata_map}
 }
 \value{
-A list of 5: all inputs needed for the metadata_map function to run.
+A list of 6: all inputs needed for the metadata_map function to run.
 }
 \description{
 Internal Function: This function is called within the metadata_map function. \cr \cr

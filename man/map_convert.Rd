@@ -22,7 +22,7 @@ This 'L-OUTPUT_' may be more useful when using these csv files in later analyses
 \examples{
 # Locate file path and file name for the example files in the package
 demo_output_dir <- system.file("outputs", package = "browseMetadata")
-demo_output_csv <- "OUTPUT_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55.csv"
+demo_output_csv <- "MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45.csv"
 
 # Run the function
 map_convert(output_csv = demo_output_csv, output_dir = demo_output_dir)

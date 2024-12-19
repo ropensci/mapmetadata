@@ -1,8 +1,8 @@
 test_that("map_convert function outputs files correctly", {
   # Setup
   temp_dir <- withr::local_tempdir()
-  file_in <- system.file("outputs/OUTPUT_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55.csv", package = "browseMetadata")
-  file_out <- system.file("outputs/L-OUTPUT_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-11-27-14-19-55.csv", package = "browseMetadata")
+  file_in <- system.file("outputs/MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "browseMetadata")
+  file_out <- system.file("outputs/L-MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "browseMetadata")
 
   # Copy the demo input file to the temporary directory
   file.copy(file_in, file.path(temp_dir, basename(file_in)))
