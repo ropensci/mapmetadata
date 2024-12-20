@@ -1,6 +1,6 @@
 Type: Package
-Package: browseMetadata
-Title: Browse and categorise health metadata
+Package: mapmetadata
+Title: Map health metadata onto predefined research domains
 Version: 2.0.2
 Authors@R: c(
     person("Rachael", "Stickland", , "rstickland@turing.ac.uk", role = c("aut", "cre"),
@@ -19,8 +19,8 @@ Description: Visualise and categorise publicly available metadata from
     access to health datasets, researchers can use this tool to browse
     datasets and categorise variables.
 License: GPL (>= 3)
-URL: https://aim-rsf.github.io/browseMetadata/
-BugReports: https://github.com/aim-rsf/browseMetadata/issues
+URL: https://aim-rsf.github.io/mapmetadata/
+BugReports: https://github.com/aim-rsf/mapmetadata/issues
 Depends: 
     R (>= 2.10)
 Imports: 

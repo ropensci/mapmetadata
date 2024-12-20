@@ -1,6 +1,6 @@
 #' Internal: Output dataframe
 #'
-#' Internal Dataset: Empty output dataframe for map_metadata.R to fill. Created by: \cr \cr
+#' Internal Dataset: Empty output dataframe for metadata_map to fill. Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{output_df <- data.frame(timestamp = character(0),
 #'  table = character(0),
@@ -24,13 +24,11 @@
 
 #' Internal: Output log dataframe
 #'
-#' Internal Dataset: Empty log output dataframe for map_metadata.R to fill. Created by: \cr \cr
+#' Internal Dataset: Empty log output dataframe for metadata_map to fill. Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{log_output_df <- data.frame(timestamp = character(1),
-#'  browseMetadata = character(1),
+#'  mapmetadata = character(1),
 #'  initials = character(1),
-#'  metadata_version = character(1),
-#'  metadata_last_updated = character(1),
 #'  domain_list_desc = character(1),
 #'  dataset = character(1),
 #'  table = character(1),
@@ -51,10 +49,10 @@
 
 #' Internal: List of Domains
 #'
-#' Internal Dataset: A simplified list of domains, to demo the function map_metadata.R \cr \cr
+#' Internal Dataset: A simplified list of domains, to demo the function metadata_map \cr \cr
 #' This data was created with these two steps:
 #' \enumerate{
-#'  \item \code{domain_list <- read.csv('browseMetadata/inst/inputs/domain_list_demo.csv',header=FALSE)}
+#'  \item \code{domain_list <- read.csv('inst/inputs/domain_list_demo.csv',header=FALSE)}
 #'  \item \code{usethis::use_data(domain_list)}
 #' }
 #' @docType data
@@ -68,37 +66,36 @@
 #' @source The csv was manually created
 "domain_list"
 
-#' Internal: JSON Metadata File
+#' Internal: CSV metadata File
 #'
-#' Example metadata for a health dataset, to demo the function map_metadata.R \cr \cr
-#' This data was created with these five steps:
+#' Example metadata for a health dataset, to demo the function metadata_map \cr \cr
+#' This data was created with these steps:
 #' \enumerate{
-#'   \item Go to https://modelcatalogue.cs.ox.ac.uk/hdruk_live/#/catalogue/dataModel/16920b16-e24c-49f9-b4df-3dc85779822b/dataClasses
-#'   \item Download json metadata file by selecting the 'Export as JSON' option on the download button
-#'   \item \code{install.packages("jsonlite")}
-#'   \item \code{json_metadata <- jsonlite::fromJSON('browseMetadata/inst/inputs/national_community_child_health_database_(ncchd)_20240405T130125.json')}
-#'   \item \code{usethis::use_data(json_metadata)}
+#'   \item Go to https://healthdatagateway.org
+#'   \item Navigate to the dataset of interest, select 'Download data' and download the Structural Metadata file
+#'   \item \code{metadata <- read.csv("inst/inputs/360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv")}
+#'   \item \code{usethis::use_data(metadata)}
 #' }
 #'
 #' @docType data
 #
-#' @usage data(json_metadata)
+#' @usage data(metadata)
 #'
 #' @keywords internal
 #'
 #' @format Nested lists
 #'
 #' @source https://modelcatalogue.cs.ox.ac.uk/hdruk_live/#/catalogue/dataModel/16920b16-e24c-49f9-b4df-3dc85779822b/dataClasses
-"json_metadata"
+"metadata"
 
 #' Internal: Auto-categorisations
 #'
 #' A list of pre-defined pairings between data element and domain code. \cr \cr
-#' For each data element that map_metadata processes: \cr \cr
+#' For each data element that metadata_map processes: \cr \cr
 #' If it is contained within this look-up table, it uses the auto-categorised domain code rather than asking the user to categorise.\cr\cr
 #' This data was created with these two steps:
 #' \enumerate{
-#'  \item \code{look_up <- read.csv('browseMetadata/inst/inputs/look_up.csv')}
+#'  \item \code{look_up <- read.csv('inst/inputs/look_up.csv')}
 #'  \item \code{usethis::use_data(look_up)}
 #' }
 #' @docType data

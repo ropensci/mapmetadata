@@ -4,7 +4,7 @@ df_plots <- list(code = code, "")
 
 test_that("user_categorisation_loop handles auto categorisation", {
   # Mock data
-  table_df <- data.frame(label = c("Element1", "Element2"), description = c("Desc1", "Desc2"), type = c("Type1", "Type2"))
+  table_df <- data.frame(Column.name = c("Element1", "Element2"), Column.description = c("Desc1", "Desc2"), Data.type = c("Type1", "Type2"))
   lookup <- data.frame(data_element = c("Element1", "Element2"), domain_code = c(1, 2))
 
   # Call the function
@@ -18,7 +18,7 @@ test_that("user_categorisation_loop handles auto categorisation", {
 
 test_that("user_categorisation_loop handles copying from previous table", {
   # Mock data
-  table_df <- data.frame(label = c("Element1", "Element2"), description = c("Desc1", "Desc2"), type = c("Type1", "Type2"))
+  table_df <- data.frame(Column.name = c("Element1", "Element2"), Column.description = c("Desc1", "Desc2"), Data.type = c("Type1", "Type2"))
   df_prev <- data.frame(data_element = c("Element1", "Element2"), domain_code = c(1, 2), table = c("PrevTable1", "PrevTable2"))
   lookup <- data.frame(data_element = c("Element3", "Element4"), domain_code = c(3, 4))
 
@@ -33,7 +33,7 @@ test_that("user_categorisation_loop handles copying from previous table", {
 
 test_that("user_categorisation_loop handles user categorisation", {
   # Mock data
-  table_df <- data.frame(label = c("Element1", "Element2"), description = c("Desc1", "Desc2"), type = c("Type1", "Type2"))
+  table_df <- data.frame(Column.name = c("Element1", "Element2"), Column.description = c("Desc1", "Desc2"), Data.type = c("Type1", "Type2"))
   lookup <- data.frame(data_element = c("Element3", "Element4"), domain_code = c(3, 4))
 
   # Mock the user_categorisation function

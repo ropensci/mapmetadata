@@ -1,10 +1,43 @@
+#' Internal: empty_plot
+#'
+#' This function is called within the metadata_map function. \cr \cr
+#' It plots  \cr \cr
+#' @param dataframe Dataframe to plot. Output of empty_count.R function.
+#' @param n_tables The number of table names in this dataframe.
+#' @return A plotly object
+#' @keywords internal
+#' @importFrom plotly plot_ly layout
+
+empty_plot <- function(dataframe, n_tables) {
+  barplot_html <- plot_ly(dataframe,
+    x = ~Table,
+    y = ~N_Variables,
+    color = ~Empty,
+    colors = c("grey", "darkturquoise"),
+    type = "bar",
+    text = ~N_Variables,
+    textposition = "inside",
+    texttemplate = "%{text}",
+    textfont = list(color = "black", size = 10)
+  ) %>%
+    layout(
+      barmode = "stack",
+      title = paste0("\n", "Dataset contains ", n_tables, " table(s)"),
+      xaxis = list(title = "Table"),
+      yaxis = list(title = "Variable Count"),
+      legend = list(title = list(text = "Empty Description"))
+    )
+
+  barplot_html
+}
+
 #' Internal: ref_plot
 #'
-#' This function is called within the map_metadata function. \cr \cr
+#' This function is called within the metadata_map function. \cr \cr
 #' It plots a reference table to guide the user in their categorisation of domains. \cr \cr
 #' This reference table is based on the user inputted domains and the default domains provided by this package.  \cr \cr
 #' @param domains The output of load_data
-#' @return A reference table that appears in the Plots tab. A list of 2 containing the derivatives for this plot, used later in map_metadata'
+#' @return A reference table that appears in the Plots tab. A list of 2 containing the derivatives for this plot, used later in metadata_map'
 #' @keywords internal
 #' @importFrom gridExtra tableGrob grid.arrange
 #' @importFrom graphics plot.new
@@ -22,7 +55,7 @@ ref_plot <- function(domains) {
 
 #' Internal: end_plot
 #'
-#' This function is called within the map_metadata function. \cr \cr
+#' This function is called within the metadata_map function. \cr \cr
 #' A summary plot is created that includes the domain code reference table and counts of domain code categorisations \cr \cr
 #'
 #' @param df The Output dataframe with all the domain categorisations

@@ -3,7 +3,7 @@ scan <- NULL
 
 #' Internal: user_categorisation
 #'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' It displays data properties to the user and requests a categorisation into a domain. \cr \cr
 #' An optional note can be included with the categorisation.
 #'
@@ -71,14 +71,14 @@ user_categorisation <- function(data_element, data_desc, data_type, domain_code_
 
 #' Internal: user_categorisation_loop
 #'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
+#' Internal Function: This function is called within the metadata_map function. \cr \cr
 #' Given a specific table and a number of data elements to search, it checks for 3 different sources of domain categorisation: \cr \cr
 #' 1 - If data elements match those in the look-up table, auto categorise them \cr \cr
 #' 2 - If data elements match to previous table output, copy them \cr \cr
 #' 3 - If no match for 1 or 2, data elements are categorised by the user \cr \cr
 #' @param start_v Index of data element to start
 #' @param end_v Index of data element to end
-#' @param table_df Dataframe with the table information, extracted from json metadata
+#' @param table_df Dataframe with the table information, extracted from metadata file
 #' @param df_prev_exist Boolean to indicate with previous dataframes exist (to copy from)
 #' @param df_prev Previous dataframes to copy from (or NULL)
 #' @param lookup The lookup table to enable auto categorisations
@@ -94,18 +94,18 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
     cat("\n \n")
     cli_alert_info(paste(length(data_v:end_v), "left to process"))
     cli_alert_info("Data element {data_v} of {nrow(table_df)}")
-    this_data_element <- table_df$label[data_v]
+    this_data_element <- table_df$Column.name[data_v]
     this_data_element_n <- paste(
       as.character(data_v), "of",
       as.character(nrow(table_df))
     )
     data_v_index <- which(lookup$data_element ==
-      table_df$label[data_v]) # we should code this to ignore the case
+      table_df$Column.name[data_v]) # we should code this to ignore the case
     lookup_subset <- lookup[data_v_index, ]
     ##### search if data element matches any data elements from previous table
     if (df_prev_exist == TRUE) {
       data_v_index <- which(df_prev$data_element ==
-        table_df$label[data_v])
+        table_df$Column.name[data_v])
       df_prev_subset <- df_prev[data_v_index, ]
     } else {
       df_prev_subset <- data.frame()
@@ -131,9 +131,9 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
     } else {
       ###### 3 - collect user responses with 'user_categorisation.R'
       decision_output <- user_categorisation(
-        table_df$label[data_v],
-        table_df$description[data_v],
-        table_df$type[data_v],
+        table_df$Column.name[data_v],
+        table_df$Column.description[data_v],
+        table_df$Data.type[data_v],
         max(df_plots$code$code)
       )
       output_df <- output_df %>% add_row(
@@ -145,80 +145,4 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist, df
     }
   } # end of loop for data_element
   output_df
-}
-
-#' Internal: user_prompt
-#'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
-#' It prompts a response from the user. \cr \cr
-#'
-#' @param prompt_text Text to display to the user, to prompt their response.
-#' @param any_keys Boolean to determine if any key responses are allowable.
-#' If FALSE, only these are allowed: Y, y, N and n.
-#' @return It returns variable text, depending on any_keys.
-#' @keywords internal
-
-user_prompt <- function(prompt_text, any_keys) {
-  # prompt text
-  if (any_keys == TRUE) {
-    response <- ""
-    while (response == "") {
-      response <- readline(prompt = prompt_text)
-    }
-  } else if (any_keys == FALSE) {
-    response <- ""
-    while (!response %in% c("Y", "y", "N", "n")) {
-      response <- readline(prompt = prompt_text)
-    }
-  } else {
-    stop("Invalid input given for 'any_keys'. Only TRUE or FALSE are allowed.")
-  }
-
-  response
-}
-
-#' Internal: user_prompt_list
-#'
-#' Internal Function: This function is called within the map_metadata function. \cr \cr
-#' It prompts a response from the user, in the form of a list. \cr \cr
-#' It checks if the user has given the an input within the allowed range - if not, it re-sends prompt. \cr \cr
-#'
-#' @param prompt_text Text to display to the user, to prompt their response.
-#' @param list_allowed A list of allowable integer responses.
-#' @param empty_allowed A boolean specifying if no response is allowed.
-#' @return It returns a list of integers to process, that match the prompt options.
-#' @keywords internal
-#' @importFrom cli cli_alert_info cli_alert_danger
-
-user_prompt_list <- function(prompt_text, list_allowed, empty_allowed) {
-  list_to_process_error <- TRUE
-  list_to_process_in_range <- TRUE
-  while (list_to_process_error == TRUE || list_to_process_in_range == FALSE) {
-    tryCatch(
-      {
-        cat("\n \n")
-        cli_alert_info(prompt_text)
-        cat("\n")
-        list_to_process <- scan(file = "", what = 0)
-        list_to_process_in_range_1 <- (all(list_to_process %in% list_allowed))
-        if (empty_allowed == FALSE) {
-          list_to_process_in_range_2 <- (all(length(list_to_process) != 0))
-        } else {
-          list_to_process_in_range_2 <- TRUE
-        }
-        list_to_process_in_range <- all(list_to_process_in_range_1, list_to_process_in_range_2)
-        if (list_to_process_in_range == FALSE) {
-          cli_alert_danger("One of your inputs is out of range! Reference the allowable list of integers and try again.")
-        }
-        list_to_process_error <- FALSE
-      },
-      error = function(e) {
-        list_to_process_error <- TRUE
-        print(e)
-        cat("\n")
-        cli_alert_danger("Your input is in the wrong format. Reference the allowable list of integers and try again.")
-      }
-    )
-  }
-  list_to_process
 }

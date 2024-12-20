@@ -1,6 +1,6 @@
 #' valid_comparison
 #'
-#' Internal Function: This function is called within the map_metadata_compare function. \cr \cr
+#' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' It reads two inputs to see if they are equal. \cr \cr
 #' If the test is 'warning' status and inputs are not equal it gives warning but continues. \cr \cr
 #' If the test is 'danger' status and inputs are not equal it stops and exits, with error message. \cr \cr
@@ -33,12 +33,12 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 
 #' concensus_on_mismatch
 #'
-#' Internal Function: This function is called within the map_metadata_compare function. \cr \cr
+#' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' For a specific data element, it compares the domain code categorisation between two sessions.
-#' If the categorisation differs, it prompts the user for a new consensus decision by presenting the json metadata. \cr \cr
+#' If the categorisation differs, it prompts the user for a new consensus decision by presenting the metadata info. \cr \cr
 #'
 #' @param ses_join The joined dataframes from the two sessions
-#' @param table_df Metadata from the json file, for one table in the dataset
+#' @param table_df Metadata, for one table in the dataset
 #' @param datavar Data Element n
 #' @param domain_code_max The maximum allowable domain code integer
 #' @return It returns a list of 2: the domain code and the note from the consensus decision
@@ -55,7 +55,7 @@ concensus_on_mismatch <- function(ses_join, table_df, datavar, domain_code_max) 
     ))
     cat("\n\n")
     cli_alert_info("Provide concensus decision for this DataElement:")
-    decision_output <- user_categorisation(table_df$label[datavar], table_df$description[datavar], table_df$type[datavar], domain_code_max)
+    decision_output <- user_categorisation(table_df$Column.name[datavar], table_df$Column.description[datavar], table_df$Data.type[datavar], domain_code_max)
     domain_code_join <- decision_output$decision
     note_join <- decision_output$decision_note
   } else {

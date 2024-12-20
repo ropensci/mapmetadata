@@ -1,6 +1,6 @@
-# Contributing to browseMetadata
+# Contributing to mapmetadata
 
-We warmly welcome contributions to the browseMetadata project! 
+We warmly welcome contributions to the mapmetadata project! 
 This document provides guidelines for contributing to this repository.
 
 ## How to contribute
@@ -34,14 +34,14 @@ This document provides guidelines for contributing to this repository.
 If your contribution involves changes to the R package itself (as an author or reviewer of a PR), here are some specific guidelines, assuming you are using RStudio as your editor:
 
 1. Clone this GitHub repository locally and ensure all branches you need are up to date with remote. 
-> In R Studio, you can clone it by clicking on `File` > `New Project...`, then select `Version Control`, and choose `Git`. Enter the repository URL (e.g., `https://github.com/aim-rsf/browseMetadata`), select the directory to clone the repository into, and click `Create Project`.
+> In R Studio, you can clone it by clicking on `File` > `New Project...`, then select `Version Control`, and choose `Git`. Enter the repository URL (e.g., `https://github.com/aim-rsf/mapmetadata`), select the directory to clone the repository into, and click `Create Project`.
 2. You should have a **Git** tab in your workspace.
 3. In this **Git** tab, move to the branch you want to make changes in (or review and test the changes of someone else).
 4. Ensure that your current working directory is the R package directory you cloned (`getwd()` to check and `setwd()` to change).
-5. Run `devtools::load_all()` in the R console. You should see `ℹ Loading browseMetadata` returned.
+5. Run `devtools::load_all()` in the R console. You should see `ℹ Loading mapmetadata` returned.
 6. Make your changes (or review changes made by others), and commit these changes in the way you choose to interact with git locally!
 
-If you run into issues with branches not seeming to be up to date in the R Studio workspace, consider running `remove.packages("browseMetadata")` and trying the above steps again, in case a previously installed package library is getting in the way somehow. 
+If you run into issues with branches not seeming to be up to date in the R Studio workspace, consider running `remove.packages("mapmetadata")` and trying the above steps again, in case a previously installed package library is getting in the way somehow. 
    
 ### Working with package data
 
@@ -51,9 +51,9 @@ If you run into issues with branches not seeming to be up to date in the R Studi
   ```
   Replace `dataname` with the actual name of your data.
 
-- **Viewing Package Data**: To view the data included in the `browseMetadata` package, execute:
+- **Viewing Package Data**: To view the data included in the `mapmetadata` package, execute:
   ```R
-  data(package='browseMetadata')
+  data(package='mapmetadata')
   ```
 
 - **Loading Package Data**: To load specific data from the package, use:
@@ -91,4 +91,4 @@ Ensure that your changes do not break any existing functionality. Run any existi
 
 If you have questions or need help, feel free to open an issue for discussion or reach out to the maintainers directly.
 
-Thank you for contributing to browseMetadata!
+Thank you for contributing to mapmetadata!

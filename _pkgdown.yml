@@ -1,4 +1,4 @@
-url: https://aim-rsf.github.io/browseMetadata/
+url: https://aim-rsf.github.io/mapmetadata/
 home:
   title: Browse and categorise health metadata
   logo: man/figures/logo.png
@@ -22,5 +22,6 @@ navbar:
 reference:
 - title: "User functions"
   contents:
-  - starts_with("map_metadata")
-  - browse_metadata
+  - metadata_map
+  - map_compare
+  - map_convert 
