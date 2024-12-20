@@ -52,7 +52,7 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
 
   # VALIDATION CHECKS ----
 
-  ## Use 'valid_comparison.R' to check if sessions can be compared to each other and to the json (min requirements):
+  ## Use 'valid_comparison.R' to check if sessions can be compared to each other and to the metadata file (min requirements):
 
   valid_comparison(
     input_1 = csv_1a$dataset[1],
@@ -72,7 +72,7 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
     input_1 = csv_1a$dataset[1],
     input_2 = dataset_name,
     severity = "danger",
-    severity_text = "Different dataset to json"
+    severity_text = "Different dataset to metadata"
   )
 
   valid_comparison(
@@ -96,7 +96,7 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
   ## Use 'ref_plot.R' to plot domains for the user's ref (save df for later use)
   df_plots <- ref_plot(domains)
 
-  # EXTRACT TABLE INFO FROM METADATA JSON ----
+  # EXTRACT TABLE INFO FROM METADATA ----
   table_name <- csv_1a$table[1]
   table_df <- dataset %>% filter(Section == table_name)
 

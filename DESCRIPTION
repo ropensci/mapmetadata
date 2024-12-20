@@ -29,7 +29,6 @@ Imports:
     ggplot2,
     gridExtra,
     htmlwidgets,
-    jsonlite,
     plotly,
     tidyr
 Suggests: 
