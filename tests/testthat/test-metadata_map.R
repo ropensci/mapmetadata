@@ -19,14 +19,15 @@ test_that("metadata_map function works correctly with user input", {
     }
   )
 
-    local_mocked_bindings(
-      menu = function(choices, graphics = FALSE, title = NULL) {
-        response <- switch(title,
-                           "Enter the table number you want to process:" = 4,
-                           "\nWould you like to review your categorisations?" = 0 # IMPROVE - could test this with not 0
-        )
-        return(response)
-      })
+  local_mocked_bindings(
+    menu = function(choices, graphics = FALSE, title = NULL) {
+      response <- switch(title,
+        "Enter the table number you want to process:" = 4,
+        "\nWould you like to review your categorisations?" = 0 # IMPROVE - could test this with not 0
+      )
+      return(response)
+    }
+  )
 
 
   local_mocked_bindings(
@@ -41,10 +42,11 @@ test_that("metadata_map function works correctly with user input", {
   local_mocked_bindings(
     select.list = function(choices, preselect = NULL, multiple = FALSE, title = NULL, graphics = getOption("menu.graphics"), inline = getOption("menu.graphics")) {
       response <- switch(title,
-                         "\nSelect those you want to manually edit:" = character(0) # IMPROVE - could test this with not 0
+        "\nSelect those you want to manually edit:" = character(0) # IMPROVE - could test this with not 0
       )
       return(response)
-    })
+    }
+  )
 
   # Run the map.R function
   metadata_map(output_dir = temp_dir, table_copy = FALSE, long_output = FALSE) # IMPROVE - could test with TRUE

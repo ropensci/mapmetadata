@@ -58,7 +58,6 @@ metadata_map <- function(
     output_dir = getwd(),
     table_copy = TRUE,
     long_output = TRUE) {
-
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
@@ -87,11 +86,13 @@ metadata_map <- function(
   empty_count_df <- empty_count(dataset)
 
   ## Use 'empty_plot.R' to create bar plot then save it
-  barplot_html <- empty_plot(empty_count_df,n_tables)
+  barplot_html <- empty_plot(empty_count_df, n_tables)
   original_wd <- getwd()
   setwd(output_dir) # saveWidget has a bug with paths & saving
-  base_fname <-  paste0("BAR_", gsub(" ", "", dataset_name),"_",
-                        timestamp_now_fname)
+  base_fname <- paste0(
+    "BAR_", gsub(" ", "", dataset_name), "_",
+    timestamp_now_fname
+  )
   bar_fname <- paste0(base_fname, ".html")
   saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
   bar_data_fname <- paste0(base_fname, ".csv")
@@ -130,7 +131,7 @@ metadata_map <- function(
 
   ## CHOOSE TABLE TO PROCESS
 
-  chosen_table_n <- menu(levels(dataset$Section),title = 'Enter the table number you want to process:')
+  chosen_table_n <- menu(levels(dataset$Section), title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
   cat("\n")
   cli_alert_info("Processing Table {chosen_table_n} of {n_tables} ({table_name})")
@@ -165,13 +166,14 @@ metadata_map <- function(
   #### Use 'user_categorisation_loop.R' to copy or request from user
 
   output_df <- user_categorisation_loop(start_v,
-                                        end_v,
-                                        table_df,
-                                        df_prev_exist,
-                                        df_prev,
-                                        lookup = data$lookup,
-                                        df_plots,
-                                        output_df)
+    end_v,
+    table_df,
+    df_prev_exist,
+    df_prev,
+    lookup = data$lookup,
+    df_plots,
+    output_df
+  )
 
   output_df$timestamp <- timestamp_now
   output_df$table <- table_name
@@ -179,17 +181,18 @@ metadata_map <- function(
 
   #### Review auto categorized data elements
   cat("\n")
-  cli_alert_info('These are the auto categorised data elements:')
+  cli_alert_info("These are the auto categorised data elements:")
   cat("\n")
   output_auto <- subset(output_df, note == "AUTO CATEGORISED")
   output_auto <- output_auto[, c("data_element", "domain_code", "note")]
-  print(output_auto,row.names = FALSE)
+  print(output_auto, row.names = FALSE)
 
   auto_elements <- output_df$data_element[output_df$note == "AUTO CATEGORISED"]
 
   auto_row_names <- select.list(auto_elements,
-                                 multiple = TRUE,
-                                 title = "\nSelect those you want to manually edit:")
+    multiple = TRUE,
+    title = "\nSelect those you want to manually edit:"
+  )
 
   auto_row <- which(output_df$data_element %in% auto_row_names)
 
@@ -210,20 +213,21 @@ metadata_map <- function(
 
   ### Review user categorized data elements (optional)
   cat("\n")
-  review_cats <- menu(c('Yes','No'),title = '\nWould you like to review your categorisations?')
+  review_cats <- menu(c("Yes", "No"), title = "\nWould you like to review your categorisations?")
   if (review_cats == 1) {
     output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
     output_not_auto["note (first 12 chars)"] <-
       substring(output_not_auto$note, 1, 11)
-    cli_alert_info('These are the data elements you categorised:')
+    cli_alert_info("These are the data elements you categorised:")
     cat("\n")
     print(output_not_auto[, c("data_element", "domain_code", "note (first 12 chars)")], row.names = FALSE)
 
     not_auto_elements <- output_df$data_element[output_df$note != "AUTO CATEGORISED"]
 
     not_auto_row_names <- select.list(not_auto_elements,
-                                   multiple = TRUE,
-                                   title = "\nSelect those you want to edit:")
+      multiple = TRUE,
+      title = "\nSelect those you want to edit:"
+    )
 
     not_auto_row <- which(output_df$data_element %in% not_auto_row_names)
 
@@ -253,21 +257,28 @@ metadata_map <- function(
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- paste0("MAPPING_",gsub(" ", "", dataset_name),"_",
-                      gsub(" ", "", table_name),"_",timestamp_now_fname,".csv")
+  csv_fname <- paste0(
+    "MAPPING_", gsub(" ", "", dataset_name), "_",
+    gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
+  )
 
-  csv_log_fname <- paste0("MAPPING_LOG_",gsub(" ", "", dataset_name),"_",
-                          gsub(" ", "", table_name),"_",
-                          timestamp_now_fname,".csv")
+  csv_log_fname <- paste0(
+    "MAPPING_LOG_", gsub(" ", "", dataset_name), "_",
+    gsub(" ", "", table_name), "_",
+    timestamp_now_fname, ".csv"
+  )
 
-  png_fname <- paste0("MAPPING_PLOT_",gsub(" ", "", dataset_name),"_",
-                      gsub(" ", "", table_name),"_",timestamp_now_fname,".png")
+  png_fname <- paste0(
+    "MAPPING_PLOT_", gsub(" ", "", dataset_name), "_",
+    gsub(" ", "", table_name), "_", timestamp_now_fname, ".png"
+  )
 
   ### Save final categorisations for this Table
   write.csv(output_df, paste(output_dir, csv_fname, sep = "/"), row.names = FALSE)
   write.csv(log_output_df,
-            paste(output_dir, csv_log_fname, sep = "/"),
-            row.names = FALSE)
+    paste(output_dir, csv_log_fname, sep = "/"),
+    row.names = FALSE
+  )
   cat("\n")
   cli_alert_success("Final categorisations saved as:\n{csv_fname}")
   cli_alert_success("Session log saved as:\n{csv_log_fname}")
@@ -288,5 +299,4 @@ metadata_map <- function(
     map_convert(csv_fname, output_dir)
     cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
   }
-
 } # end of function

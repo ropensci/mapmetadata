@@ -9,7 +9,6 @@
 #' @importFrom dplyr %>% group_by summarise mutate select arrange n
 
 empty_count <- function(dataframe) {
-
   empty_count_df <- dataframe %>%
     group_by(Section) %>%
     summarise(
@@ -28,7 +27,4 @@ empty_count <- function(dataframe) {
   colnames(empty_count_df)[colnames(empty_count_df) == "Section"] <- "Table"
 
   empty_count_df
-
 }
-
-
