@@ -13,6 +13,7 @@
 #' @export
 #' @importFrom utils read.csv write.csv
 #' @importFrom cli cli_alert_success
+#' @importFrom dplyr left_join join_by
 #' @examples
 #' \dontrun{
 #' # Locate file paths for the example files in the package
@@ -81,7 +82,7 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
     severity_text = "Different number of data elements!"
   )
 
-  ##  Use 'valid_comparison.R' to check the sessions can be compared to each other and to the json (warnings for user to check):
+  ##  Use 'valid_comparison.R' to check the sessions can be compared to each other (warnings for user to check):
 
   valid_comparison(
     input_1 = csv_1a$mapmetadata[1],

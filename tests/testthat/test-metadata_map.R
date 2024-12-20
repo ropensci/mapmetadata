@@ -22,7 +22,7 @@ test_that("metadata_map function works correctly with user input", {
     local_mocked_bindings(
       menu = function(choices, graphics = FALSE, title = NULL) {
         response <- switch(title,
-                           "Enter the table numbers you want to process:" = 4,
+                           "Enter the table number you want to process:" = 4,
                            "\nWould you like to review your categorisations?" = 0 # IMPROVE - could test this with not 0
         )
         return(response)

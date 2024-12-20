@@ -52,7 +52,7 @@ select.list <- NULL
 #' @importFrom htmlwidgets saveWidget
 
 metadata_map <- function(
-    csv_file = NULL,
+    metadata_file = NULL,
     domain_file = NULL,
     look_up_file = NULL,
     output_dir = getwd(),
@@ -65,9 +65,9 @@ metadata_map <- function(
   # SECTION 1 - DEFINE & PREPARE INPUTS ----
 
   ## Use 'data_load.R' to collect inputs (defaults or user inputs)
-  data <- data_load(csv_file, domain_file, look_up_file)
+  data <- data_load(metadata_file, domain_file, look_up_file)
 
-  ## Extract Dataset from csv_file
+  ## Extract Dataset from metadata_file
   dataset <- data$metadata
   dataset_name <- data$metadata_desc
 

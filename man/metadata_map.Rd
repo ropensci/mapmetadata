@@ -5,7 +5,7 @@
 \title{metadata_map}
 \usage{
 metadata_map(
-  csv_file = NULL,
+  metadata_file = NULL,
   domain_file = NULL,
   look_up_file = NULL,
   output_dir = getwd(),
@@ -14,6 +14,10 @@ metadata_map(
 )
 }
 \arguments{
+\item{metadata_file}{This should be a csv download from HDRUK gateway
+(0_Dataset_Structural_Metadata.csv). Deafult is 'data/metadata.rda' - run
+'?metadata' to see how it was created.}
+
 \item{domain_file}{This should be a csv file created by the user, with each
 domain on a separate line, no header. Default is 'data/domain_list.rda'
 - run '?domain_list' to see how it was created.
@@ -37,10 +41,6 @@ user time, and ensure consistency of categorisations across tables.}
 
 \item{long_output}{Run map_convert.R to create a new longer output
 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.}
-
-\item{metadata_file}{This should be a csv download from HDRUK gateway
-(0_Dataset_Structural_Metadata.csv). Deafult is 'data/metadata.rda' - run
-'?metadata' to see how it was created.}
 }
 \value{
 The function will return two csv files: 'OUTPUT_' which contains the
