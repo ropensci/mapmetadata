@@ -84,7 +84,7 @@ Stopping here just gets you the summary plot, which is saved to your project dir
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-18-07-22.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
-If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tip on these mapping steps, see [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
+If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
 ## Using a custom metadata input (recommended)
 
