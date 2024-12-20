@@ -10,7 +10,7 @@
 #' @importFrom utils read.csv write.csv
 #' @examples
 #' # Locate file path and file name for the example files in the package
-#' demo_output_dir <- system.file("outputs", package = "browseMetadata")
+#' demo_output_dir <- system.file("outputs", package = "mapmetadata")
 #' demo_output_csv <- "MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45.csv"
 #'
 #' # Run the function

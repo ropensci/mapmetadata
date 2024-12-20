@@ -27,7 +27,7 @@
 #' Internal Dataset: Empty log output dataframe for metadata_map to fill. Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{log_output_df <- data.frame(timestamp = character(1),
-#'  browseMetadata = character(1),
+#'  mapmetadata = character(1),
 #'  initials = character(1),
 #'  domain_list_desc = character(1),
 #'  dataset = character(1),

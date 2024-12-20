@@ -16,11 +16,11 @@
 #' @examples
 #' \dontrun{
 #' # Locate file paths for the example files in the package
-#' demo_session_dir <- system.file("outputs", package = "browseMetadata")
+#' demo_session_dir <- system.file("outputs", package = "mapmetadata")
 #' demo_session1_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55"
 #' demo_session2_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45"
-#' demo_metadata_file <- system.file("inputs", "360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "browseMetadata")
-#' demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "browseMetadata")
+#' demo_metadata_file <- system.file("inputs", "360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "mapmetadata")
+#' demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "mapmetadata")
 #'
 #' # Run the function - requires user interaction
 #' map_compare(
@@ -84,10 +84,10 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
   ##  Use 'valid_comparison.R' to check the sessions can be compared to each other and to the json (warnings for user to check):
 
   valid_comparison(
-    input_1 = csv_1a$browseMetadata[1],
-    input_2 = csv_2a$browseMetadata[1],
+    input_1 = csv_1a$mapmetadata[1],
+    input_2 = csv_2a$mapmetadata[1],
     severity = "warning",
-    severity_text = "Different version of browseMetadata package!"
+    severity_text = "Different version of mapmetadata package!"
   )
 
   # DISPLAY TO USER ----

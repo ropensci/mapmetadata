@@ -4,7 +4,7 @@
 \name{browseMetadata-package}
 \alias{browseMetadata}
 \alias{browseMetadata-package}
-\title{browseMetadata: Browse and categorise health metadata}
+\title{browseMetadata: Map health metadata onto predefined research domains}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 

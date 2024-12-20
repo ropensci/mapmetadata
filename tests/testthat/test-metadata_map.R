@@ -2,9 +2,9 @@ test_that("metadata_map function works correctly with user input", {
   # Setup
   temp_dir <- withr::local_tempdir()
 
-  demo_log_output <- system.file("outputs/MAPPING_LOG_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "browseMetadata")
-  demo_output <- system.file("outputs/MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "browseMetadata")
-  demo_bar <- system.file("outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.csv", package = "browseMetadata")
+  demo_log_output <- system.file("outputs/MAPPING_LOG_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "mapmetadata")
+  demo_output <- system.file("outputs/MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.csv", package = "mapmetadata")
+  demo_bar <- system.file("outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.csv", package = "mapmetadata")
   # IMPROVE - also test MAPPING_PLOT_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55.png
   # IMPROVE - also test BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.html
 
@@ -67,8 +67,8 @@ test_that("metadata_map function works correctly with user input", {
   # Remove the timestamp and package version columns for comparison
   expected_log_output$timestamp <- NULL
   actual_log_output$timestamp <- NULL
-  expected_log_output$browseMetadata <- NULL
-  actual_log_output$browseMetadata <- NULL
+  expected_log_output$mapmetadata <- NULL
+  actual_log_output$mapmetadata <- NULL
   expected_output$timestamp <- NULL
   actual_output$timestamp <- NULL
 

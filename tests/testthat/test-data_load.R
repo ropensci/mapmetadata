@@ -1,7 +1,7 @@
 # Define file paths to demo data relative to the package directory
-csv_file <- system.file("inputs/360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "browseMetadata")
-look_up_file <- system.file("inputs/look_up.csv", package = "browseMetadata")
-domains_file <- system.file("inputs/domain_list_demo.csv", package = "browseMetadata")
+csv_file <- system.file("inputs/360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "mapmetadata")
+look_up_file <- system.file("inputs/look_up.csv", package = "mapmetadata")
+domains_file <- system.file("inputs/domain_list_demo.csv", package = "mapmetadata")
 
 # Define package demo data
 metadata <- get("metadata")

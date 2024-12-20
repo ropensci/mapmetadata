@@ -245,7 +245,7 @@ metadata_map <- function(
 
   ### Fill in log output
   log_output_df$timestamp <- timestamp_now
-  log_output_df$browseMetadata <- packageVersion("browseMetadata")
+  log_output_df$mapmetadata <- packageVersion("mapmetadata")
   log_output_df$initials <- user_initials
   log_output_df$domain_list_desc <- data$domain_list_desc
   log_output_df$dataset <- dataset_name

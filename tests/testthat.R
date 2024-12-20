@@ -7,8 +7,8 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(browseMetadata)
+library(mapmetadata)
 library(mockery)
 library(withr)
 
-test_check("browseMetadata")
+test_check("mapmetadata")
