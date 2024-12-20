@@ -20,9 +20,11 @@ For installation, set-up and basic usage refer to the package [README.md](https:
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-18-07-22.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"/>
 
-This bar plot is produced automatically when you run the `metadata_map` function. The bar plot shows us there are 13 tables in the dataset. The height of the bar indicates the number of variables in that table:
+This bar plot is produced automatically when you run the `metadata_map` function with the demo metadata file, which contains metadata about the **National Community Child Health Database (NCCHD).**
 
--   The ones with lots of variables (e.g. CHILD_TRUST) will take you longer to process
+The bar plot shows us there are 13 tables in the dataset. The height of the bar indicates the number of variables in that table:
+
+-   The ones with lots of variables (e.g. CHILD_TRUST) will take you longer to process (caveat: see HDRUK Gateway screenshot below)
 -   Some tables (e.g. CHE_HEALTHYCHILDWALESPROGRAMME) have a lot of empty descriptions. An empty description means that this variable will only have a label and a data type.
 
 It is important to note that this plot is only summarising *variable* level metadata i.e. a description of what the variable is. Some variables also require *value* level metadata i.e. what does each value correspond to, 1 = Yes, 2 = No, 3 = Unknown. This *value* level metadata can sometimes be found in lookup tables, if it is not provided within the *variable* level description.
