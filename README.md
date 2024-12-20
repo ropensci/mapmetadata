@@ -82,7 +82,7 @@ Press 'Esc' key to finish here, or press any other key to continue with mapping 
 
 Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument. 
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-18-07-22.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-18-07-22.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
 If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tip on these mapping steps, see [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
