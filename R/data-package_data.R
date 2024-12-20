@@ -73,7 +73,7 @@
 #' \enumerate{
 #'   \item Go to https://healthdatagateway.org
 #'   \item Navigate to the dataset of interest, select 'Download data' and download the Structural Metadata file
-#'   \item \code{metadata <- read.csv("inst/inputs/360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv")}
+#'   \item \code{metadata <- read.csv("inst/inputs/360_NationalCommunityChildHealthDatabase (NCCHD)_Structural_Metadata.csv")}
 #'   \item \code{usethis::use_data(metadata)}
 #' }
 #'

@@ -20,7 +20,7 @@
 #' demo_session_dir <- system.file("outputs", package = "mapmetadata")
 #' demo_session1_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55"
 #' demo_session2_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45"
-#' demo_metadata_file <- system.file("inputs", "360_National Community Child Health Database (NCCHD)_Structural_Metadata.csv", package = "mapmetadata")
+#' demo_metadata_file <- system.file("inputs", "360_NationalCommunityChildHealthDatabase(NCCHD)_Structural_Metadata.csv", package = "mapmetadata")
 #' demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "mapmetadata")
 #'
 #' # Run the function - requires user interaction
