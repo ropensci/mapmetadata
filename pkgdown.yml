@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   HealthMetadata: HealthMetadata.html
   mapmetadata: mapmetadata.html
-last_built: 2024-12-20T14:02Z
+last_built: 2024-12-20T16:49Z
 urls:
   reference: https://aim-rsf.github.io/mapmetadata/reference
   article: https://aim-rsf.github.io/mapmetadata/articles
