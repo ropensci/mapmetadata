@@ -1,24 +1,22 @@
-# mmetadata (map metadata)
+# mapmetadata
 
  *Mapping from variables to concepts*
 
-<a href="https://aim-rsf.github.io/browseMetadata/"><img src="man/figures/logo.png" align="right" height="120" alt="browseMetadata website" /></a>
+<a href="https://aim-rsf.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="120" alt="mapmetadata website" /></a>
 
 <!-- badges: start -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10581500.svg)](https://doi.org/10.5281/zenodo.10581500)
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![R-CMD-check](https://github.com/aim-rsf/browseMetadata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aim-rsf/browseMetadata/actions/workflows/R-CMD-check.yaml)
-[![pkgcheck](https://github.com/aim-rsf/browseMetadata/workflows/pkgcheck/badge.svg)](https://github.com/aim-rsf/browseMetadata/actions?query=workflow%3Apkgcheck) [![codecov](https://codecov.io/gh/aim-rsf/browseMetadata/graph/badge.svg?token=59S2QVG7CQ)](https://codecov.io/gh/aim-rsf/browseMetadata) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/674_status.svg)](https://github.com/ropensci/software-review/issues/674)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![R-CMD-check](https://github.com/aim-rsf/mapmetadata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aim-rsf/mapmetadata/actions/workflows/R-CMD-check.yaml)
+[![pkgcheck](https://github.com/aim-rsf/mapmetadata/workflows/pkgcheck/badge.svg)](https://github.com/aim-rsf/mapmetadata/actions?query=workflow%3Apkgcheck) [![codecov](https://codecov.io/gh/aim-rsf/mapmetadata/graph/badge.svg?token=59S2QVG7CQ)](https://codecov.io/gh/aim-rsf/mapmetadata) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/674_status.svg)](https://github.com/ropensci/software-review/issues/674)
 <!-- badges: end -->
 
 # Table of Contents
 
-1. [What is the `mmetaddata` package?](#what-is-the-mmetaddata-package)
-2. [Getting started with `mmetaddata`](#getting-started-with-mmetaddata)
-   - [Installation and set-up](#installation-and-set-up)
-   - [Demo (using the `R Studio` IDE)](#demo-using-the-r-studio-ide)
-     - [`browseMetadata()`](#browsemetadata-1)
-     - [`mapMetadata()`](#mapmetadata)
+1. [What is the `mapmetadata` package?](#what-is-the-mapmetadata-package)
+2. [Getting started with `mapmetadata`](#getting-started-with-mapmetadata)
+ - 2a. [Installation and set-up](#installation-and-set-up)
+ - 2b. [Demo (using the `R Studio` IDE)](#demo-using-the-r-studio-ide)
 3. [Using a custom metadata input](#using-a-custom-metadata-input-recommended)
 4. [Using a custom domain list input](#using-a-custom-domain-list-input-recommended)
 5. [Using a custom lookup table input](#using-a-custom-lookup-table-input-advanced)
@@ -28,19 +26,17 @@
 9. [Contributing](#contributing)
 10. [Acknowledgements](#acknowledgements-)
 
-## What is the `mmetaddata` package?
+## What is the `mapmetadata` package?
 
-For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/browseMetadata/articles/HealthMetadata.html).
+For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/mapmetadata/articles/HealthMetadata.html).
 
 One comprehensive open resource is the [Health Data Research Gateway](https://healthdatagateway.org/search?search=&datasetSort=latest&tab=Datasets), managed by [Health Data Research UK](https://www.hdruk.ac.uk/) in collaboration with the [UK Health Data Research Alliance](https://ukhealthdata.org/). The gateway can help a researcher address questions such as: *What datasets are available? What are the features of these datasets? Which datasets fit my research? How do I access these datasets? How have these datasets been used by the community before, and do they link to others? What publications, or other resources exist, using these datasets?* 
 
-This `mmetadata` (map metadata) package uses structural metadata files, downloaded from the Health Data Research Gateway. In theory, any metadata file with the same structure as the the files downloaded from this gateway can be used with this package. The `mmetadata` package goes beyond just browsing structural metadata, and helps a researcher interact with this metadata and map it to their research concepts. Firstly, it creates a plot (see example below) displaying number of variables in each table, number of tables, and the completeness of the metadata (i.e. whether the description for each variable in a table exists). 
+This `mapmetadata` package uses structural metadata files, downloaded from the Health Data Research Gateway. In theory, any metadata file with the same structure as the the files downloaded from this gateway can be used with this package. The `mapmetadata` package goes beyond just browsing structural metadata, and helps a researcher interact with this metadata and map it to their research domains/concepts. Firstly, it creates a plot (see example below) displaying number of variables in each table, number of tables, and the completeness of the metadata (i.e. whether the description for each variable in a table exists). 
 
-Secondly, it helps the researcher address the question *Which variables map onto with my research domains?*  (e.g. socioeconomic, childhood adverse events, diagnoses, culture and community). With `mmetadata`, users can map (categorise) each variable into predefined research domains. Research domains could otherwise be called concepts or latent variables. To speed up this manual mapping/categorisation process, the package automatically categorises variables that frequently occur in health datasets (e.g. ID, Sex, Age). The package also accounts for variables that appear across multiple tables within a dataset and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.
+Secondly, it helps the researcher address the question *Which variables map onto with my research domains?*  (e.g. socioeconomic, childhood adverse events, diagnoses, culture and community). The package guides users in mapping each variable into predefined research domains. Research domains could otherwise be called concepts or latent variables. To speed up this manual mapping process, the package automatically categorises variables that frequently occur in health datasets (e.g. ID, Sex, Age). The package also accounts for variables that appear across multiple tables within a dataset and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.
 
-<img src="https://raw.githubusercontent.com/aim-rsf/browseMetadata/main/inst/outputs/BROWSE_bar_NationalCommunityChildHealthDatabase_(NCCHD)_V16.0.0.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
-
-## Getting started with `mmetaddata`
+## Getting started with `mapmetadata`
 
 ### Installation and set-up
 
@@ -48,64 +44,60 @@ Run in the R console:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("aim-rsf/mmetaddata")
+devtools::install_github("aim-rsf/mapmetadata")
 ```
 
 Load the library:
 
 ``` r
-library(mmetaddata)
+library(mapmetadata)
 ```
 
 ### Demo (using the `R Studio` IDE)
 
-Fo a longer more detailed demo, see the [Getting Started](https://aim-rsf.github.io/browseMetadata/articles/browseMetadata.html) page on the package website. 
+For a longer more detailed demo, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
-There are three main functions you can interact with: `map()`, `map_compare()`, and `map_convert()`. For more information on any function, type `?function_name`. For example: `?map`.
+There are three main functions you can interact with: `metadata_map()`, `map_compare()`, and `map_convert()`. For more information on any function, type `?function_name`. 
 
-#### `browse_metadata()`
-
-This function is easy to run and doesn't require user interaction. Run it in demo mode using the demo JSON file located in the [inst/inputs](https://github.com/aim-rsf/browseMetadata/tree/main/inst/inputs) directory:
+Run it in demo mode using the files located in the [inst/inputs](https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs) directory:
 
 ``` r
-browse_metadata()
+metadata_map()
 ``` 
-
-Upon success, you should see:
+In the R console you should see:
 
 ```
-ℹ Three outputs have been saved to your output directory, and two outputs should have opened in your browser.
+ℹ Running demo mode using package data files
+
+ ℹ Using the default look-up table in data/look-up.rda
+
+ℹ Processing dataset: 360_NationalCommunityChildHealthDatabase(NCCHD)
+ℹ There are 13 tables in this dataset
+
+ℹ A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).
+ℹ Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
+
+Press 'Esc' key to finish here, or press any other key to continue with mapping variables
 ```
 
-The output files are saved to your project directory. You can change the save location by adjusting the `output_dir` argument. Examples of outputs are available in [inst/outputs](https://github.com/aim-rsf/browseMetadata/tree/main/inst/outputs).
+Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument. 
 
-#### `map_metadata()`
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-18-07-22.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
-Use the outputs from `browse_metadata()` as a reference when running `map_metadata()`. 
-
-To run the mapping function in demo mode, use:
-
-``` r
-map_metadata()
-``` 
-
-In demo mode, the function processes only the first 20 variables from selected tables. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains.
-
-Upon completion, your categorisations, session log, and a summary plot will be saved in your output directory.
+If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tip on these mapping steps, see [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
 ## Using a custom metadata input (recommended)
 
-You can run `map_metadata()` and `browse_metadata()` using a custom JSON file instead of the demo input:
+You can run `metadata_map()` with a custom CSV file instead of the demo input, to process metadata from a different dataset.
 
 ```r
-new_json_file <- "path/your_new_json.json"
-demo_domains_file <- system.file("inputs/domain_list_demo.csv", package = "browseMetadata")
+new_csv_file <- "path/your_new_csv.csv"
+demo_domains_file <- system.file("inputs/domain_list_demo.csv", package = "mapmetadata")
 
-browse_metadata(json_file = new_json_file)
-map_metadata(json_file = new_json_file, domain_file = demo_domains_file)
+metadata_map(csv_file = new_csv_file, domain_file = demo_domains_file)
 ```
 
-Currently, the recommended way of retrieving these metadata JSON files is to download them from [Metadata Catalogue](https://maurosandbox.com/hdruk/#/home). Navigate to the Data Model page of interest and use the drop down button to select the JSON format to download. 
+Currently, the recommended way of retrieving these metadata files is to download them from [Health Data Research Gateway](https://healthdatagateway.org/en/search?type=datasets). Browse for the dataset you want, click on it to move to its main page, click on 'Download data' and select 'Structural Metadata'. This is your csv_file input. 
 
 ## Using a custom domain list input (recommended)
 
@@ -113,31 +105,30 @@ You can replace the default demo domains with research-specific domains. Remembe
 
 ## Using a custom lookup table input (advanced)
 
-The lookup table governs the automatic categorisations. If you modify the [default lookup file](https://github.com/aim-rsf/browseMetadata/blob/main/inst/inputs/look_up.csv), ensure that all domain codes in the lookup file are also included in your domain file for valid outputs.
+The lookup table governs the automatic categorisations. If you modify the [default lookup file](https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv), ensure that all domain codes in the lookup file are also included in your domain file for valid outputs.
 
 ## Tips and future steps
 
-- You can process a subset of variables in one session and complete the rest later.
 - If you're processing multiple tables, save all outputs in the same directory to enable table copying. This feature will speed up categorisation and ensure consistency.
-- You can compare categorisations across researchers using the `map_metadata_compare()` function.
-- Use the output file from the `map_metadata()` function as input for subsequent analysis to filter and visualise variables by research domain.
+- You can compare categorisations across researchers using the `map_compare()` function.
+- Use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain.
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/aim-rsf/browseMetadata/blob/main/LICENSE.md) file for details.  
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/aim-rsf/mapmetadata/blob/main/LICENSE.md) file for details.  
 For more information, refer to [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ## Citation
 
-To cite `browseMetadata` in publications:
+To cite `mapmetadata` in publications:
 
-> Stickland R (2024). browseMetadata: browse and categorise health metadata. R package version 2.0.2.
+> Stickland R (2024). mapmetadata: map health metadata onto predefined research domains. R package version 2.0.2.
 
 A BibTeX entry for LaTeX users:
 
 ```r         
   @Manual{,
-    title = {browseMetadata: browse and categorise health metadata},
+    title = {mapmetadata: map health metadata onto predefined research domains},
     author = {Rachael Stickland},
     year = {2024},
     note = {R package version 2.0.2},
@@ -147,10 +138,10 @@ A BibTeX entry for LaTeX users:
 
 ## Contributing
 
-We welcome contributions to `browseMetadata`. Please read our [Contribution Guidelines](https://github.com/aim-rsf/browseMetadata/blob/main/CONTRIBUTING.md) for details on how to contribute.
+We welcome contributions to `mapmetadata`. Please read our [Contribution Guidelines](https://github.com/aim-rsf/mapmetadata/blob/main/CONTRIBUTING.md) for details on how to contribute.
 
--   **Report Issues**: Found a bug? Have a feature request? Report it on [GitHub Issues](https://github.com/aim-rsf/browseMetadata/issues).
--   **Submit Pull Requests**: Follow our [Contribution Guidelines](https://github.com/aim-rsf/browseMetadata/blob/main/CONTRIBUTING.md) for pull requests.
+-   **Report Issues**: Found a bug? Have a feature request? Report it on [GitHub Issues](https://github.com/aim-rsf/mapmetadata/issues).
+-   **Submit Pull Requests**: Follow our [Contribution Guidelines](https://github.com/aim-rsf/mapmetadata/blob/main/CONTRIBUTING.md) for pull requests.
 -   **Feedback**: Share your thoughts by opening an issue.
 
 ### Contributors ✨
@@ -163,9 +154,9 @@ Thanks go to these wonderful people ([emoji key](https://allcontributors.org/doc
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://linkedin.com/in/rstickland-phd"><img src="https://avatars.githubusercontent.com/u/50215726?v=4?s=100" width="100px;" alt="Rachael Stickland"/><br /><sub><b>Rachael Stickland</b></sub></a><br /><a href="#content-RayStick" title="Content">🖋</a> <a href="https://github.com/aim-rsf/browseMetadata/commits?author=RayStick" title="Documentation">📖</a> <a href="#maintenance-RayStick" title="Maintenance">🚧</a> <a href="#ideas-RayStick" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-RayStick" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/browseMetadata/pulls?q=is%3Apr+reviewed-by%3ARayStick" title="Reviewed Pull Requests">👀</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://batool-almarzouq.netlify.app/"><img src="https://avatars.githubusercontent.com/u/53487593?v=4?s=100" width="100px;" alt="Batool Almarzouq"/><br /><sub><b>Batool Almarzouq</b></sub></a><br /><a href="#userTesting-BatoolMM" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/browseMetadata/pulls?q=is%3Apr+reviewed-by%3ABatoolMM" title="Reviewed Pull Requests">👀</a> <a href="#ideas-BatoolMM" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-BatoolMM" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/browseMetadata/commits?author=BatoolMM" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Rainiefantasy"><img src="https://avatars.githubusercontent.com/u/43926907?v=4?s=100" width="100px;" alt="Mahwish Mohammad"/><br /><sub><b>Mahwish Mohammad</b></sub></a><br /><a href="#userTesting-Rainiefantasy" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/browseMetadata/pulls?q=is%3Apr+reviewed-by%3ARainiefantasy" title="Reviewed Pull Requests">👀</a> <a href="#ideas-Rainiefantasy" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://linkedin.com/in/rstickland-phd"><img src="https://avatars.githubusercontent.com/u/50215726?v=4?s=100" width="100px;" alt="Rachael Stickland"/><br /><sub><b>Rachael Stickland</b></sub></a><br /><a href="#content-RayStick" title="Content">🖋</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=RayStick" title="Documentation">📖</a> <a href="#maintenance-RayStick" title="Maintenance">🚧</a> <a href="#ideas-RayStick" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-RayStick" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARayStick" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://batool-almarzouq.netlify.app/"><img src="https://avatars.githubusercontent.com/u/53487593?v=4?s=100" width="100px;" alt="Batool Almarzouq"/><br /><sub><b>Batool Almarzouq</b></sub></a><br /><a href="#userTesting-BatoolMM" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ABatoolMM" title="Reviewed Pull Requests">👀</a> <a href="#ideas-BatoolMM" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-BatoolMM" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=BatoolMM" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Rainiefantasy"><img src="https://avatars.githubusercontent.com/u/43926907?v=4?s=100" width="100px;" alt="Mahwish Mohammad"/><br /><sub><b>Mahwish Mohammad</b></sub></a><br /><a href="#userTesting-Rainiefantasy" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARainiefantasy" title="Reviewed Pull Requests">👀</a> <a href="#ideas-Rainiefantasy" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/DDelbarre"><img src="https://avatars.githubusercontent.com/u/108824056?v=4?s=100" width="100px;" alt="Daniel Delbarre"/><br /><sub><b>Daniel Delbarre</b></sub></a><br /><a href="#ideas-DDelbarre" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-DDelbarre" title="User Testing">📓</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/NidaZiaS"><img src="https://avatars.githubusercontent.com/u/142920412?v=4?s=100" width="100px;" alt="NidaZiaS"/><br /><sub><b>NidaZiaS</b></sub></a><br /><a href="#ideas-NidaZiaS" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>

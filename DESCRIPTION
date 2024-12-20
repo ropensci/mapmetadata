@@ -1,6 +1,6 @@
 Type: Package
 Package: browseMetadata
-Title: Browse and categorise health metadata
+Title: Map health metadata onto predefined research domains
 Version: 2.0.2
 Authors@R: c(
     person("Rachael", "Stickland", , "rstickland@turing.ac.uk", role = c("aut", "cre"),
