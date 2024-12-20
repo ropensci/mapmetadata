@@ -24,11 +24,11 @@ This bar plot is produced automatically when you run the `metadata_map` function
 
 **For dataset NCCHD, used in the demo, the structural metadata was downloaded here:**
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/inst/outputs/NCCHD_gateway_download.png" alt="screenshot of HRDRUK gateway showing location to download structural metadata"/>
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_download.png" alt="screenshot of HRDRUK gateway showing location to download structural metadata"/>
 
 **View descriptions of each table to give you more context on their contents and how to use them:**
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/inst/outputs/NCCHD_gateway_table.png" alt="screenshot of HRDRUK gateway showing table descriptions"/>
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_table.png" alt="screenshot of HRDRUK gateway showing table descriptions"/>
 
 The bar plot shows us there are 13 tables in the dataset. The height of the bar indicates the number of variables in that table:
 
