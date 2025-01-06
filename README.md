@@ -172,7 +172,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 
 ## Acknowledgements ✨
 
-Thanks to the [MELD-B research project](https://www.southampton.ac.uk/publicpolicy/support-for-policymakers/policy-projects/Current%20projects/meld-b.page), the [SAIL Databank](https://saildatabank.com/) team, and the [Health Data Research Innovation Gateway](https://healthdatagateway.org/search?search=&datasetSort=latest&tab=Datasets) for ideas, feedback, and hosting open metadata.
+Thanks to the [MELD-B research project](https://www.southampton.ac.uk/publicpolicy/support-for-policymakers/policy-projects/Current%20projects/meld-b.page) and the [SAIL Databank](https://saildatabank.com/) team for ideas and feedback. Thanks to the [Health Data Research Innovation Gateway](https://healthdatagateway.org/en), and the participating data providers, for hosting open metadata.
 
-This project is funded by the NIHR [Artificial Intelligence for Multiple Long-Term Conditions (AIM) programme (NIHR202647). The views expressed are those of the author(s) and not necessarily those of the NIHR or the Department of Health and Social Care.
+This project is funded by the NIHR Artificial Intelligence for Multiple Long-Term Conditions (AIM) programme (NIHR202647). The views expressed are those of the author(s) and not necessarily those of the NIHR or the Department of Health and Social Care.
 
