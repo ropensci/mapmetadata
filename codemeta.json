@@ -226,7 +226,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "6164.024KB",
+  "fileSize": "6163.82KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -256,5 +256,5 @@
     "url": "https://github.com/ropensci/software-review/issues/674",
     "provider": "https://ropensci.org"
   },
-  "keywords": ["mltc", "r", "rpackage", "sail-databank", "health-data", "metadata"]
+  "keywords": ["mltc", "r", "rpackage", "sail-databank", "health-data", "metadata", "hdruk", "hdruk-gateway"]
 }
