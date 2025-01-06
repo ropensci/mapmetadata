@@ -33,10 +33,38 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/aim-rsf/mapmetadata/blob/v3.0.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/aim-rsf/mapmetadata/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-  </main></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.0.0" id="mapmetadata-300-2025-01-06">mapmetadata 3.0.0 (2025-01-06)<a class="anchor" aria-label="anchor" href="#mapmetadata-300-2025-01-06"></a></h2>
+<p>Thanks in part to helpful rOpenSci editor comments (<a href="https://github.com/ropensci/software-review/issues/674" class="external-link uri">https://github.com/ropensci/software-review/issues/674</a>) this release makes some improvements to the package, making it more suitable for the rOpenSci software review process, which will be based on this new release going forward.</p>
+<div class="section level4">
+<h4 id="breaking-changes-3-0-0">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-3-0-0"></a></h4>
+<ul><li>The package name has changed from browseMetadata to mapmetadata. mapmetadata better reflects the function of this package and complies with formatting best practice for R package naming</li>
+<li>Combined the browse function into the map function to simplify package use for the user</li>
+<li>Changed some function names to match object_verb convention</li>
+<li>Now using csv (not json) as the the metadata input to reflect the new structure from Health Data Research Gateway</li>
+<li>Removed some custom functions, because utils already offered these! (or very similar)</li>
+</ul></div>
+<div class="section level4">
+<h4 id="new-features-3-0-0">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-3-0-0"></a></h4>
+<ul><li>Clearer and more detailed user documentation in README and package website</li>
+</ul></div>
+<div class="section level4">
+<h4 id="minor-improvements-3-0-0">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-3-0-0"></a></h4>
+<ul><li>Logo has been replaced to reflect new package name</li>
+<li>Updated DESCRIPTION file to directly mention Health Data Research Gateway as a data source for this package, normalised the DESCRIPTION file formatting</li>
+<li>Open up the html output file automatically in the user’s browser, insteading of prompting the user to do this manually</li>
+<li>Internal functions no longer listed on the package website, only user functions</li>
+<li>Handle temp directories better in unit tests, by using <code><a href="https://withr.r-lib.org/reference/with_tempfile.html" class="external-link">withr::local_tempdir()</a></code>
+</li>
+<li>Improved unit tests by using <code><a href="https://testthat.r-lib.org/reference/local_mocked_bindings.html" class="external-link">testthat::local_mocked_bindings</a></code>
+</li>
+</ul></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
