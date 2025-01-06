@@ -1,7 +1,7 @@
 browseMetadata 2.0.2 (2024-12-12)
 =========================
 
-🥳 Submitted this realease to rOpenSci: https://github.com/ropensci/software-review/issues/674
+🥳 Submitted this release to rOpenSci: https://github.com/ropensci/software-review/issues/674
 
 ### NEW FEATURES
 
