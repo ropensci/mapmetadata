@@ -3,12 +3,12 @@
 #' This function is called within the metadata_map function. \cr \cr
 #' It plots  \cr \cr
 #' @param dataframe Dataframe to plot. Output of empty_count.R function.
-#' @param n_tables The number of table names in this dataframe.
+#' @param bar_title Title for the plot.
 #' @return A plotly object
 #' @keywords internal
 #' @importFrom plotly plot_ly layout
 
-empty_plot <- function(dataframe, n_tables) {
+empty_plot <- function(dataframe, bar_title) {
   barplot_html <- plot_ly(dataframe,
     x = ~Table,
     y = ~N_Variables,
@@ -22,7 +22,7 @@ empty_plot <- function(dataframe, n_tables) {
   ) %>%
     layout(
       barmode = "stack",
-      title = paste0("\n", "Dataset contains ", n_tables, " table(s)"),
+      title = bar_title,
       xaxis = list(title = "Table"),
       yaxis = list(title = "Variable Count"),
       legend = list(title = list(text = "Empty Description"))

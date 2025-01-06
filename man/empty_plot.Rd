@@ -4,12 +4,12 @@
 \alias{empty_plot}
 \title{Internal: empty_plot}
 \usage{
-empty_plot(dataframe, n_tables)
+empty_plot(dataframe, bar_title)
 }
 \arguments{
 \item{dataframe}{Dataframe to plot. Output of empty_count.R function.}
 
-\item{n_tables}{The number of table names in this dataframe.}
+\item{bar_title}{Title for the plot.}
 }
 \value{
 A plotly object

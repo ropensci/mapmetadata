@@ -86,7 +86,8 @@ metadata_map <- function(
   empty_count_df <- empty_count(dataset)
 
   ## Use 'empty_plot.R' to create bar plot then save it
-  barplot_html <- empty_plot(empty_count_df, n_tables)
+  bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables, " table(s)")
+  barplot_html <- empty_plot(empty_count_df, bar_title)
   original_wd <- getwd()
   setwd(output_dir) # saveWidget has a bug with paths & saving
   base_fname <- paste0(
