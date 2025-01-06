@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Visualise and categorise publicly available metadata from health datasets. By interacting with metadata prior to gaining full access to health datasets, researchers can use this tool to browse datasets and categorise variables.
+Prior to gaining full access to health datasets, explore publicly available metadata and map metadata onto predefined research domains. This package uses structural metadata files downloaded from the Health Data Research Gateway (https://healthdatagateway.org/en). In theory, any metadata file with the same structure as the files downloaded from this gateway can be used with this package, but the package has been developed and tested on metadata files from this gateway only.
 }
 \seealso{
 Useful links:
