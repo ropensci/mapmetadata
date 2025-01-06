@@ -14,10 +14,14 @@ Authors@R: c(
     person("Nida", "Ziauddeen", role = "ctb",
            comment = c(ORCID = "0000-0002-8964-5029"))
   )
-Description: Visualise and categorise publicly available metadata from
-    health datasets. By interacting with metadata prior to gaining full
-    access to health datasets, researchers can use this tool to browse
-    datasets and categorise variables.
+Description: Prior to gaining full access to health datasets, explore
+    publicly available metadata and map metadata onto predefined research
+    domains.  This package uses structural metadata files downloaded from
+    the Health Data Research Gateway (https://healthdatagateway.org/en).
+    In theory, any metadata file with the same structure as the files
+    downloaded from this gateway can be used with this package, but the
+    package has been developed and tested on metadata files from this
+    gateway only.
 License: GPL (>= 3)
 URL: https://aim-rsf.github.io/mapmetadata/
 BugReports: https://github.com/aim-rsf/mapmetadata/issues

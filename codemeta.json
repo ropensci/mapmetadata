@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "mapmetadata",
-  "description": "Visualise and categorise publicly available metadata from health datasets. By interacting with metadata prior to gaining full access to health datasets, researchers can use this tool to browse datasets and categorise variables.",
+  "description": "Prior to gaining full access to health datasets, explore publicly available metadata and map metadata onto predefined research domains. This package uses structural metadata files downloaded from the Health Data Research Gateway (https://healthdatagateway.org/en). In theory, any metadata file with the same structure as the files downloaded from this gateway can be used with this package, but the package has been developed and tested on metadata files from this gateway only.",
   "name": "mapmetadata: Map health metadata onto predefined research domains",
   "codeRepository": "https://github.com/aim-rsf/mapmetadata",
   "issueTracker": "https://github.com/aim-rsf/mapmetadata/issues",
@@ -202,18 +202,6 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
       "identifier": "plotly",
       "name": "plotly",
       "provider": {
@@ -224,7 +212,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=plotly"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -238,7 +226,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "6139.053KB",
+  "fileSize": "6141.312KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
