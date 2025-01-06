@@ -1,7 +1,7 @@
 Type: Package
 Package: mapmetadata
 Title: Map health metadata onto predefined research domains
-Version: 2.0.2
+Version: 3.0.0
 Authors@R: c(
     person("Rachael", "Stickland", , "rstickland@turing.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3398-4272")),
