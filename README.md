@@ -2,7 +2,7 @@
 
  *Mapping from variables to concepts*
 
-<a href="https://aim-rsf.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="120" alt="mapmetadata website" /></a>
+<a href="https://aim-rsf.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="121" alt="mapmetadata website" /></a>
 
 <!-- badges: start -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10581500.svg)](https://doi.org/10.5281/zenodo.10581500)
