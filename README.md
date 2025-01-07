@@ -11,21 +11,6 @@
 [![pkgcheck](https://github.com/aim-rsf/mapmetadata/workflows/pkgcheck/badge.svg)](https://github.com/aim-rsf/mapmetadata/actions?query=workflow%3Apkgcheck) [![codecov](https://codecov.io/gh/aim-rsf/mapmetadata/graph/badge.svg?token=59S2QVG7CQ)](https://codecov.io/gh/aim-rsf/mapmetadata) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/674_status.svg)](https://github.com/ropensci/software-review/issues/674)
 <!-- badges: end -->
 
-# Table of Contents
-
-1. [What is the `mapmetadata` package?](#what-is-the-mapmetadata-package)
-2. [Getting started with `mapmetadata`](#getting-started-with-mapmetadata)
- - 2a. [Installation and set-up](#installation-and-set-up)
- - 2b. [Demo (using the `R Studio` IDE)](#demo-using-the-r-studio-ide)
-3. [Using a custom metadata input](#using-a-custom-metadata-input-recommended)
-4. [Using a custom domain list input](#using-a-custom-domain-list-input-recommended)
-5. [Using a custom lookup table input](#using-a-custom-lookup-table-input-advanced)
-6. [Tips and future steps](#tips-and-future-steps)
-7. [License](#license)
-8. [Citation](#citation)
-9. [Contributing](#contributing)
-10. [Acknowledgements](#acknowledgements-)
-
 ## What is the `mapmetadata` package?
 
 For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/mapmetadata/articles/HealthMetadata.html).
