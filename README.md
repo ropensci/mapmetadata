@@ -28,8 +28,8 @@ Secondly, it helps the researcher address the question *Which variables map onto
 Run in the R console:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("aim-rsf/mapmetadata")
+install.packages("pak")
+pak::pak("aim-rsf/mapmetadata")
 ```
 
 Load the library:
