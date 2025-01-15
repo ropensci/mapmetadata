@@ -13,6 +13,8 @@
 
 ## What is the `mapmetadata` package?
 
+this is an edit
+
 For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata [here](https://aim-rsf.github.io/mapmetadata/articles/HealthMetadata.html).
 
 One comprehensive open resource is the [Health Data Research Gateway](https://healthdatagateway.org/search?search=&datasetSort=latest&tab=Datasets), managed by [Health Data Research UK](https://www.hdruk.ac.uk/) in collaboration with the [UK Health Data Research Alliance](https://ukhealthdata.org/). The gateway can help a researcher address questions such as: *What datasets are available? What are the features of these datasets? Which datasets fit my research? How do I access these datasets? How have these datasets been used by the community before, and do they link to others? What publications, or other resources exist, using these datasets?* 
