@@ -16,7 +16,7 @@ select.list <- NULL
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
 #' @param metadata_file This should be a csv download from HDRUK gateway
-#' (0_Dataset_Structural_Metadata.csv). Deafult is 'data/metadata.rda' - run
+#' (0_Dataset_Structural_Metadata.csv). Default is 'data/metadata.rda' - run
 #' '?metadata' to see how it was created.
 #' @param domain_file This should be a csv file created by the user, with each
 #' domain on a separate line, no header. Default is 'data/domain_list.rda'
