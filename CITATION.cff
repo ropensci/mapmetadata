@@ -1,10 +1,11 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
 title: "mapmetadata"
-version: 3.0.0
-date-released: 2025-01-06
+version: 3.0.1
+date-released: 2025-01-30
 authors:
-  - family-names: "Rachael"
-    given-names: "Stickland"
+  - family-names: "Stickland"
+    given-names: "Rachael"
     orcid: "https://orcid.org/0000-0003-3398-4272"
 repository-code: "https://github.com/aim-rsf/mapmetadata"
+doi: 10.5281/zenodo.10581499
