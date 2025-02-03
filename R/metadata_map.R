@@ -119,11 +119,11 @@ metadata_map <- function(
   df_plots <- ref_plot(data$domains)
 
   ## Check if look_up_file and domain_file are compatible
-  mistmatch <- setdiff(data$lookup$domain_code, df_plots$code$code)
-  if (length(mistmatch) > 0) {
+  mismatch <- setdiff(data$lookup$domain_code, df_plots$code$code)
+  if (length(mismatch) > 0) {
     cli_alert_danger("The look_up_file and domain_file are not compatible. These look up codes are not listed in the domain codes:")
     cat("\n")
-    print(mistmatch)
+    print(mismatch)
     stop()
   }
 
