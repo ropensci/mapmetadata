@@ -65,7 +65,7 @@ In the R console you should see:
 Press 'Esc' key to finish here, or press any other key to continue with mapping variables
 ```
 
-Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument. 
+Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory)`.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
