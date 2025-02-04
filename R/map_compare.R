@@ -8,7 +8,7 @@
 #' @param session2_base Base file name for session 2 e.g. 'NationalCommunityChildHealthDatabase(NCCHD)_BLOOD_TEST_2024-07-08-12-03-30'
 #' @param metadata_file The full path to the metadata file used when running metadata_map (should be the same for session 1 and session 2)
 #' @param domain_file The full path to the domain file used when running metadata_map (should be the same for session 1 and session 2)
-#' @param output_dir The path to the directory where the concensus output file will be saved. By default, the session_dir is used.
+#' @param output_dir The path to the directory where the consensus output file will be saved. By default, the session_dir is used.
 #' @return It returns a csv output, which represents the consensus decisions between session 1 and session 2
 #' @export
 #' @importFrom utils read.csv write.csv
@@ -106,9 +106,9 @@ map_compare <- function(session_dir, session1_base, session2_base, metadata_file
   ses_join$domain_code_join <- NA
   ses_join$note_join <- NA
 
-  # FIND MISMATCHES AND ASK FOR CONCENSUS DECISION ----
+  # FIND MISMATCHES AND ASK FOR CONSENSUS DECISION ----
   for (datavar in seq_len(nrow(ses_join))) {
-    consensus <- concensus_on_mismatch(ses_join, table_df, datavar, max(df_plots$code$code))
+    consensus <- consensus_on_mismatch(ses_join, table_df, datavar, max(df_plots$code$code))
     ses_join$domain_code_join[datavar] <- consensus$domain_code_join
     ses_join$note_join[datavar] <- consensus$note_join
   } # end of loop for DataElement

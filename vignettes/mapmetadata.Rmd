@@ -31,13 +31,13 @@ It is important to note that this plot is only summarising *variable* level meta
 
 The bar plot can help you understand the scope of the dataset, but reference the HDRUK Gateway page for the fuller context. For instance, table descriptions are not included in these structural metadata files but they are included on the gateway:
 
-**For dataset NCCHD, used in the demo, the structural metadata was downloaded here:**
+For dataset NCCHD, used in the demo, the structural metadata was downloaded from https://healthdatagateway.org/en/dataset/360. Below, we include a screenshot of this page; a user must click on the 'Download Data' then 'Structural Metadata' in order to download the file. Please note, we are working on API integration with this package to streamline this for users.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_download.png" alt="screenshot of HRDRUK gateway showing location to download structural metadata"/>
 
-**View descriptions of each table to give you more context on their contents and how to use them:**
+It is recommended to view the descriptions of each table to give you more context on their contents and how to use them:
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_table.png" alt="screenshot of HRDRUK gateway showing table descriptions"/>
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_table.png" alt="screenshot of HRDRUK gateway showing table descriptions for the NCCHD dataset"/>
 
 # Mapping
 
@@ -189,7 +189,7 @@ All finished! Take a look at the outputs in your project directory.
 
 # Understanding mapping outputs
 
-See [here](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/) for outputs generated from the demo run.
+You can [view outputs generated from the demo run](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/), which include:
 
 -   **BAR\_**360_NationalCommunityChildHealthDatabase(NCCHD)\_timestamp.**html**
     -   The bar plot that opened in your browser.

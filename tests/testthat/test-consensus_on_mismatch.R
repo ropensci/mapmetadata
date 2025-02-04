@@ -1,4 +1,4 @@
-test_that("concensus_on_mismatch handles mismatch correctly", {
+test_that("consensus_on_mismatch handles mismatch correctly", {
   # Mock the user_categorisation function
   local_mocked_bindings(user_categorisation = function(data_element = NULL, data_desc = NULL, data_type = NULL, domain_code_max = NULL) {
     return(list(decision = "mock_decision", decision_note = "mock_note"))
@@ -25,14 +25,14 @@ test_that("concensus_on_mismatch handles mismatch correctly", {
   domain_code_max <- 5
 
   # Call the function
-  result <- concensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
+  result <- consensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
 
   # Check the result
   expect_equal(result$domain_code_join, "mock_decision")
   expect_equal(result$note_join, "mock_note")
 })
 
-test_that("concensus_on_mismatch handles no mismatch correctly", {
+test_that("consensus_on_mismatch handles no mismatch correctly", {
   # Mock data
   ses_join <- data.frame(
     domain_code_ses1 = c("2", "2,4"),
@@ -54,7 +54,7 @@ test_that("concensus_on_mismatch handles no mismatch correctly", {
   domain_code_max <- 5
 
   # Call the function
-  result <- concensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
+  result <- consensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
 
   # Check the result
   expect_equal(result$domain_code_join, "2,4")

@@ -31,7 +31,7 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
   }
 }
 
-#' concensus_on_mismatch
+#' consensus_on_mismatch
 #'
 #' Internal Function: This function is called within the map_compare.R function. \cr \cr
 #' For a specific data element, it compares the domain code categorisation between two sessions.
@@ -45,7 +45,7 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 #' @keywords internal
 #' @importFrom cli cli_alert_info
 
-concensus_on_mismatch <- function(ses_join, table_df, datavar, domain_code_max) {
+consensus_on_mismatch <- function(ses_join, table_df, datavar, domain_code_max) {
   if (ses_join$domain_code_ses1[datavar] != ses_join$domain_code_ses2[datavar]) {
     cat("\n\n")
     cli_alert_info("Mismatch of DataElement {ses_join$DataElement[datavar]}")
@@ -54,7 +54,7 @@ concensus_on_mismatch <- function(ses_join, table_df, datavar, domain_code_max) 
       "\nDOMAIN CODE (note) for session 2 --> ", ses_join$domain_code_ses2[datavar], "(", ses_join$note_ses2[datavar], ")"
     ))
     cat("\n\n")
-    cli_alert_info("Provide concensus decision for this DataElement:")
+    cli_alert_info("Provide consensus decision for this DataElement:")
     decision_output <- user_categorisation(table_df$Column.name[datavar], table_df$Column.description[datavar], table_df$Data.type[datavar], domain_code_max)
     domain_code_join <- decision_output$decision
     note_join <- decision_output$decision_note

@@ -24,7 +24,7 @@ map_compare(
 
 \item{domain_file}{The full path to the domain file used when running metadata_map (should be the same for session 1 and session 2)}
 
-\item{output_dir}{The path to the directory where the concensus output file will be saved. By default, the session_dir is used.}
+\item{output_dir}{The path to the directory where the consensus output file will be saved. By default, the session_dir is used.}
 }
 \value{
 It returns a csv output, which represents the consensus decisions between session 1 and session 2
