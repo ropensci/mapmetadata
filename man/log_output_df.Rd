@@ -8,13 +8,14 @@
 A data frame with 1 empty row and 9 columns
 }
 \source{
-The dataframe was manually created as package data, using the above code.
+Dataframe was manually created as package data, using the above code.
 }
 \usage{
 data(log_output_df)
 }
 \description{
-Internal Dataset: Empty log output dataframe for metadata_map to fill. Created by: \cr \cr
+Internal Dataset: Empty log output dataframe for metadata_map to fill.
+Created by: \cr \cr
 \enumerate{
  \item \code{log_output_df <- data.frame(timestamp = character(1),
  mapmetadata = character(1),

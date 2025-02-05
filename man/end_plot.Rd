@@ -9,15 +9,16 @@ end_plot(df, table_name, ref_table)
 \arguments{
 \item{df}{The Output dataframe with all the domain categorisations}
 
-\item{table_name}{The table name}
+\item{table_name}{Table name}
 
-\item{ref_table}{The domain code reference table (which domain maps to which integer)}
+\item{ref_table}{Domain code reference table (domains mapped to integers)}
 }
 \value{
 It returns a ggplot
 }
 \description{
 This function is called within the metadata_map function. \cr \cr
-A summary plot is created that includes the domain code reference table and counts of domain code categorisations \cr \cr
+A summary plot is created that includes the domain code reference table and
+counts of domain code categorisations \cr \cr
 }
 \keyword{internal}

@@ -3,8 +3,10 @@ test_that("empty_count correctly counts empty descriptions", {
   table_df <- data.frame(
     Section = c("Table1", "Table1", "Table1", "Table2", "Table2", "Table2"),
     Column.name = c("var1", "var2", "var3", "var4", "var5", "var6"),
-    Column.description = c("Description to follow", "Valid description", "NA", "Another valid description", " ", "-"),
-    Data.type = c("VARCHAR", "BIGINT", "DATE", "TIMESTAMP", "VARCHAR", "VARCHAR"),
+    Column.description = c("Description to follow", "Valid description", "NA",
+                           "Another valid description", " ", "-"),
+    Data.type = c("VARCHAR", "BIGINT", "DATE", "TIMESTAMP", "VARCHAR",
+                  "VARCHAR"),
     stringsAsFactors = FALSE
   )
 

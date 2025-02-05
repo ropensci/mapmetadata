@@ -1,8 +1,9 @@
 #' data_load
 #'
-#' Internal Function: This function is called within the metadata_map function. \cr \cr
-#' It collects the inputs needed for the metadata_map function (defaults or user inputs)
-#' If some inputs are NULL, it loads the default inputs. If defaults not available, it prints error for the user.
+#' Internal Function: Called within the metadata_map function. \cr \cr
+#' Collects inputs needed for metadata_map function (defaults or user inputs)
+#' If some inputs are NULL, it loads the default inputs. If defaults not
+#' available, it prints error for the user.
 #' If inputs are not NULL, it loads the user-specified inputs.
 #' @param csv_file As defined in metadata_map
 #' @param domain_file As defined in metadata_map
@@ -15,7 +16,7 @@
 
 data_load <- function(csv_file, domain_file, look_up_file) {
   # Collect metadata and domains
-  if (is.null(csv_file) && is.null(domain_file)) { # if both csv_file and domain_file are NULL, use demo data
+  if (is.null(csv_file) && is.null(domain_file)) {
     metadata <- get("metadata")
     metadata_desc <- "360_NationalCommunityChildHealthDatabase(NCCHD)"
     domains <- get("domain_list")
@@ -24,9 +25,9 @@ data_load <- function(csv_file, domain_file, look_up_file) {
     cli_alert_info("Running demo mode using package data files")
     cat("\n ")
     demo_mode <- TRUE
-  } else if (is.null(csv_file) || is.null(domain_file)) { # if only one of csv_file and domain_file is NULL, throw error
+  } else if (is.null(csv_file) || is.null(domain_file)) {
     cat("\n")
-    cli_alert_danger("Please provide both csv_file and domain_file (or neither file, to run in demo mode)")
+    cli_alert_danger("Provide both csv & domain file (or neither to run demo)")
     stop()
   } else { # read in user specified files
     demo_mode <- FALSE
@@ -34,7 +35,7 @@ data_load <- function(csv_file, domain_file, look_up_file) {
     metadata_base <- basename(csv_file)
     metadata_base_0suffix <- sub("_Structural_Metadata.csv$", "", metadata_base)
     metadata_desc <- gsub(" ", "", metadata_base_0suffix)
-    domains <- read.csv(domain_file, header = FALSE) # read in the domain file containing the list of research domains
+    domains <- read.csv(domain_file, header = FALSE)
     domain_list_desc <- file_path_sans_ext(basename(domain_file))
   }
 
@@ -49,19 +50,26 @@ data_load <- function(csv_file, domain_file, look_up_file) {
     cat("\n ")
   }
 
-
-  list(metadata = metadata, metadata_desc = metadata_desc, domains = domains, domain_list_desc = domain_list_desc, demo_mode = demo_mode, lookup = lookup)
+  list(metadata = metadata,
+       metadata_desc = metadata_desc,
+       domains = domains,
+       domain_list_desc = domain_list_desc,
+       demo_mode = demo_mode,
+       lookup = lookup)
 }
 
 #' output_copy
 #'
-#' Internal Function: This function is called within the metadata_map function. \cr \cr
-#' It searches for previous OUTPUT files in the output_dir, that match the dataset name. \cr \cr
-#' If files exist, it removes duplicates and autos, and stores the rest of the data elements in a dataframe. \cr \cr
+#' Internal Function: Called within the metadata_map function. \cr \cr
+#' Searches for previous OUTPUT files in the output_dir, that match the dataset
+#' name. \cr \cr
+#' If files exist, it removes duplicates and autos, and stores the rest of the
+#' data elements in a dataframe. \cr \cr
 #'
 #' @param dataset_name Name of the dataset
 #' @param output_dir Output directory to be searched
-#' @return It returns a list of 2: df_prev_exist (a boolean) and df_prev (NULL or populated with data elements to copy)
+#' @return It returns a list of 2: df_prev_exist (a boolean) and df_prev
+#' (NULL or populated with data elements to copy)
 #' @keywords internal
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info

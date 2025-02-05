@@ -1,6 +1,9 @@
 test_that("consensus_on_mismatch handles mismatch correctly", {
   # Mock the user_categorisation function
-  local_mocked_bindings(user_categorisation = function(data_element = NULL, data_desc = NULL, data_type = NULL, domain_code_max = NULL) {
+  local_mocked_bindings(user_categorisation = function(data_element = NULL,
+                                                       data_desc = NULL,
+                                                       data_type = NULL,
+                                                       domain_code_max = NULL) {
     return(list(decision = "mock_decision", decision_note = "mock_note"))
   })
 

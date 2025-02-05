@@ -12,11 +12,14 @@ output_copy(dataset_name, output_dir)
 \item{output_dir}{Output directory to be searched}
 }
 \value{
-It returns a list of 2: df_prev_exist (a boolean) and df_prev (NULL or populated with data elements to copy)
+It returns a list of 2: df_prev_exist (a boolean) and df_prev
+(NULL or populated with data elements to copy)
 }
 \description{
-Internal Function: This function is called within the metadata_map function. \cr \cr
-It searches for previous OUTPUT files in the output_dir, that match the dataset name. \cr \cr
-If files exist, it removes duplicates and autos, and stores the rest of the data elements in a dataframe. \cr \cr
+Internal Function: Called within the metadata_map function. \cr \cr
+Searches for previous OUTPUT files in the output_dir, that match the dataset
+name. \cr \cr
+If files exist, it removes duplicates and autos, and stores the rest of the
+data elements in a dataframe. \cr \cr
 }
 \keyword{internal}

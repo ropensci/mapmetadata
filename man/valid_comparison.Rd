@@ -16,12 +16,13 @@ valid_comparison(input_1, input_2, severity, severity_text)
 \item{severity_text}{The text to print if inputs are not equal.}
 }
 \value{
-Returns nothing if inputs are equal. If inputs are not equal, returns variable text depending on level of severity.
+Returns nothing if inputs are equal. If inputs are not equal,
+returns variable text depending on level of severity.
 }
 \description{
-Internal Function: This function is called within the map_compare.R function. \cr \cr
+Internal Function: Called within the map_compare.R function. \cr \cr
 It reads two inputs to see if they are equal. \cr \cr
-If the test is 'warning' status and inputs are not equal it gives warning but continues. \cr \cr
-If the test is 'danger' status and inputs are not equal it stops and exits, with error message. \cr \cr
+Warning severity: if unequal inputs, gives warning but continues. \cr \cr
+Danger severity: if unequal inputs, exits with error message. \cr \cr
 }
 \keyword{internal}

@@ -17,9 +17,10 @@ data_load(csv_file, domain_file, look_up_file)
 A list of 6: all inputs needed for the metadata_map function to run.
 }
 \description{
-Internal Function: This function is called within the metadata_map function. \cr \cr
-It collects the inputs needed for the metadata_map function (defaults or user inputs)
-If some inputs are NULL, it loads the default inputs. If defaults not available, it prints error for the user.
+Internal Function: Called within the metadata_map function. \cr \cr
+Collects inputs needed for metadata_map function (defaults or user inputs)
+If some inputs are NULL, it loads the default inputs. If defaults not
+available, it prints error for the user.
 If inputs are not NULL, it loads the user-specified inputs.
 }
 \keyword{internal}

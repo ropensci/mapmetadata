@@ -16,11 +16,12 @@ consensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
 \item{domain_code_max}{The maximum allowable domain code integer}
 }
 \value{
-It returns a list of 2: the domain code and the note from the consensus decision
+Returns list of 2: domain code and note from the consensus decision
 }
 \description{
-Internal Function: This function is called within the map_compare.R function. \cr \cr
-For a specific data element, it compares the domain code categorisation between two sessions.
-If the categorisation differs, it prompts the user for a new consensus decision by presenting the metadata info. \cr \cr
+Internal Function: Called within the map_compare.R function. \cr \cr
+For a specific data element, it compares the domain code categorisation
+between two sessions. If the categorisation differs, it prompts the user for
+a new consensus decision by presenting the metadata info. \cr \cr
 }
 \keyword{internal}
