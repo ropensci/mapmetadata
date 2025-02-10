@@ -19,8 +19,8 @@ References #
 <!-- You're invited to open a draft PR so people can see what you are working on sooner -->
 - [ ] [if package files were edited] I have run these checks locally:
   - `devtools::document()` to generates the `.Rd` files from any updated roxygen comments.
+  - `lintr::lint_package(path = ".")` to check for style compliance and syntax issues.
   - `codemetar::write_codemeta()` to ensures the metadata file is up to date.
-  - `styler::style_pkg()` to ensure consistent code styling that match the guidelines.
   - `devtools::check()` for a comprehensive package check. I have resolved any warnings or errors, or written them here in the PR, for discussion.
 - [ ] The code base and the documentation files match (they both reflect any recent changes). 
 - [ ] The title of this PR is clear and self-explantory.

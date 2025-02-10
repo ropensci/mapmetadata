@@ -11,12 +11,12 @@ select.list <- NULL
 #' These categorisations will be saved to a csv file, alongside a log file which
 #' summarises the session details. To speed up this process, some
 #' auto-categorisations will be made by the function for commonly occurring data
-#' elements, and categorisations for the same data element can be copied from one
-#' table to another. \cr \cr
+#' elements, and categorisations for the same data element can be copied from
+#' one table to another. \cr \cr
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
 #' @param metadata_file This should be a csv download from HDRUK gateway
-#' (0_Dataset_Structural_Metadata.csv). Default is 'data/metadata.rda' - run
+#' (in the form of ID_Dataset_Metadata.csv). Default is 'data/metadata.rda': run
 #' '?metadata' to see how it was created.
 #' @param domain_file This should be a csv file created by the user, with each
 #' domain on a separate line, no header. Default is 'data/domain_list.rda'
@@ -103,13 +103,17 @@ metadata_map <- function(
   ## Display outputs to the user
   cat("\n")
   browseURL(bar_fname)
-  cli_alert_info("A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).")
-  cli_alert_info("Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.")
+  cli_alert_info(paste("A bar plot should have opened in your browser.",
+                       "It has also been saved to your project directory",
+                       "(alongside a csv).Use this bar plot, and the",
+                       "information on the HDRUK Gateway, to guide your",
+                       "mapping approach."))
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
   cat("\n")
-  readline("Press 'Esc' key to finish here, or press any other key to continue with mapping variables")
+  readline(paste("Press 'Esc' key to finish here, or press any other key to",
+                 "continue with mapping variables"))
 
   ## Read in prepared output data frames
   log_output_df <- get("log_output_df")
@@ -121,7 +125,8 @@ metadata_map <- function(
   ## Check if look_up_file and domain_file are compatible
   mismatch <- setdiff(data$lookup$domain_code, df_plots$code$code)
   if (length(mismatch) > 0) {
-    cli_alert_danger("The look_up_file and domain_file are not compatible. These look up codes are not listed in the domain codes:")
+    cli_alert_danger("The look_up_file and domain_file are not compatible.
+                     These look up codes are not listed in the domain codes:")
     cat("\n")
     print(mismatch)
     stop()
@@ -132,10 +137,13 @@ metadata_map <- function(
 
   ## CHOOSE TABLE TO PROCESS
 
-  chosen_table_n <- menu(levels(dataset$Section), title = "Enter the table number you want to process:")
+  chosen_table_n <- menu(
+                         levels(dataset$Section),
+                         title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
   cat("\n")
-  cli_alert_info("Processing Table {chosen_table_n} of {n_tables} ({table_name})")
+  cli_alert_info("Processing Table {chosen_table_n} of {n_tables}
+                 ({table_name})")
   cat("\n")
 
   #### Use 'output_copy.R' to copy from previous output(s) if they exist
@@ -149,11 +157,12 @@ metadata_map <- function(
 
   table_note <- readline(paste(
     "Optional free text note about this table",
-    "(or press enter to continue): "
+    "(or press 'Enter'): "
   ))
 
   ####  Extract table from metadata
-  table_df <- dataset %>% filter(Section == levels(dataset$Section)[chosen_table_n])
+  table_df <- dataset %>%
+    filter(Section == levels(dataset$Section)[chosen_table_n])
 
   #### If demo, only process the first 20 elements
   if (data$demo_mode == TRUE) {
@@ -214,16 +223,19 @@ metadata_map <- function(
 
   ### Review user categorized data elements (optional)
   cat("\n")
-  review_cats <- menu(c("Yes", "No"), title = "\nWould you like to review your categorisations?")
+  review_cats <- menu(c("Yes", "No"), title =
+                        "\nWould you like to review your categorisations?")
   if (review_cats == 1) {
     output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
     output_not_auto["note (first 12 chars)"] <-
       substring(output_not_auto$note, 1, 11)
     cli_alert_info("These are the data elements you categorised:")
     cat("\n")
-    print(output_not_auto[, c("data_element", "domain_code", "note (first 12 chars)")], row.names = FALSE)
+    print(output_not_auto[, c("data_element", "domain_code",
+                              "note (first 12 chars)")], row.names = FALSE)
 
-    not_auto_elements <- output_df$data_element[output_df$note != "AUTO CATEGORISED"]
+    not_auto_elements <- output_df$data_element[output_df$note
+                                                != "AUTO CATEGORISED"]
 
     not_auto_row_names <- select.list(not_auto_elements,
       multiple = TRUE,
@@ -258,37 +270,34 @@ metadata_map <- function(
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- paste0(
-    "MAPPING_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
-  )
+  csv_fname <- file.path(output_dir, paste0("MAPPING_",
+                                            gsub(" ", "", dataset_name),
+                                            "_", gsub(" ", "", table_name),
+                                            "_", timestamp_now_fname, ".csv"))
 
-  csv_log_fname <- paste0(
-    "MAPPING_LOG_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_",
-    timestamp_now_fname, ".csv"
-  )
-
-  png_fname <- paste0(
-    "MAPPING_PLOT_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_", timestamp_now_fname, ".png"
-  )
+  csv_log_fname <- file.path(output_dir, paste0("MAPPING_LOG_",
+                                                gsub(" ", "", dataset_name),
+                                                "_", gsub(" ", "", table_name),
+                                                "_", timestamp_now_fname,
+                                                ".csv"))
+  png_fname <- file.path(output_dir, paste0("MAPPING_PLOT_",
+                                            gsub(" ", "", dataset_name),
+                                            "_", gsub(" ", "", table_name),
+                                            "_", timestamp_now_fname, ".png"))
 
   ### Save final categorisations for this Table
-  write.csv(output_df, paste(output_dir, csv_fname, sep = "/"), row.names = FALSE)
-  write.csv(log_output_df,
-    paste(output_dir, csv_log_fname, sep = "/"),
-    row.names = FALSE
-  )
+  write.csv(output_df, csv_fname, row.names = FALSE)
+  write.csv(log_output_df, csv_log_fname, row.names = FALSE)
   cat("\n")
   cli_alert_success("Final categorisations saved as:\n{csv_fname}")
   cli_alert_success("Session log saved as:\n{csv_log_fname}")
 
   ### Create and save a summary plot
-  end_plot_save <- end_plot(df = output_df, table_name, ref_table = df_plots$domain_table)
+  end_plot_save <- end_plot(df = output_df, table_name,
+                            ref_table = df_plots$domain_table)
   ggsave(
     plot = end_plot_save,
-    paste(output_dir, png_fname, sep = "/"),
+    filename = png_fname,
     width = 14,
     height = 8,
     units = "in"

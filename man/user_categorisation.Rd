@@ -13,14 +13,16 @@ user_categorisation(data_element, data_desc, data_type, domain_code_max)
 
 \item{data_type}{Data type of the variable}
 
-\item{domain_code_max}{Max code in the domain list (0-3 auto included, then N included via domain_file)}
+\item{domain_code_max}{Max code in the domain list (0-3 auto included,
+then N included via domain_file)}
 }
 \value{
 It returns a list containing the decision and decision note
 }
 \description{
-Internal Function: This function is called within the metadata_map function. \cr \cr
-It displays data properties to the user and requests a categorisation into a domain. \cr \cr
+Internal Function: Called within the metadata_map function. \cr \cr
+It displays data properties to the user and requests a categorisation into
+a domain. \cr \cr
 An optional note can be included with the categorisation.
 }
 \keyword{internal}

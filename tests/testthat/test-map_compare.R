@@ -3,14 +3,17 @@ test_that("map_compare function works correctly with user input", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45"
-  demo_metadata_file <- system.file("inputs", "360_NationalCommunityChildHealthDatabase(NCCHD)_Structural_Metadata.csv", package = "mapmetadata")
-  demo_domain_file <- system.file("inputs", "domain_list_demo.csv", package = "mapmetadata")
+  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
+  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
+                                    package = "mapmetadata")
+  demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
+                                  package = "mapmetadata")
 
   # mock consensus_on_mismatch
   local_mocked_bindings(
-    consensus_on_mismatch = function(ses_join, table_df, datavar, domain_code_max) {
+    consensus_on_mismatch = function(ses_join, table_df, datavar,
+                                     domain_code_max) {
       domain_code_join <- "0"
       note_join <- "consensus note"
       return(list(domain_code_join = domain_code_join, note_join = note_join))
@@ -27,10 +30,15 @@ test_that("map_compare function works correctly with user input", {
     output_dir = temp_dir
   )
 
-  consensus_files <- list.files(temp_dir, pattern = "^CONSENSUS_", full.names = TRUE)
+  consensus_files <- list.files(temp_dir, pattern = "^CONSENSUS_",
+                                full.names = TRUE)
   consensus_df <- read.csv(consensus_files[1])
-  demo_1_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_", demo_session1_base, ".csv"))
-  demo_2_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_", demo_session2_base, ".csv"))
+  demo_1_df <- read.csv(file.path(demo_session_dir,
+                                  paste0("MAPPING_",
+                                         demo_session1_base, ".csv")))
+  demo_2_df <- read.csv(file.path(demo_session_dir,
+                                  paste0("MAPPING_",
+                                         demo_session2_base, ".csv")))
 
   expect_equal(nrow(consensus_df), 20)
   expect_equal(ncol(consensus_df), 13)

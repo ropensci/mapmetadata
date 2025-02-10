@@ -1,6 +1,7 @@
 #' Internal: Output dataframe
 #'
-#' Internal Dataset: Empty output dataframe for metadata_map to fill. Created by: \cr \cr
+#' Internal Dataset: Empty output dataframe for metadata_map to fill.
+#' Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{output_df <- data.frame(timestamp = character(0),
 #'  table = character(0),
@@ -19,12 +20,13 @@
 #'
 #' @format A data frame with 0 rows and 6 columns
 #'
-#' @source The dataframe was manually created as package data, using the above code.
+#' @source Dataframe was manually created as package data, using the above code.
 "output_df"
 
 #' Internal: Output log dataframe
 #'
-#' Internal Dataset: Empty log output dataframe for metadata_map to fill. Created by: \cr \cr
+#' Internal Dataset: Empty log output dataframe for metadata_map to fill.
+#' Created by: \cr \cr
 #' \enumerate{
 #'  \item \code{log_output_df <- data.frame(timestamp = character(1),
 #'  mapmetadata = character(1),
@@ -44,15 +46,17 @@
 #'
 #' @format A data frame with 1 empty row and 9 columns
 #'
-#' @source The dataframe was manually created as package data, using the above code.
+#' @source Dataframe was manually created as package data, using the above code.
 "log_output_df"
 
 #' Internal: List of Domains
 #'
-#' Internal Dataset: A simplified list of domains, to demo the function metadata_map \cr \cr
+#' Internal Dataset: A simplified list of domains, to demo the function
+#' metadata_map \cr \cr
 #' This data was created with these two steps:
 #' \enumerate{
-#'  \item \code{domain_list <- read.csv('inst/inputs/domain_list_demo.csv',header=FALSE)}
+#'  \item \code{domain_list <-
+#'  read.csv('inst/inputs/domain_list_demo.csv',header=FALSE)}
 #'  \item \code{usethis::use_data(domain_list)}
 #' }
 #' @docType data
@@ -68,12 +72,14 @@
 
 #' Internal: CSV metadata File
 #'
-#' Example metadata for a health dataset, to demo the function metadata_map \cr \cr
+#' Example metadata for a health dataset, to demo metadata_map \cr \cr
 #' This data was created with these steps:
 #' \enumerate{
 #'   \item Go to https://healthdatagateway.org
-#'   \item Navigate to the dataset of interest, select 'Download data' and download the Structural Metadata file
-#'   \item \code{metadata <- read.csv("inst/inputs/360_NationalCommunityChildHealthDatabase (NCCHD)_Structural_Metadata.csv")}
+#'   \item Navigate to the dataset of interest, select 'Download data' and
+#'   download the Structural Metadata file
+#'   \item Shorten name of downloaded file e.g. 360_NCCHD_Metadata.csv
+#'   \item \code{metadata <- read.csv("inst/inputs/360_NCCHD_Metadata.csv")}
 #'   \item \code{usethis::use_data(metadata)}
 #' }
 #'
@@ -85,14 +91,15 @@
 #'
 #' @format Nested lists
 #'
-#' @source https://modelcatalogue.cs.ox.ac.uk/hdruk_live/#/catalogue/dataModel/16920b16-e24c-49f9-b4df-3dc85779822b/dataClasses
+#' @source https://healthdatagateway.org/en/dataset/360
 "metadata"
 
 #' Internal: Auto-categorisations
 #'
 #' A list of pre-defined pairings between data element and domain code. \cr \cr
 #' For each data element that metadata_map processes: \cr \cr
-#' If it is contained within this look-up table, it uses the auto-categorised domain code rather than asking the user to categorise.\cr\cr
+#' If it is contained within this look-up table, it uses the auto-categorised
+#' domain code rather than asking the user to categorise.\cr\cr
 #' This data was created with these two steps:
 #' \enumerate{
 #'  \item \code{look_up <- read.csv('inst/inputs/look_up.csv')}

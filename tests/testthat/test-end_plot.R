@@ -21,9 +21,11 @@ test_that("end_plot function works correctly", {
   )
 
   # Sample reference table
-  domains_extend <- rbind(c("*NO MATCH / UNSURE*"), c("*METADATA*"), c("*ID*"), c("*DEMOGRAPHICS*"), c("Domain A"), c("Domain B"))
+  domains_extend <- rbind(c("*NO MATCH / UNSURE*"), c("*METADATA*"), c("*ID*"),
+                          c("*DEMOGRAPHICS*"), c("Domain A"), c("Domain B"))
   code <- data.frame(code = 0:(nrow(domains_extend) - 1))
-  ref_table <- gridExtra::tableGrob(cbind(code, domains_extend), rows = NULL, theme = gridExtra::ttheme_default())
+  ref_table <- gridExtra::tableGrob(cbind(code, domains_extend), rows = NULL,
+                                    theme = gridExtra::ttheme_default())
 
   # Call the function
   result <- end_plot(df, "Sample Table", ref_table)

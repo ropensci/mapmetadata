@@ -7,13 +7,15 @@
 empty_count(dataframe)
 }
 \arguments{
-\item{dataframe}{The dataframe representing the metadata, with 'Section' column as factor}
+\item{dataframe}{Dataframe representing metadata, 'Section' column as factor}
 }
 \value{
-Returns a long dataframe with 3 columns: Empty (No, Yes), Table (table name), N_Variables (count).
+Returns a long dataframe with 3 columns: Empty (No, Yes),
+Table (table name), N_Variables (count).
 }
 \description{
-Internal Function: This function is called within the map_compare.R function. \cr \cr
-It reads in the metadata dataframe and counts how many of the variables have empty descriptions.
+Internal Function: Called within the map_compare.R function. \cr \cr
+It reads in the metadata dataframe and counts how many of the variables have
+empty descriptions.
 }
 \keyword{internal}

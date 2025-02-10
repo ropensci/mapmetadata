@@ -8,13 +8,14 @@
 A data frame with 0 rows and 6 columns
 }
 \source{
-The dataframe was manually created as package data, using the above code.
+Dataframe was manually created as package data, using the above code.
 }
 \usage{
 data(output_df)
 }
 \description{
-Internal Dataset: Empty output dataframe for metadata_map to fill. Created by: \cr \cr
+Internal Dataset: Empty output dataframe for metadata_map to fill.
+Created by: \cr \cr
 \enumerate{
  \item \code{output_df <- data.frame(timestamp = character(0),
  table = character(0),

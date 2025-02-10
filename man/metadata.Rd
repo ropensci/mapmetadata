@@ -8,18 +8,20 @@
 Nested lists
 }
 \source{
-https://modelcatalogue.cs.ox.ac.uk/hdruk_live/#/catalogue/dataModel/16920b16-e24c-49f9-b4df-3dc85779822b/dataClasses
+https://healthdatagateway.org/en/dataset/360
 }
 \usage{
 data(metadata)
 }
 \description{
-Example metadata for a health dataset, to demo the function metadata_map \cr \cr
+Example metadata for a health dataset, to demo metadata_map \cr \cr
 This data was created with these steps:
 \enumerate{
   \item Go to https://healthdatagateway.org
-  \item Navigate to the dataset of interest, select 'Download data' and download the Structural Metadata file
-  \item \code{metadata <- read.csv("inst/inputs/360_NationalCommunityChildHealthDatabase (NCCHD)_Structural_Metadata.csv")}
+  \item Navigate to the dataset of interest, select 'Download data' and
+  download the Structural Metadata file
+  \item Shorten name of downloaded file e.g. 360_NCCHD_Metadata.csv
+  \item \code{metadata <- read.csv("inst/inputs/360_NCCHD_Metadata.csv")}
   \item \code{usethis::use_data(metadata)}
 }
 }

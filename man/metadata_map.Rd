@@ -15,7 +15,7 @@ metadata_map(
 }
 \arguments{
 \item{metadata_file}{This should be a csv download from HDRUK gateway
-(0_Dataset_Structural_Metadata.csv). Default is 'data/metadata.rda' - run
+(in the form of ID_Dataset_Metadata.csv). Default is 'data/metadata.rda': run
 '?metadata' to see how it was created.}
 
 \item{domain_file}{This should be a csv file created by the user, with each
@@ -54,8 +54,8 @@ in the Plots tab for the user's reference. \cr \cr
 These categorisations will be saved to a csv file, alongside a log file which
 summarises the session details. To speed up this process, some
 auto-categorisations will be made by the function for commonly occurring data
-elements, and categorisations for the same data element can be copied from one
-table to another. \cr \cr
+elements, and categorisations for the same data element can be copied from
+one table to another. \cr \cr
 Example inputs are provided within the package data, for the user to run this
 function in a demo mode.
 }

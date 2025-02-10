@@ -7,22 +7,24 @@
 map_convert(output_csv, output_dir)
 }
 \arguments{
-\item{output_csv}{The name of the 'OUTPUT_' csv file that was created from metadata_map}
+\item{output_csv}{Name of 'OUTPUT_' csv file created from metadata_map}
 
-\item{output_dir}{The location of output_csv}
+\item{output_dir}{Location of output_csv}
 }
 \value{
-The function will return 'L-OUTPUT_' in the same output_dir
+Returns 'L-OUTPUT_' in the same output_dir
 }
 \description{
-The 'OUTPUT_' file groups multiple categorisations onto one line e.g. Domain_code could read '1,3' \cr \cr
-This function creates a new longer output 'L-OUTPUT_' which gives each categorisation its own row. \cr \cr
-This 'L-OUTPUT_' may be more useful when using these csv files in later analyses.
+The 'OUTPUT_' file groups multiple categorisations onto one line e.g.
+Domain_code could read '1,3' \cr \cr
+This function creates a new longer output 'L-OUTPUT_' which gives each
+categorisation its own row. \cr \cr
+This 'L-OUTPUT_' may be useful when using these csv files in later analyses
 }
 \examples{
 # Locate file path and file name for the example files in the package
 demo_output_dir <- system.file("outputs", package = "mapmetadata")
-demo_output_csv <- "MAPPING_360_NationalCommunityChildHealthDatabase(NCCHD)_CHILD_2024-12-19-14-17-45.csv"
+demo_output_csv <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
 
 # Run the function
 map_convert(output_csv = demo_output_csv, output_dir = demo_output_dir)
