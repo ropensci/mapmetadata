@@ -36,6 +36,6 @@ temp_output_dir <- tempdir()
 # Run the function
 map_convert(
 csv_to_convert = demo_csv_to_convert,
-csv_to_convert_dir = demo_output_dir,
+csv_to_convert_dir = demo_csv_to_convert_dir,
 output_dir = temp_output_dir)
 }

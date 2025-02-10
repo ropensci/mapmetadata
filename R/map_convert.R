@@ -20,7 +20,7 @@
 #' # Run the function
 #' map_convert(
 #' csv_to_convert = demo_csv_to_convert,
-#' csv_to_convert_dir = demo_output_dir,
+#' csv_to_convert_dir = demo_csv_to_convert_dir,
 #' output_dir = temp_output_dir)
 map_convert <- function(csv_to_convert,
                         csv_to_convert_dir,
@@ -45,7 +45,7 @@ map_convert <- function(csv_to_convert,
 
   # Save output_long
   output_long_fname <- file.path(output_dir, paste0("L-", csv_to_convert))
-  write.csv(output_long, output_long_fname,row.names = FALSE)
+  write.csv(output_long, output_long_fname, row.names = FALSE)
   cat("\n")
   cli_alert_success(paste("Long format categorisations have been saved to:,",
                           "{output_long_fname}"))
