@@ -22,7 +22,7 @@ Default is csv_to_convert_dir.}
 Returns 'L-MAPPING_' file in specified directory
 }
 \description{
-The 'OUTPUT_' file groups multiple categorisations onto one line e.g.
+The 'MAPPING_' file groups multiple categorisations onto one line e.g.
 Domain_code could read '1,3' \cr \cr
 This function creates a new longer output 'L-MAPPING_' which gives each
 categorisation its own row. \cr \cr
@@ -30,10 +30,12 @@ This 'L-MAPPING_' may be useful when using these csv files in later analyses
 }
 \examples{
 # Locate file path and file name for the example files in the package
-demo_output_dir <- system.file("outputs", package = "mapmetadata")
+demo_csv_to_convert_dir <- system.file("outputs", package = "mapmetadata")
 demo_csv_to_convert <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
-
+temp_output_dir <- tempdir()
 # Run the function
 map_convert(
-csv_to_convert = demo_csv_to_convert, csv_to_convert_dir = demo_output_dir)
+csv_to_convert = demo_csv_to_convert,
+csv_to_convert_dir = demo_output_dir,
+output_dir = temp_output_dir)
 }
