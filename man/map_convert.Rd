@@ -4,28 +4,38 @@
 \alias{map_convert}
 \title{map_convert}
 \usage{
-map_convert(output_csv, output_dir)
+map_convert(
+  csv_to_convert,
+  csv_to_convert_dir,
+  output_dir = csv_to_convert_dir
+)
 }
 \arguments{
-\item{output_csv}{Name of 'OUTPUT_' csv file created from metadata_map}
+\item{csv_to_convert}{Name of 'MAPPING_' csv file created from metadata_map}
 
-\item{output_dir}{Location of output_csv}
+\item{csv_to_convert_dir}{Location of csv_to_convert}
+
+\item{output_dir}{Location where the 'L-MAPPING_' csv file will be saved.
+Default is csv_to_convert_dir.}
 }
 \value{
-Returns 'L-OUTPUT_' in the same output_dir
+Returns 'L-MAPPING_' file in specified directory
 }
 \description{
-The 'OUTPUT_' file groups multiple categorisations onto one line e.g.
+The 'MAPPING_' file groups multiple categorisations onto one line e.g.
 Domain_code could read '1,3' \cr \cr
-This function creates a new longer output 'L-OUTPUT_' which gives each
+This function creates a new longer output 'L-MAPPING_' which gives each
 categorisation its own row. \cr \cr
-This 'L-OUTPUT_' may be useful when using these csv files in later analyses
+This 'L-MAPPING_' may be useful when using these csv files in later analyses
 }
 \examples{
 # Locate file path and file name for the example files in the package
-demo_output_dir <- system.file("outputs", package = "mapmetadata")
-demo_output_csv <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
-
+demo_csv_to_convert_dir <- system.file("outputs", package = "mapmetadata")
+demo_csv_to_convert <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
+temp_output_dir <- tempdir()
 # Run the function
-map_convert(output_csv = demo_output_csv, output_dir = demo_output_dir)
+map_convert(
+csv_to_convert = demo_csv_to_convert,
+csv_to_convert_dir = demo_csv_to_convert_dir,
+output_dir = temp_output_dir)
 }
