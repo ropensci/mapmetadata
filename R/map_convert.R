@@ -2,23 +2,28 @@
 #'
 #' The 'OUTPUT_' file groups multiple categorisations onto one line e.g.
 #' Domain_code could read '1,3' \cr \cr
-#' This function creates a new longer output 'L-OUTPUT_' which gives each
+#' This function creates a new longer output 'L-MAPPING_' which gives each
 #' categorisation its own row. \cr \cr
-#' This 'L-OUTPUT_' may be useful when using these csv files in later analyses
-#' @param output_csv Name of 'OUTPUT_' csv file created from metadata_map
-#' @param output_dir Location of output_csv
-#' @return Returns 'L-OUTPUT_' in the same output_dir
+#' This 'L-MAPPING_' may be useful when using these csv files in later analyses
+#' @param csv_to_convert Name of 'MAPPING_' csv file created from metadata_map
+#' @param csv_to_convert_dir Location of csv_to_convert
+#' @param output_dir Location where the 'L-MAPPING_' csv file will be saved.
+#' Default is csv_to_convert_dir.
+#' @return Returns 'L-MAPPING_' file in specified directory
 #' @export
 #' @importFrom utils read.csv write.csv
 #' @examples
 #' # Locate file path and file name for the example files in the package
 #' demo_output_dir <- system.file("outputs", package = "mapmetadata")
-#' demo_output_csv <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
+#' demo_csv_to_convert <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
 #'
 #' # Run the function
-#' map_convert(output_csv = demo_output_csv, output_dir = demo_output_dir)
-map_convert <- function(output_csv, output_dir) {
-  output <- read.csv(file.path(output_dir, output_csv))
+#' map_convert(
+#' csv_to_convert = demo_csv_to_convert, csv_to_convert_dir = demo_output_dir)
+map_convert <- function(csv_to_convert,
+                        csv_to_convert_dir,
+                        output_dir = csv_to_convert_dir) {
+  output <- read.csv(file.path(csv_to_convert_dir, csv_to_convert))
   output_long <- output[0, ] # make duplicate
 
   for (row in seq_len(nrow(output))) {
@@ -37,6 +42,6 @@ map_convert <- function(output_csv, output_dir) {
   }
 
   # Save output_long
-  write.csv(output_long, file.path(output_dir, paste0("L-", output_csv)),
+  write.csv(output_long, file.path(output_dir, paste0("L-", csv_to_convert)),
             row.names = FALSE)
 }
