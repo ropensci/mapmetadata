@@ -42,6 +42,9 @@ map_convert <- function(csv_to_convert,
   }
 
   # Save output_long
-  write.csv(output_long, file.path(output_dir, paste0("L-", csv_to_convert)),
-            row.names = FALSE)
+  output_long_fname <- file.path(output_dir, paste0("L-", csv_to_convert))
+  write.csv(output_long, output_long_fname,row.names = FALSE)
+  cat("\n")
+  cli_alert_success(paste("Long format categorisations have been saved to:,",
+                          "{output_long_fname}"))
 }
