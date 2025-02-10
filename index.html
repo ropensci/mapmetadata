@@ -107,7 +107,7 @@
 
  ℹ Using the default look-up table in data/look-up.rda
 
-ℹ Processing dataset: 360_NationalCommunityChildHealthDatabase(NCCHD)
+ℹ Processing dataset: 360_NCCHD
 ℹ There are 13 tables in this dataset
 
 ℹ A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).
@@ -115,20 +115,20 @@
 
 Press 'Esc' key to finish here, or press any other key to continue with mapping variables</code></pre>
 <p>Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory)</code>.</p>
-<p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
+<p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
 <p>If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="using-a-custom-metadata-input-recommended">Using a custom metadata input (recommended)<a class="anchor" aria-label="anchor" href="#using-a-custom-metadata-input-recommended"></a>
 </h2>
-<p>You can run <code><a href="reference/metadata_map.html">metadata_map()</a></code> with a custom CSV file instead of the demo input, to process metadata from a different dataset.</p>
+<p>You can run <code><a href="reference/metadata_map.html">metadata_map()</a></code> with a custom metadata file instead of the demo input file, to map metadata from a different dataset. Currently, the recommended way of retrieving these metadata files is to download them from <a href="https://healthdatagateway.org/en/search?type=datasets" class="external-link">Health Data Research Gateway</a>. Browse for the dataset you want, click on it to move to its main page, click on ‘Download data’ and select ‘Structural Metadata’ - this file is your metadata file input.</p>
+<p>To use this download with <code><a href="reference/metadata_map.html">metadata_map()</a></code>, the metadata file name is expected to be ‘ID_Name_Metadata.csv’ with ‘ID’ and ‘Name’ being changed depending on the specific dataset download. For example, the demo metadata file used in this package is <a href="inst/inputs/360_NCCHD_Metadata.csv">360_NCCHD_Metadata.csv</a>, with 360 being the ID given by HDRUK Gateway and NCCHD being the abbreviation for the dataset name (National Community Child Health Database).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">new_csv_file</span> <span class="op">&lt;-</span> <span class="st">"path/your_new_csv.csv"</span></span>
+<code class="sourceCode R"><span><span class="va">new_file</span> <span class="op">&lt;-</span> <span class="st">"path/ID_Name_Metadata.csv"</span></span>
 <span><span class="va">demo_domains_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"inputs/domain_list_demo.csv"</span>, package <span class="op">=</span> <span class="st">"mapmetadata"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/metadata_map.html">metadata_map</a></span><span class="op">(</span>csv_file <span class="op">=</span> <span class="va">new_csv_file</span>, domain_file <span class="op">=</span> <span class="va">demo_domains_file</span><span class="op">)</span></span></code></pre></div>
-<p>Currently, the recommended way of retrieving these metadata files is to download them from <a href="https://healthdatagateway.org/en/search?type=datasets" class="external-link">Health Data Research Gateway</a>. Browse for the dataset you want, click on it to move to its main page, click on ‘Download data’ and select ‘Structural Metadata’. This is your csv_file input.</p>
+<span><span class="fu"><a href="reference/metadata_map.html">metadata_map</a></span><span class="op">(</span>metadata_file <span class="op">=</span> <span class="va">new_file</span>, domain_file <span class="op">=</span> <span class="va">demo_domains_file</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="using-a-custom-domain-list-input-recommended">Using a custom domain list input (recommended)<a class="anchor" aria-label="anchor" href="#using-a-custom-domain-list-input-recommended"></a>
