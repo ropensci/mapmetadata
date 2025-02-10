@@ -62,7 +62,7 @@ map_compare <- function(session_dir, session1_base, session2_base,
 
   ## Extract name of dataset
   metadata_file_base <- basename(metadata_file)
-  metadata_file_base_0suffix <- sub("_Structural_Metadata.csv$", "",
+  metadata_file_base_0suffix <- sub("_Metadata.csv$", "",
                                     metadata_file_base)
   dataset_name <- gsub(" ", "", metadata_file_base_0suffix)
 

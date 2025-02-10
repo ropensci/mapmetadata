@@ -16,7 +16,7 @@ select.list <- NULL
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
 #' @param metadata_file This should be a csv download from HDRUK gateway
-#' (0_Dataset_Structural_Metadata.csv). Default is 'data/metadata.rda' - run
+#' (in the form of ID_Dataset_Metadata.csv). Default is 'data/metadata.rda': run
 #' '?metadata' to see how it was created.
 #' @param domain_file This should be a csv file created by the user, with each
 #' domain on a separate line, no header. Default is 'data/domain_list.rda'
@@ -103,11 +103,11 @@ metadata_map <- function(
   ## Display outputs to the user
   cat("\n")
   browseURL(bar_fname)
-  cli_alert_info("A bar plot should have opened in your browser.
-                 It has also been saved to your project directory
-                 (alongside a csv).")
-  cli_alert_info("Use this bar plot, and the information on the HDRUK Gateway,
-                 to guide your mapping approach.")
+  cli_alert_info(paste("A bar plot should have opened in your browser.",
+                       "It has also been saved to your project directory",
+                       "(alongside a csv).Use this bar plot, and the",
+                       "information on the HDRUK Gateway, to guide your mapping",
+                       "approach."))
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
@@ -137,8 +137,7 @@ metadata_map <- function(
 
   ## CHOOSE TABLE TO PROCESS
 
-  chosen_table_n <- menu(levels(dataset$Section), title = "Enter the table
-                         number you want to process:")
+  chosen_table_n <- menu(levels(dataset$Section), title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
   cat("\n")
   cli_alert_info("Processing Table {chosen_table_n} of {n_tables}
@@ -160,9 +159,7 @@ metadata_map <- function(
   ))
 
   ####  Extract table from metadata
-  table_df <- dataset %>% filter(
-                                 Section ==
-                                   levels(dataset$Section)[chosen_table_n])
+  table_df <- dataset %>% filter(Section == levels(dataset$Section)[chosen_table_n])
 
   #### If demo, only process the first 20 elements
   if (data$demo_mode == TRUE) {

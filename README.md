@@ -56,7 +56,7 @@ In the R console you should see:
 
  ℹ Using the default look-up table in data/look-up.rda
 
-ℹ Processing dataset: 360_NationalCommunityChildHealthDatabase(NCCHD)
+ℹ Processing dataset: 360_NCCHD
 ℹ There are 13 tables in this dataset
 
 ℹ A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).
@@ -67,22 +67,22 @@ Press 'Esc' key to finish here, or press any other key to continue with mapping 
 
 Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory)`.
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NationalCommunityChildHealthDatabase(NCCHD)_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
 If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
 ## Using a custom metadata input (recommended)
 
-You can run `metadata_map()` with a custom CSV file instead of the demo input, to process metadata from a different dataset.
+You can run `metadata_map()` with a custom metadata file instead of the demo input file, to map metadata from a different dataset. Currently, the recommended way of retrieving these metadata files is to download them from [Health Data Research Gateway](https://healthdatagateway.org/en/search?type=datasets). Browse for the dataset you want, click on it to move to its main page, click on 'Download data' and select 'Structural Metadata' - this file is your metadata file input. 
+
+To use this download with `metadata_map()`, the metadata file name is expected to be 'ID_Name_Metadata.csv' with 'ID' and 'Name' being changed depending on the specific dataset download. For example, the demo metadata file used in this package is [360_NCCHD_Metadata.csv](inst/inputs/360_NCCHD_Metadata.csv), with 360 being the ID given by HDRUK Gateway and NCCHD being the abbreviation for the dataset name (National Community Child Health Database).
 
 ```r
-new_csv_file <- "path/your_new_csv.csv"
+new_file <- "path/ID_Name_Metadata.csv"
 demo_domains_file <- system.file("inputs/domain_list_demo.csv", package = "mapmetadata")
 
-metadata_map(csv_file = new_csv_file, domain_file = demo_domains_file)
+metadata_map(metadata_file = new_file, domain_file = demo_domains_file)
 ```
-
-Currently, the recommended way of retrieving these metadata files is to download them from [Health Data Research Gateway](https://healthdatagateway.org/en/search?type=datasets). Browse for the dataset you want, click on it to move to its main page, click on 'Download data' and select 'Structural Metadata'. This is your csv_file input. 
 
 ## Using a custom domain list input (recommended)
 

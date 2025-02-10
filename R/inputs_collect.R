@@ -18,7 +18,7 @@ data_load <- function(csv_file, domain_file, look_up_file) {
   # Collect metadata and domains
   if (is.null(csv_file) && is.null(domain_file)) {
     metadata <- get("metadata")
-    metadata_desc <- "360_NationalCommunityChildHealthDatabase(NCCHD)"
+    metadata_desc <- "360_NCCHD"
     domains <- get("domain_list")
     domain_list_desc <- "DemoList"
     cat("\n")
@@ -33,7 +33,7 @@ data_load <- function(csv_file, domain_file, look_up_file) {
     demo_mode <- FALSE
     metadata <- read.csv(csv_file)
     metadata_base <- basename(csv_file)
-    metadata_base_0suffix <- sub("_Structural_Metadata.csv$", "", metadata_base)
+    metadata_base_0suffix <- sub("_Metadata.csv$", "", metadata_base)
     metadata_desc <- gsub(" ", "", metadata_base_0suffix)
     domains <- read.csv(domain_file, header = FALSE)
     domain_list_desc <- file_path_sans_ext(basename(domain_file))

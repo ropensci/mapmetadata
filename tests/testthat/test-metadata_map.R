@@ -2,17 +2,16 @@ test_that("metadata_map function works correctly with user input", {
   # Setup
   temp_dir <- withr::local_tempdir()
 
-  demo_log_output <- system.file(
-                                 "outputs/
-                                MAPPING_LOG_360_NCCHD_CHILD_2024-12-19-14-11-55
-                                .csv",
-                                 package = "mapmetadata")
-  demo_output <- system.file(
-                             "outputs/
-                            MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
-                             package = "mapmetadata")
+  demo_log_output <-
+    system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+                package = "mapmetadata")
+  demo_output <-
+  system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+              package = "mapmetadata")
+
   demo_bar <- system.file("outputs/BAR_360_NCCHD_2024-12-19-14-11-55.csv",
                           package = "mapmetadata")
+
   # IMPROVE - also test MAPPING_PLOT_360_NCCHD_CHILD_2024-12-19-14-11-55.png
   # IMPROVE - also test BAR_360_NCCHD_2024-12-19-14-11-55.html
 
@@ -23,8 +22,7 @@ test_that("metadata_map function works correctly with user input", {
         "Press 'Esc' key to finish here, or press any other key to continue with
         mapping variables" = "1", # line 108
         "Enter your initials: " = "rs", # line 127
-        "Optional free text note about this table (or press enter to continue):
-        " = "demo run" # line 147
+        "Optional free text note about this table (or press enter to continue): " = "demo run" # line 147
       )
     }
   )
@@ -62,8 +60,8 @@ test_that("metadata_map function works correctly with user input", {
   )
 
   # Run the map.R function
-  metadata_map(output_dir = temp_dir, table_copy = FALSE,
-               long_output = FALSE) # IMPROVE - could test with TRUE
+  metadata_map(output_dir = temp_dir, table_copy = FALSE, long_output = FALSE)
+  # IMPROVE - could test with TRUE
 
   # Dynamically determine the filenames generated during the test run
   log_file <- list.files(temp_dir,
