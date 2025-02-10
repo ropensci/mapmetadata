@@ -33,10 +33,12 @@ test_that("map_compare function works correctly with user input", {
   consensus_files <- list.files(temp_dir, pattern = "^CONSENSUS_",
                                 full.names = TRUE)
   consensus_df <- read.csv(consensus_files[1])
-  demo_1_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_",
-                               demo_session1_base, ".csv"))
-  demo_2_df <- read.csv(paste0(demo_session_dir, "/", "MAPPING_",
-                               demo_session2_base, ".csv"))
+  demo_1_df <- read.csv(file.path(demo_session_dir,
+                                  paste0("MAPPING_",
+                                         demo_session1_base, ".csv")))
+  demo_2_df <- read.csv(file.path(demo_session_dir,
+                                  paste0("MAPPING_",
+                                         demo_session2_base, ".csv")))
 
   expect_equal(nrow(consensus_df), 20)
   expect_equal(ncol(consensus_df), 13)

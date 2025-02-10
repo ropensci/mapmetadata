@@ -48,14 +48,14 @@ map_compare <- function(session_dir, session1_base, session2_base,
 
   # DEFINE INPUTS ----
 
-  csv_1a <- read.csv(paste0(session_dir, "/", "MAPPING_LOG_", session1_base,
-                            ".csv"))
-  csv_2a <- read.csv(paste0(session_dir, "/", "MAPPING_LOG_", session2_base,
-                            ".csv"))
-  csv_1b <- read.csv(paste0(session_dir, "/", "MAPPING_", session1_base,
-                            ".csv"))
-  csv_2b <- read.csv(paste0(session_dir, "/", "MAPPING_", session2_base,
-                            ".csv"))
+  csv_1a <- read.csv(file.path(session_dir,
+                               paste0("MAPPING_LOG_", session1_base, ".csv")))
+  csv_2a <- read.csv(file.path(session_dir,
+                               paste0("MAPPING_LOG_", session2_base, ".csv")))
+  csv_1b <- read.csv(file.path(session_dir,
+                               paste0("MAPPING_", session1_base, ".csv")))
+  csv_2b <- read.csv(file.path(session_dir,
+                               paste0("MAPPING_", session2_base, ".csv")))
 
   dataset <- read.csv(metadata_file)
   domains <- read.csv(domain_file, header = FALSE)
@@ -133,9 +133,12 @@ map_compare <- function(session_dir, session1_base, session2_base,
   } # end of loop for DataElement
 
   # SAVE TO NEW CSV ----
-  output_fname <- paste0(output_dir, "/CONSENSUS_MAPPING_",
-                         gsub(" ", "", dataset_name), "_", table_name, "_",
-                         timestamp_now_fname, ".csv")
+  output_fname <- file.path(output_dir,
+                            paste0("CONSENSUS_MAPPING_",
+                                   gsub(" ", "", dataset_name), "_",
+                                   table_name, "_",
+                                   timestamp_now_fname, ".csv"))
+
   write.csv(ses_join, output_fname, row.names = FALSE)
   cat("\n")
   cli_alert_success("Consensus categorisations been saved to: {output_fname}")

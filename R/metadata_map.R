@@ -270,29 +270,24 @@ metadata_map <- function(
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- paste0(
-    "MAPPING_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_", timestamp_now_fname, ".csv"
-  )
+  csv_fname <- file.path(output_dir, paste0("MAPPING_",
+                                            gsub(" ", "", dataset_name),
+                                            "_", gsub(" ", "", table_name),
+                                            "_", timestamp_now_fname, ".csv"))
 
-  csv_log_fname <- paste0(
-    "MAPPING_LOG_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_",
-    timestamp_now_fname, ".csv"
-  )
-
-  png_fname <- paste0(
-    "MAPPING_PLOT_", gsub(" ", "", dataset_name), "_",
-    gsub(" ", "", table_name), "_", timestamp_now_fname, ".png"
-  )
+  csv_log_fname <- file.path(output_dir, paste0("MAPPING_LOG_",
+                                                gsub(" ", "", dataset_name),
+                                                "_", gsub(" ", "", table_name),
+                                                "_", timestamp_now_fname,
+                                                ".csv"))
+  png_fname <- file.path(output_dir, paste0("MAPPING_PLOT_",
+                                            gsub(" ", "", dataset_name),
+                                            "_", gsub(" ", "", table_name),
+                                            "_", timestamp_now_fname, ".png"))
 
   ### Save final categorisations for this Table
-  write.csv(output_df, paste(output_dir, csv_fname, sep = "/"),
-            row.names = FALSE)
-  write.csv(log_output_df,
-    paste(output_dir, csv_log_fname, sep = "/"),
-    row.names = FALSE
-  )
+  write.csv(output_df, csv_fname, row.names = FALSE)
+  write.csv(log_output_df, csv_log_fname, row.names = FALSE)
   cat("\n")
   cli_alert_success("Final categorisations saved as:\n{csv_fname}")
   cli_alert_success("Session log saved as:\n{csv_log_fname}")
@@ -302,7 +297,7 @@ metadata_map <- function(
                             ref_table = df_plots$domain_table)
   ggsave(
     plot = end_plot_save,
-    paste(output_dir, png_fname, sep = "/"),
+    filename = png_fname,
     width = 14,
     height = 8,
     units = "in"

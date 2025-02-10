@@ -18,7 +18,7 @@
 #' # Run the function
 #' map_convert(output_csv = demo_output_csv, output_dir = demo_output_dir)
 map_convert <- function(output_csv, output_dir) {
-  output <- read.csv(paste0(output_dir, "/", output_csv))
+  output <- read.csv(file.path(output_dir, output_csv))
   output_long <- output[0, ] # make duplicate
 
   for (row in seq_len(nrow(output))) {
@@ -37,6 +37,6 @@ map_convert <- function(output_csv, output_dir) {
   }
 
   # Save output_long
-  write.csv(output_long, paste0(output_dir, "/", "L-", output_csv),
+  write.csv(output_long, file.path(output_dir, paste0("L-", output_csv)),
             row.names = FALSE)
 }

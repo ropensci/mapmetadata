@@ -78,7 +78,7 @@ output_copy <- function(dataset_name, output_dir) {
   o_search <- paste0("^MAPPING_", gsub(" ", "", dataset_name), "*")
   csv_list <- data.frame(file = list.files(output_dir, pattern = o_search))
   if (nrow(csv_list) != 0) {
-    df_list <- lapply(paste0(output_dir, "/", csv_list$file), read.csv)
+    df_list <- lapply(file.path(output_dir, csv_list$file), read.csv)
     df_prev <- do.call("rbind", df_list) # combine all df
     ## make a new date column, order by earliest, remove duplicates & auto
     df_prev$time2 <- as.POSIXct(df_prev$timestamp, format = "%Y-%m-%d-%H-%M-%S")
