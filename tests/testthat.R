@@ -8,7 +8,5 @@
 
 library(testthat)
 library(mapmetadata)
-library(mockery)
-library(withr)
 
 test_check("mapmetadata")
