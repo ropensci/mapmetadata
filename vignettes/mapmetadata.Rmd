@@ -191,21 +191,21 @@ All finished! Take a look at the outputs in your project directory.
 
 You can [view outputs generated from the demo run](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/), which include:
 
--   **BAR\_**360_NCCHD\_timestamp.**html**
-    -   The bar plot that opened in your browser.
--   **BAR\_**360_NCCHD\_timestamp.**csv**
+-   **BAR_360_NCCHD_timestamp.png**
+    -   The bar plot that opened in your browser. It will save as a .html file but you can choose the 'Download plot as png' option.
+-   **BAR_360_NCCHD_timestamp.csv**
     -   The data that created this bar plot.
--   **MAPPING\_**360_NCCHD\_CHILD_timestamp.**csv**
+-   **MAPPING_360_NCCHD_CHILD_timestamp.csv**
     -   The mappings between variables in the CHILD table and the research domains.
--   **L-MAPPING\_**360_NCCHD\_CHILD_timestamp.**csv**
+-   **L-MAPPING_360_NCCHD_CHILD_timestamp.csv**
     -   The same mappings as the previous file, but saved in a longer format. See the argument `long_output = TRUE` in `metadata_map`.
--   **MAPPING_LOG\_**360_NCCHD\_CHILD_timestamp.**csv**
+-   **MAPPING_LOG_360_NCCHD_CHILD_timestamp.csv**
     -   A log file that accompanies the MAPPING file, describing features of the session and the table processed.
--   **MAPPING_PLOT_360**\_NCCHD\_CHILD_timestamp.**png**
+-   **MAPPING_PLOT_360_NCCHD_CHILD_timestamp.png**
     -   A simple visual representation of the mappings, displaying the count of each domain code.
 
 # Compare mapping
 
 Running the function `map_compare` will allow you to compare the mappings from two sessions, perhaps two different researchers. This function compares csv outputs from two sessions, finds their differences, and asks for a consensus, creating a new output file:
 
-**CONSENSUS_MAPPING\_**360_NCCHD\_CHILD_timestamp.**csv**
+**CONSENSUS_MAPPING_360_NCCHD_CHILD_timestamp.csv**
