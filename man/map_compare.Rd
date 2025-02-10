@@ -42,23 +42,25 @@ It compares csv outputs from two sessions, finds their differences,
 and asks for a consensus. \cr \cr
 }
 \examples{
-\dontrun{
-# Locate file paths for the example files in the package
-demo_session_dir <- system.file("outputs", package = "mapmetadata")
-demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
-demo_metadata_file <- system.file("inputs","360_NCCHD_Metadata.csv",
-package = "mapmetadata")
-demo_domain_file <- system.file("inputs","domain_list_demo.csv",
-package = "mapmetadata")
+# Demo run requires no function inputs but requires user interaction.
+# See package documentation to guide user inputs.
+if(interactive()) {
+    temp_output_dir <- tempdir()
+    # Locate file paths for the example files in the package
+    demo_session_dir <- system.file("outputs", package = "mapmetadata")
+    demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
+    demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+    demo_metadata_file <- system.file("inputs","360_NCCHD_Metadata.csv",
+    package = "mapmetadata")
+    demo_domain_file <- system.file("inputs","domain_list_demo.csv",
+    package = "mapmetadata")
 
-# Run the function - requires user interaction
-map_compare(
-  session_dir = demo_session_dir,
-  session1_base = demo_session1_base,
-  session2_base = demo_session2_base,
-  metadata_file = demo_metadata_file,
-  domain_file = demo_domain_file
-)
-}
+    map_compare(
+    session_dir = demo_session_dir,
+    session1_base = demo_session1_base,
+    session2_base = demo_session2_base,
+    metadata_file = demo_metadata_file,
+    domain_file = demo_domain_file,
+    output_dir = temp_output_dir
+    )}
 }

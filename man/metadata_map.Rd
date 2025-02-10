@@ -60,8 +60,10 @@ Example inputs are provided within the package data, for the user to run this
 function in a demo mode.
 }
 \examples{
-\dontrun{
-# Demo run requires no function inputs but requires user interaction
-metadata_map()
+# Demo run requires no function inputs but requires user interaction.
+# See package documentation to guide user inputs.
+if(interactive()) {
+    temp_output_dir <- tempdir()
+    metadata_map(output_dir = temp_output_dir)
 }
 }

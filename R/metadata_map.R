@@ -40,9 +40,11 @@ select.list <- NULL
 #' @return The function will return two csv files: 'OUTPUT_' which contains the
 #' mappings and 'LOG_' which contains details about the dataset and session.
 #' @examples
-#' \dontrun{
-#' # Demo run requires no function inputs but requires user interaction
-#' metadata_map()
+#' # Demo run requires no function inputs but requires user interaction.
+#' # See package documentation to guide user inputs.
+#' if(interactive()) {
+#'     temp_output_dir <- tempdir()
+#'     metadata_map(output_dir = temp_output_dir)
 #' }
 #' @export
 #' @importFrom dplyr %>% filter
@@ -102,7 +104,7 @@ metadata_map <- function(
 
   ## Display outputs to the user
   cat("\n")
-  browseURL(bar_fname)
+  browseURL(file.path(output_dir, bar_fname))
   cli_alert_info(paste("A bar plot should have opened in your browser.",
                        "It has also been saved to your project directory",
                        "(alongside a csv).Use this bar plot, and the",
