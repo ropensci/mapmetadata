@@ -38,8 +38,8 @@ user_categorisation <- function(data_element, data_desc, data_type,
     cat("\n \n")
 
     while (decision == "" || validated == FALSE) {
-      decision <- readline("Categorise data element into domain(s).
-                           E.g. 3 or 3,4: ")
+      decision <- readline(paste("Categorise data element into domain(s).",
+                                  "E.g. 3 or 3,4: "))
 
       # validate input given by user
       decision_int <- as.integer(unlist(strsplit(decision, ",")))
@@ -63,16 +63,15 @@ user_categorisation <- function(data_element, data_desc, data_type,
     # ask user for note on categorisation:
 
     cat("\n \n")
-    decision_note <- readline("Categorisation note (or press enter to continue):
-                              ")
+    decision_note <- readline(paste("Categorisation note (or press enter to",
+                                    "continue): "))
 
     while (go_back != "Y" && go_back != "y" && go_back
            != "N" && go_back != "n") {
       cat("\n \n")
-      go_back <- readline(prompt = paste0("Response to be saved is '",
-                                          decision,
-                                          "'. Would you like to re-do? (y/n):
-                                          "))
+      go_back <- readline(prompt = paste("Response to be saved is '",
+                                         decision,"'. Would you like to re-do?",
+                                         "(y/n): "))
     }
 
     first_run <- FALSE

@@ -106,14 +106,14 @@ metadata_map <- function(
   cli_alert_info(paste("A bar plot should have opened in your browser.",
                        "It has also been saved to your project directory",
                        "(alongside a csv).Use this bar plot, and the",
-                       "information on the HDRUK Gateway, to guide your mapping",
-                       "approach."))
+                       "information on the HDRUK Gateway, to guide your",
+                       "mapping approach."))
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
   cat("\n")
-  readline("Press 'Esc' key to finish here, or press any other key to continue
-           with mapping variables")
+  readline(paste("Press 'Esc' key to finish here, or press any other key to",
+                 "continue with mapping variables"))
 
   ## Read in prepared output data frames
   log_output_df <- get("log_output_df")
@@ -137,7 +137,9 @@ metadata_map <- function(
 
   ## CHOOSE TABLE TO PROCESS
 
-  chosen_table_n <- menu(levels(dataset$Section), title = "Enter the table number you want to process:")
+  chosen_table_n <- menu(
+                         levels(dataset$Section),
+                         title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
   cat("\n")
   cli_alert_info("Processing Table {chosen_table_n} of {n_tables}
@@ -155,11 +157,12 @@ metadata_map <- function(
 
   table_note <- readline(paste(
     "Optional free text note about this table",
-    "(or press enter to continue): "
+    "(or press 'Enter'): "
   ))
 
   ####  Extract table from metadata
-  table_df <- dataset %>% filter(Section == levels(dataset$Section)[chosen_table_n])
+  table_df <- dataset %>%
+    filter(Section == levels(dataset$Section)[chosen_table_n])
 
   #### If demo, only process the first 20 elements
   if (data$demo_mode == TRUE) {

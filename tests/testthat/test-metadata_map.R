@@ -6,8 +6,8 @@ test_that("metadata_map function works correctly with user input", {
     system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
                 package = "mapmetadata")
   demo_output <-
-  system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
-              package = "mapmetadata")
+    system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+                package = "mapmetadata")
 
   demo_bar <- system.file("outputs/BAR_360_NCCHD_2024-12-19-14-11-55.csv",
                           package = "mapmetadata")
@@ -22,7 +22,8 @@ test_that("metadata_map function works correctly with user input", {
         "Press 'Esc' key to finish here, or press any other key to continue with
         mapping variables" = "1", # line 108
         "Enter your initials: " = "rs", # line 127
-        "Optional free text note about this table (or press enter to continue): " = "demo run" # line 147
+        "Optional free text note about this table (or press 'Enter'): " =
+          "demo run" # line 147
       )
     }
   )

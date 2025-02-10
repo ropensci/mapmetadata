@@ -14,7 +14,7 @@ test_that("valid_comparison function works correctly", {
   # Test warning severity with different inputs
   expect_message(
     valid_comparison(1, 2, "warning", "Different inputs test"),
-    "Continuing but please check comparison is valid!"
+    "Continuing, but check comparison is valid!"
   )
 
   # Test danger severity with same inputs

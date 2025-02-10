@@ -28,9 +28,9 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
     if (input_1 != input_2) {
       cat("\n")
       cli_alert_warning(
-                        paste(severity_text,
-                              "-> Continuing but please check comparison is
-                              valid!"))
+                        paste(
+                              severity_text,
+                              "-> Continuing, but check comparison is valid!"))
     }
   }
 }
