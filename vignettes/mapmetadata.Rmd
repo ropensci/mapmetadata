@@ -31,7 +31,7 @@ It is important to note that this plot is only summarising *variable* level meta
 
 The bar plot can help you understand the scope of the dataset, but reference the HDRUK Gateway page for the fuller context. For instance, table descriptions are not included in these structural metadata files but they are included on the gateway:
 
-For dataset NCCHD, used in the demo, the structural metadata was downloaded from https://healthdatagateway.org/en/dataset/360. Below, we include a screenshot of this page; a user must click on the 'Download Data' then 'Structural Metadata' in order to download the file. Please note, we are working on API integration with this package to streamline this for users.
+For dataset NCCHD, used in the demo, the structural metadata was downloaded from <https://healthdatagateway.org/en/dataset/360>. Below, we include a screenshot of this page; a user must click on the 'Download Data' then 'Structural Metadata' in order to download the file. Please note, we are working on API integration with this package to streamline this for users.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_download.png" alt="screenshot of HRDRUK gateway showing location to download structural metadata"/>
 
@@ -43,14 +43,15 @@ It is recommended to view the descriptions of each table to give you more contex
 
 Use the bar plot and the HDRUK Gateway to guide your mapping choices. The main functionality of this package is to aid a researcher in mapping variables from health datasets onto their research domains (concepts/latent variables).
 
-You will see this in the R console:
-
-`Press 'Esc' key to finish here, or press any other key to continue with mapping variables`
-
-Pressing any key will move you to the mapping phase. Demo mode (run by `metadata_map()`) only processes the first 20 data elements (variables) in the selected table.
+Run the demo mode by typing `metadata_map()`. You you will see this in the R console:
 
 ```         
-Enter your initials: rs
+ℹ Running demo mode using package data files
+ℹ Using the default look-up table in data/look-up.rda
+ℹ Processing dataset '360_NCCHD' containing 13 tables
+
+ℹ A bar plot should have opened in your browser (also saved to your project directory).
+Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
 
 Enter the table number you want to process: 
 
@@ -69,11 +70,17 @@ Enter the table number you want to process:
  13: SIG_COND                        
 
 Selection: 4
+```
 
+Enter 4 to follow this demo. Demo mode only processes the first 20 data elements (variables) in the selected table.
+
+```         
 ℹ Processing Table 4 of 13 (CHILD)
 
-Optional free text note about this table (or press enter to continue): tutorial testing
+Optional note about this table: tutorial testing
 ```
+
+You can include a note about this table (e.g. project name, who is processing), or press enter to leave it blank.
 
 You will be asked to label data elements with one (or more) of the numbers shown in the Plots tab [0-7]. Here we have very simple domains [4-7] for the demo run. For a research study, your domains are likely to be much more specific e.g. 'Prenatal, antenatal, neonatal and birth' or 'Health behaviours and diet'. The 4 default domains are always included [0-3], appended on to any domain list given by the user.
 
@@ -82,27 +89,19 @@ You will be asked to label data elements with one (or more) of the numbers shown
 If it skips over a data element it means it was auto-categorised or copied from a previous table already processed (more on that later).
 
 ```         
-ℹ 20 left to process in this session
-✔ Processing data element 1 of 35
+ℹ Data element 1 of 35 (20 left to process)
+ℹ Data element 2 of 35 (19 left to process)
+ℹ Data element 3 of 35 (18 left to process)
+ℹ Data element 4 of 35 (17 left to process)
 
-ℹ 19 left to process in this session
-✔ Processing data element 2 of 35
+DATA ELEMENT -----> APGAR_1
 
-ℹ 18 left to process in this session
-✔ Processing data element 3 of 35
+DESCRIPTION -----> APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries.
 
-ℹ 17 left to process in this session
-✔ Processing data element 4 of 35
-
-DATA ELEMENT ----->  APGAR_1 
-
-DESCRIPTION ----->  APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries. 
-
-DATA TYPE ----->  CHARACTER 
+DATA TYPE -----> CHARACTER
 
 Categorise data element into domain(s). E.g. 3 or 3,4: 7
-
-Categorisation note (or press enter to continue): your note here 
+Categorisation note (or press enter to continue): your note here
 ```
 
 We chose to respond with '7' because that corresponds to the 'Health info' domain in the table. More than one domain can be chosen, separated by commas. Do remember that this demo has over-simplified domain labels, and they will likely be more specific for a research study.
@@ -113,74 +112,41 @@ You have the option to re-do the categorisation (and note) you just made, by rep
 Response to be saved is '7'. Would you like to re-do? (y/n): n
 ```
 
-After completing 20, it will then ask you to review the auto-categorisations it made.
-
-These auto-categorisations are based on the mappings included in the default [look_up.csv](https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv). Type `get("look_up")` in `R`.
-
-This look-up file can be changed by the user. ALF refers to 'Anonymous Linking Field' - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/).
+After completing 20, it will then ask you to review the auto-categorisations it made, displaying these to the R console. These auto-categorisations are based on the mappings included in the default [look_up.csv](https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv). Type `get("look_up")` in `R`. This look-up file can be changed by the user. ALF refers to 'Anonymous Linking Field' - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/). After displaying what the auto categorisations are, it will show:
 
 ```         
- ℹ These are the auto categorised data elements:
-
-  data_element domain_code             note
-         ALF_E           2 AUTO CATEGORISED
-  ALF_MTCH_PCT           2 AUTO CATEGORISED
-    ALF_STS_CD           2 AUTO CATEGORISED
- AVAIL_FROM_DT           1 AUTO CATEGORISED
-       GNDR_CD           3 AUTO CATEGORISED
-       
 Select those you want to manually edit:
 
-1:   ALF_E
-2:   ALF_MTCH_PCT
-3:   ALF_STS_CD
-4:   AVAIL_FROM_DT
-5:   GNDR_CD
+1: ALF_E 2: ALF_MTCH_PCT 3: ALF_STS_CD 4: AVAIL_FROM_DT 5: GNDR_CD
 
-Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel
-1: 
+Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel 1:
 ```
 
-Press enter for now, as these look good, but know that you can always manually overide an auto categorisation. It will then ask you if you want to review the categorisations you made. Respond 1 to review:
+Press enter for now, as these look good, but know that you can always manually override an auto categorisation. It will then ask you if you want to review the categorisations you made. Respond 1 to review:
 
 ```         
-Would you like to review your categorisations? 
+Would you like to review your categorisations?
 
-1: Yes
-2: No
+1: Yes 2: No
 
 Selection: 1
 
 ℹ These are the data elements you categorised:
+```
 
-         data_element domain_code note (first 12 chars)
-              APGAR_1           7                  note
-              APGAR_2           7                      
-          BIRTH_ORDER           7                  10% missingness    
-             BIRTH_TM           1,7                20% missingness      
-         BIRTH_WEIGHT           7                      
-     BIRTH_WEIGHT_DEC           7                      
- BREASTFEED_8_WKS_FLG           7                      
- BREASTFEED_BIRTH_FLG           7                      
-           CHILD_ID_E           2                      
-    CURR_LHB_CD_BIRTH           5,7                Place of birth       
-               DEL_CD           7                      
-                  DOD           3,7             
-        ETHNIC_GRP_CD           3                    
-             GEST_AGE           3,7                     
-  HEALTH_VISITOR_CD_E           2                     
+After displaying what your categorisations are, it will show:
 
 Select those you want to edit:
 
- 1:   APGAR_1                
- 2:   APGAR_2                
- 3:   BIRTH_ORDER            
- 4:   BIRTH_TM               
- 5:   BIRTH_WEIGHT        
- ...
- 
-Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel
-1: 
+```         
+1: APGAR_1
+2: APGAR_2
+3: BIRTH_ORDER
+4: BIRTH_TM
+5: BIRTH_WEIGHT
+...
+
+Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel 1: 
 ```
 
 If you select a number, it will guide you through that categorisation again.
