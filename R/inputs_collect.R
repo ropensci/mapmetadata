@@ -82,7 +82,7 @@ output_copy <- function(dataset_name, output_dir) {
     df_prev <- df_prev[-(which(df_prev$note %in% "AUTO CATEGORISED")), ]
     df_prev_exist <- TRUE
     cli_alert_info(paste0("Copying from previous session(s):\n",
-                          paste(csv_list$file, collapse = "\n")))
+                          paste(csv_list$file, collapse = "\n"),"\n\n"))
   } else {
     df_prev <- NULL
     df_prev_exist <- FALSE
