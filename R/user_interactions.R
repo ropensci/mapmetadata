@@ -28,14 +28,13 @@ user_categorisation <- function(data_element, data_desc, data_type,
     cat(paste(
       "\nDATA ELEMENT -----> ", data_element,
       "\n\nDESCRIPTION -----> ", data_desc,
-      "\n\nDATA TYPE -----> ", data_type, "\n"
+      "\n\nDATA TYPE -----> ", data_type, "\n\n"
     ))
 
     # ask user for categorisation:
 
     decision <- ""
     validated <- FALSE
-    cat("\n \n")
 
     while (decision == "" || validated == FALSE) {
       decision <- readline(paste("Categorise data element into domain(s).",
@@ -62,13 +61,11 @@ user_categorisation <- function(data_element, data_desc, data_type,
 
     # ask user for note on categorisation:
 
-    cat("\n \n")
     decision_note <- readline(paste("Categorisation note (or press enter to",
                                     "continue): "))
 
     while (go_back != "Y" && go_back != "y" && go_back
            != "N" && go_back != "n") {
-      cat("\n \n")
       go_back <- readline(prompt = paste("Response to be saved is '",
                                          decision,
                                          "'. Would you like to re-do?",
@@ -97,6 +94,8 @@ user_categorisation <- function(data_element, data_desc, data_type,
 #' @param lookup The lookup table to enable auto categorisations
 #' @param df_plots Output from ref_plot, to indicate mac domain code allowed
 #' @param output_df Empty output dataframe, to fill
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return An output dataframe containing info about the table, data elements
 #' and categorisations
 #' @keywords internal
@@ -104,11 +103,13 @@ user_categorisation <- function(data_element, data_desc, data_type,
 #' @importFrom cli cli_alert_info
 
 user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist,
-                                     df_prev, lookup, df_plots, output_df) {
+                                     df_prev, lookup, df_plots, output_df,
+                                     quiet = FALSE) {
   for (data_v in start_v:end_v) {
-    cat("\n \n")
-    cli_alert_info(paste(length(data_v:end_v), "left to process"))
-    cli_alert_info("Data element {data_v} of {nrow(table_df)}")
+    if (!quiet) {
+      cli_alert_info(paste0("Data element {data_v} of {nrow(table_df)} (",
+                            length(data_v:end_v), " left to process)"))
+    }
     this_data_element <- table_df$Column.name[data_v]
     this_data_element_n <- paste(
       as.character(data_v), "of",

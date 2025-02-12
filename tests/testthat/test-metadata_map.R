@@ -19,11 +19,7 @@ test_that("metadata_map function works correctly with user input", {
   local_mocked_bindings(
     readline = function(prompt) {
       response <- switch(prompt,
-        "Press 'Esc' key to finish here, or press any other key to continue with
-        mapping variables" = "1", # line 108
-        "Enter your initials: " = "rs", # line 127
-        "Optional free text note about this table (or press 'Enter'): " =
-          "demo run" # line 147
+        "Optional note about this table: " = "demo run"
       )
     }
   )

@@ -10,7 +10,8 @@ metadata_map(
   look_up_file = NULL,
   output_dir = getwd(),
   table_copy = TRUE,
-  long_output = TRUE
+  long_output = TRUE,
+  quiet = FALSE
 )
 }
 \arguments{
@@ -41,6 +42,9 @@ user time, and ensure consistency of categorisations across tables.}
 
 \item{long_output}{Run map_convert.R to create a new longer output
 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.}
 }
 \value{
 The function will return two csv files: 'OUTPUT_' which contains the

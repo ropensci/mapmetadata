@@ -8,10 +8,13 @@
 #' @param csv_to_convert Name of 'MAPPING_' csv file created from metadata_map
 #' @param csv_to_convert_dir Location of csv_to_convert
 #' @param output_dir Location where the 'L-MAPPING_' csv file will be saved.
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' Default is csv_to_convert_dir.
 #' @return Returns 'L-MAPPING_' file in specified directory
 #' @export
 #' @importFrom utils read.csv write.csv
+#' @importFrom cli cli_alert_success
 #' @examples
 #' # Locate file path and file name for the example files in the package
 #' demo_csv_to_convert_dir <- system.file("outputs", package = "mapmetadata")
@@ -24,7 +27,8 @@
 #' output_dir = temp_output_dir)
 map_convert <- function(csv_to_convert,
                         csv_to_convert_dir,
-                        output_dir = csv_to_convert_dir) {
+                        output_dir = csv_to_convert_dir,
+                        quiet = FALSE) {
   output <- read.csv(file.path(csv_to_convert_dir, csv_to_convert))
   output_long <- output[0, ] # make duplicate
 
@@ -44,9 +48,11 @@ map_convert <- function(csv_to_convert,
   }
 
   # Save output_long
-  output_long_fname <- file.path(output_dir, paste0("L-", csv_to_convert))
+  output_long_fname <- paste0(output_dir, "/L-", csv_to_convert)
   write.csv(output_long, output_long_fname, row.names = FALSE)
-  cat("\n")
-  cli_alert_success(paste("Long format categorisations have been saved to:,",
-                          "{output_long_fname}"))
+
+  if (!quiet) {
+    cli_alert_success(paste("Long format categorisations saved to:\n",
+                            "{output_long_fname}"))
+  }
 }

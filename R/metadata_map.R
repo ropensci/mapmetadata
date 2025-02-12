@@ -37,6 +37,8 @@ select.list <- NULL
 #' user time, and ensure consistency of categorisations across tables.
 #' @param long_output Run map_convert.R to create a new longer output
 #' 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return The function will return two csv files: 'OUTPUT_' which contains the
 #' mappings and 'LOG_' which contains details about the dataset and session.
 #' @examples
@@ -48,7 +50,7 @@ select.list <- NULL
 #' }
 #' @export
 #' @importFrom dplyr %>% filter
-#' @importFrom cli cli_h1 cli_alert_info cli_alert_success
+#' @importFrom cli cli_alert_info cli_alert_success cli_alert_danger
 #' @importFrom utils packageVersion write.csv browseURL menu select.list
 #' @importFrom ggplot2 ggsave
 #' @importFrom htmlwidgets saveWidget
@@ -59,7 +61,8 @@ metadata_map <- function(
     look_up_file = NULL,
     output_dir = getwd(),
     table_copy = TRUE,
-    long_output = TRUE) {
+    long_output = TRUE,
+    quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
@@ -79,8 +82,10 @@ metadata_map <- function(
   n_tables <- length(levels(dataset$Section))
 
   ## Print info about dataset to user
-  cli_alert_info("Processing dataset: {dataset_name}")
-  cli_alert_info("There are {n_tables} tables in this dataset")
+  if (!quiet) {
+    cli_alert_info(paste("Processing dataset '{dataset_name}' containing",
+                         "{n_tables} tables\n\n"))
+  }
 
   # SECTION 2 - CREATE SUMMARY BAR PLOT FOR DATASET ----
 
@@ -103,19 +108,15 @@ metadata_map <- function(
   setwd(original_wd) # saveWidget has a bug with paths & saving
 
   ## Display outputs to the user
-  cat("\n")
   browseURL(file.path(output_dir, bar_fname))
-  cli_alert_info(paste("A bar plot should have opened in your browser.",
-                       "It has also been saved to your project directory",
-                       "(alongside a csv).Use this bar plot, and the",
-                       "information on the HDRUK Gateway, to guide your",
-                       "mapping approach."))
+  if (!quiet) {
+    cli_alert_info(paste("A bar plot should have opened in your browser",
+                         "(also saved to your project directory).\n",
+                         "Use this bar plot, and the information on the HDRUK",
+                         "Gateway, to guide your mapping approach.\n\n"))
+  }
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
-
-  cat("\n")
-  readline(paste("Press 'Esc' key to finish here, or press any other key to",
-                 "continue with mapping variables"))
 
   ## Read in prepared output data frames
   log_output_df <- get("log_output_df")
@@ -128,14 +129,10 @@ metadata_map <- function(
   mismatch <- setdiff(data$lookup$domain_code, df_plots$code$code)
   if (length(mismatch) > 0) {
     cli_alert_danger("The look_up_file and domain_file are not compatible.
-                     These look up codes are not listed in the domain codes:")
-    cat("\n")
+                     These look up codes are not listed in the domain codes:\n")
     print(mismatch)
     stop()
   }
-
-  ## Get user initials for the log file
-  user_initials <- readline(prompt = "Enter your initials: ")
 
   ## CHOOSE TABLE TO PROCESS
 
@@ -143,10 +140,10 @@ metadata_map <- function(
                          levels(dataset$Section),
                          title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
-  cat("\n")
-  cli_alert_info("Processing Table {chosen_table_n} of {n_tables}
-                 ({table_name})")
-  cat("\n")
+  if (!quiet) {
+    cli_alert_info(paste("Processing Table {chosen_table_n} of {n_tables}",
+                         "({table_name})\n\n"))
+  }
 
   #### Use 'output_copy.R' to copy from previous output(s) if they exist
   if (table_copy == TRUE) {
@@ -157,10 +154,7 @@ metadata_map <- function(
     df_prev_exist <- FALSE
   }
 
-  table_note <- readline(paste(
-    "Optional free text note about this table",
-    "(or press 'Enter'): "
-  ))
+  table_note <- readline(paste("Optional note about this table: "))
 
   ####  Extract table from metadata
   table_df <- dataset %>%
@@ -192,9 +186,9 @@ metadata_map <- function(
 
 
   #### Review auto categorized data elements
-  cat("\n")
-  cli_alert_info("These are the auto categorised data elements:")
-  cat("\n")
+  if (!quiet) {
+    cli_alert_info("These are the auto categorised data elements:\n\n")
+  }
   output_auto <- subset(output_df, note == "AUTO CATEGORISED")
   output_auto <- output_auto[, c("data_element", "domain_code", "note")]
   print(output_auto, row.names = FALSE)
@@ -224,15 +218,15 @@ metadata_map <- function(
   }
 
   ### Review user categorized data elements (optional)
-  cat("\n")
   review_cats <- menu(c("Yes", "No"), title =
                         "\nWould you like to review your categorisations?")
   if (review_cats == 1) {
     output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
     output_not_auto["note (first 12 chars)"] <-
       substring(output_not_auto$note, 1, 11)
-    cli_alert_info("These are the data elements you categorised:")
-    cat("\n")
+    if (!quiet) {
+      cli_alert_info("These are the data elements you categorised:\n")
+    }
     print(output_not_auto[, c("data_element", "domain_code",
                               "note (first 12 chars)")], row.names = FALSE)
 
@@ -265,50 +259,56 @@ metadata_map <- function(
   ### Fill in log output
   log_output_df$timestamp <- timestamp_now
   log_output_df$mapmetadata <- packageVersion("mapmetadata")
-  log_output_df$initials <- user_initials
   log_output_df$domain_list_desc <- data$domain_list_desc
   log_output_df$dataset <- dataset_name
   log_output_df$table <- table_name
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- file.path(output_dir, paste0("MAPPING_",
-                                            gsub(" ", "", dataset_name),
-                                            "_", gsub(" ", "", table_name),
-                                            "_", timestamp_now_fname, ".csv"))
+  csv_fname <- paste0("MAPPING_", gsub(" ", "", dataset_name), "_",
+                      gsub(" ", "", table_name),
+                      "_", timestamp_now_fname, ".csv")
 
-  csv_log_fname <- file.path(output_dir, paste0("MAPPING_LOG_",
-                                                gsub(" ", "", dataset_name),
-                                                "_", gsub(" ", "", table_name),
-                                                "_", timestamp_now_fname,
-                                                ".csv"))
-  png_fname <- file.path(output_dir, paste0("MAPPING_PLOT_",
-                                            gsub(" ", "", dataset_name),
-                                            "_", gsub(" ", "", table_name),
-                                            "_", timestamp_now_fname, ".png"))
+  csv_path <- file.path(output_dir, paste0("MAPPING_",
+                                           gsub(" ", "", dataset_name),
+                                           "_", gsub(" ", "", table_name),
+                                           "_", timestamp_now_fname, ".csv"))
+
+  csv_log_path <- file.path(output_dir, paste0("MAPPING_LOG_",
+                                               gsub(" ", "", dataset_name),
+                                               "_", gsub(" ", "", table_name),
+                                               "_", timestamp_now_fname,
+                                               ".csv"))
+  png_path <- file.path(output_dir, paste0("MAPPING_PLOT_",
+                                           gsub(" ", "", dataset_name),
+                                           "_", gsub(" ", "", table_name),
+                                           "_", timestamp_now_fname, ".png"))
 
   ### Save final categorisations for this Table
-  write.csv(output_df, csv_fname, row.names = FALSE)
-  write.csv(log_output_df, csv_log_fname, row.names = FALSE)
-  cat("\n")
-  cli_alert_success("Final categorisations saved as:\n{csv_fname}")
-  cli_alert_success("Session log saved as:\n{csv_log_fname}")
+  write.csv(output_df, csv_path, row.names = FALSE)
+  write.csv(log_output_df, csv_log_path, row.names = FALSE)
 
   ### Create and save a summary plot
   end_plot_save <- end_plot(df = output_df, table_name,
                             ref_table = df_plots$domain_table)
   ggsave(
     plot = end_plot_save,
-    filename = png_fname,
+    filename = png_path,
     width = 14,
     height = 8,
     units = "in"
   )
-  cli_alert_success("A summary plot has been saved:\n{png_fname}")
+
+  if (!quiet) {
+    cli_alert_success("Final categorisations saved to:\n{csv_path}")
+    cli_alert_success("Session log saved to:\n{csv_log_path}")
+    cli_alert_success("Summary plot saved to:\n{png_path}")
+  }
 
   ### Create long output
   if (long_output == TRUE) {
-    map_convert(csv_fname, output_dir)
-    cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
+    map_convert(csv_to_convert = csv_fname, csv_to_convert_dir = output_dir,
+                quiet = quiet)
   }
+
 } # end of function

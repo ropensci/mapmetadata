@@ -53,19 +53,16 @@ In the R console you should see:
 
 ```
 ℹ Running demo mode using package data files
+ℹ Using the default look-up table in data/look-up.rda
+ℹ Processing dataset '360_NCCHD' containing 13 tables
 
- ℹ Using the default look-up table in data/look-up.rda
+ℹ A bar plot should have opened in your browser (also saved to your project directory).
+Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
 
-ℹ Processing dataset: 360_NCCHD
-ℹ There are 13 tables in this dataset
-
-ℹ A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).
-ℹ Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
-
-Press 'Esc' key to finish here, or press any other key to continue with mapping variables
+Enter the table number you want to process: 
 ```
 
-Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory)`.
+You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory)`.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 

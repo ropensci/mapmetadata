@@ -48,24 +48,20 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 #' @param domain_code_max The maximum allowable domain code integer
 #' @return Returns list of 2: domain code and note from the consensus decision
 #' @keywords internal
-#' @importFrom cli cli_alert_info
+#' @importFrom cli cli_alert_warning
 
 consensus_on_mismatch <- function(ses_join, table_df, datavar,
                                   domain_code_max) {
   if (ses_join$domain_code_ses1[datavar]
       != ses_join$domain_code_ses2[datavar]) {
     cat("\n\n")
-    cli_alert_info("Mismatch of DataElement {ses_join$DataElement[datavar]}")
-    cat(paste(
-      "\nDOMAIN CODE (note) for session 1 --> ",
-      ses_join$domain_code_ses1[datavar],
-      "(", ses_join$note_ses1[datavar], ")",
-      "\nDOMAIN CODE (note) for session 2 --> ",
-      ses_join$domain_code_ses2[datavar],
-      "(", ses_join$note_ses2[datavar], ")"
-    ))
-    cat("\n\n")
-    cli_alert_info("Provide consensus decision for this DataElement:")
+    cli_alert_warning("Mismatch found, provide concensus decision below.")
+    cli_alert_warning(paste("\nDOMAIN CODE (note) for session 1 --> ",
+                            ses_join$domain_code_ses1[datavar],
+                            "(", ses_join$note_ses1[datavar], ")"))
+    cli_alert_warning(paste("\nDOMAIN CODE (note) for session 2 --> ",
+                            ses_join$domain_code_ses2[datavar],
+                            "(", ses_join$note_ses2[datavar], ")\n"))
     decision_output <- user_categorisation(table_df$Column.name[datavar],
                                            table_df$Column.description[datavar],
                                            table_df$Data.type[datavar],
