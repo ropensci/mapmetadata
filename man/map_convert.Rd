@@ -7,7 +7,8 @@
 map_convert(
   csv_to_convert,
   csv_to_convert_dir,
-  output_dir = csv_to_convert_dir
+  output_dir = csv_to_convert_dir,
+  quiet = FALSE
 )
 }
 \arguments{
@@ -15,7 +16,10 @@ map_convert(
 
 \item{csv_to_convert_dir}{Location of csv_to_convert}
 
-\item{output_dir}{Location where the 'L-MAPPING_' csv file will be saved.
+\item{output_dir}{Location where the 'L-MAPPING_' csv file will be saved.}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.
 Default is csv_to_convert_dir.}
 }
 \value{

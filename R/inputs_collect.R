@@ -8,20 +8,24 @@
 #' @param csv_file As defined in metadata_map
 #' @param domain_file As defined in metadata_map
 #' @param look_up_file As defined in metadata_map
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return A list of 6: all inputs needed for the metadata_map function to run.
 #' @keywords internal
 #' @importFrom cli cli_alert_info cli_alert_danger
 #' @importFrom utils read.csv
 #' @importFrom tools file_path_sans_ext
 
-data_load <- function(csv_file, domain_file, look_up_file) {
+data_load <- function(csv_file, domain_file, look_up_file, quiet = FALSE) {
   # Collect metadata and domains
   if (is.null(csv_file) && is.null(domain_file)) {
     metadata <- get("metadata")
     metadata_desc <- "360_NCCHD"
     domains <- get("domain_list")
     domain_list_desc <- "DemoList"
-    cli_alert_info("Running demo mode using package data files")
+    if (!quiet) {
+      cli_alert_info("Running demo mode using package data files")
+    }
     demo_mode <- TRUE
   } else if (is.null(csv_file) || is.null(domain_file)) {
     cli_alert_danger("Provide both csv & domain file (or neither to run demo)")
@@ -38,11 +42,15 @@ data_load <- function(csv_file, domain_file, look_up_file) {
 
   # Collect look up table
   if (is.null(look_up_file)) {
-    cli_alert_info("Using the default look-up table in data/look-up.rda")
+    if (!quiet) {
+      cli_alert_info("Using the default look-up table in data/look-up.rda")
+    }
     lookup <- get("look_up")
   } else {
     lookup <- read.csv(look_up_file)
-    cli_alert_info("Using look up file inputted by user")
+    if (!quiet) {
+      cli_alert_info("Using look up file inputted by user")
+    }
   }
 
   list(metadata = metadata,
@@ -63,13 +71,15 @@ data_load <- function(csv_file, domain_file, look_up_file) {
 #'
 #' @param dataset_name Name of the dataset
 #' @param output_dir Output directory to be searched
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return It returns a list of 2: df_prev_exist (a boolean) and df_prev
 #' (NULL or populated with data elements to copy)
 #' @keywords internal
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info
 
-output_copy <- function(dataset_name, output_dir) {
+output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
   o_search <- paste0("^MAPPING_", gsub(" ", "", dataset_name), "*")
   csv_list <- data.frame(file = list.files(output_dir, pattern = o_search))
   if (nrow(csv_list) != 0) {
@@ -81,8 +91,10 @@ output_copy <- function(dataset_name, output_dir) {
     df_prev <- df_prev %>% distinct(data_element, .keep_all = TRUE)
     df_prev <- df_prev[-(which(df_prev$note %in% "AUTO CATEGORISED")), ]
     df_prev_exist <- TRUE
-    cli_alert_info(paste0("Copying from previous session(s):\n",
-                          paste(csv_list$file, collapse = "\n"),"\n\n"))
+    if (!quiet) {
+      cli_alert_info(paste0("Copying from previous session(s):\n",
+                            paste(csv_list$file, collapse = "\n"),"\n\n"))
+    }
   } else {
     df_prev <- NULL
     df_prev_exist <- FALSE

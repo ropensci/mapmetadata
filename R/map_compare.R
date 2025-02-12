@@ -16,6 +16,8 @@
 #' metadata_map (should be the same for session 1 and session 2)
 #' @param output_dir The path to the directory where the consensus output file
 #' will be saved. By default, the session_dir is used.
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return It returns a csv output, which represents the consensus decisions
 #' between session 1 and session 2
 #' @export
@@ -44,8 +46,13 @@
 #'     domain_file = demo_domain_file,
 #'     output_dir = temp_output_dir
 #'     )}
-map_compare <- function(session_dir, session1_base, session2_base,
-                        metadata_file, domain_file, output_dir = session_dir) {
+map_compare <- function(session_dir,
+                        session1_base,
+                        session2_base,
+                        metadata_file,
+                        domain_file,
+                        output_dir = session_dir,
+                        quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
 
   # DEFINE INPUTS ----
@@ -142,5 +149,8 @@ map_compare <- function(session_dir, session1_base, session2_base,
                                    timestamp_now_fname, ".csv"))
 
   write.csv(ses_join, output_fname, row.names = FALSE)
-  cli_alert_success("Consensus categorisations saved to: {output_fname}")
+
+  if (!quiet) {
+    cli_alert_success("Consensus categorisations saved to: {output_fname}")
+  }
 }

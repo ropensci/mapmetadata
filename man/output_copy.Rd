@@ -4,12 +4,15 @@
 \alias{output_copy}
 \title{output_copy}
 \usage{
-output_copy(dataset_name, output_dir)
+output_copy(dataset_name, output_dir, quiet = FALSE)
 }
 \arguments{
 \item{dataset_name}{Name of the dataset}
 
 \item{output_dir}{Output directory to be searched}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.}
 }
 \value{
 It returns a list of 2: df_prev_exist (a boolean) and df_prev

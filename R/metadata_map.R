@@ -37,6 +37,8 @@ select.list <- NULL
 #' user time, and ensure consistency of categorisations across tables.
 #' @param long_output Run map_convert.R to create a new longer output
 #' 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.
+#' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
+#' and cli_alert_success messages.
 #' @return The function will return two csv files: 'OUTPUT_' which contains the
 #' mappings and 'LOG_' which contains details about the dataset and session.
 #' @examples
@@ -48,7 +50,7 @@ select.list <- NULL
 #' }
 #' @export
 #' @importFrom dplyr %>% filter
-#' @importFrom cli cli_h1 cli_alert_info cli_alert_success
+#' @importFrom cli cli_alert_info cli_alert_success cli_alert_danger
 #' @importFrom utils packageVersion write.csv browseURL menu select.list
 #' @importFrom ggplot2 ggsave
 #' @importFrom htmlwidgets saveWidget
@@ -59,7 +61,8 @@ metadata_map <- function(
     look_up_file = NULL,
     output_dir = getwd(),
     table_copy = TRUE,
-    long_output = TRUE) {
+    long_output = TRUE,
+    quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
@@ -79,8 +82,10 @@ metadata_map <- function(
   n_tables <- length(levels(dataset$Section))
 
   ## Print info about dataset to user
-  cli_alert_info(paste("Processing dataset '{dataset_name}' containing",
+  if (!quiet) {
+    cli_alert_info(paste("Processing dataset '{dataset_name}' containing",
                        "{n_tables} tables\n\n"))
+  }
 
   # SECTION 2 - CREATE SUMMARY BAR PLOT FOR DATASET ----
 
@@ -104,10 +109,12 @@ metadata_map <- function(
 
   ## Display outputs to the user
   browseURL(file.path(output_dir, bar_fname))
-  cli_alert_info(paste("A bar plot should have opened in your browser",
-                       "(it has also been saved to your project directory).\n",
-                       "Use this bar plot, and the information on the HDRUK",
-                       "Gateway, to guide your mapping approach.\n\n"))
+  if (!quiet) {
+    cli_alert_info(paste("A bar plot should have opened in your browser",
+                         "(also been saved to your project directory).\n",
+                         "Use this bar plot, and the information on the HDRUK",
+                         "Gateway, to guide your mapping approach.\n\n"))
+  }
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
@@ -133,8 +140,10 @@ metadata_map <- function(
                          levels(dataset$Section),
                          title = "Enter the table number you want to process:")
   table_name <- levels(dataset$Section)[chosen_table_n]
-  cli_alert_info(paste("Processing Table {chosen_table_n} of {n_tables}",
+  if (!quiet) {
+    cli_alert_info(paste("Processing Table {chosen_table_n} of {n_tables}",
                        "({table_name})\n\n"))
+    }
 
   #### Use 'output_copy.R' to copy from previous output(s) if they exist
   if (table_copy == TRUE) {
@@ -177,7 +186,9 @@ metadata_map <- function(
 
 
   #### Review auto categorized data elements
-  cli_alert_info("These are the auto categorised data elements:\n\n")
+  if (!quiet) {
+    cli_alert_info("These are the auto categorised data elements:\n\n")
+  }
   output_auto <- subset(output_df, note == "AUTO CATEGORISED")
   output_auto <- output_auto[, c("data_element", "domain_code", "note")]
   print(output_auto, row.names = FALSE)
@@ -213,7 +224,9 @@ metadata_map <- function(
     output_not_auto <- subset(output_df, note != "AUTO CATEGORISED")
     output_not_auto["note (first 12 chars)"] <-
       substring(output_not_auto$note, 1, 11)
-    cli_alert_info("These are the data elements you categorised:\n")
+    if (!quiet) {
+      cli_alert_info("These are the data elements you categorised:\n")
+    }
     print(output_not_auto[, c("data_element", "domain_code",
                               "note (first 12 chars)")], row.names = FALSE)
 
@@ -274,8 +287,6 @@ metadata_map <- function(
   ### Save final categorisations for this Table
   write.csv(output_df, csv_path, row.names = FALSE)
   write.csv(log_output_df, csv_log_path, row.names = FALSE)
-  cli_alert_success("Final categorisations saved to:\n{csv_path}")
-  cli_alert_success("Session log saved to:\n{csv_log_path}")
 
   ### Create and save a summary plot
   end_plot_save <- end_plot(df = output_df, table_name,
@@ -287,10 +298,17 @@ metadata_map <- function(
     height = 8,
     units = "in"
   )
-  cli_alert_success("Summary plot saved to:\n{png_path}")
+
+  if (!quiet) {
+    cli_alert_success("Final categorisations saved to:\n{csv_path}")
+    cli_alert_success("Session log saved to:\n{csv_log_path}")
+    cli_alert_success("Summary plot saved to:\n{png_path}")
+  }
 
   ### Create long output
   if (long_output == TRUE) {
-    map_convert(csv_fname, output_dir)
+    map_convert(csv_to_convert = csv_fname, csv_to_convert_dir = output_dir,
+                quiet = quiet)
   }
+
 } # end of function

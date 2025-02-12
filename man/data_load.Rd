@@ -4,7 +4,7 @@
 \alias{data_load}
 \title{data_load}
 \usage{
-data_load(csv_file, domain_file, look_up_file)
+data_load(csv_file, domain_file, look_up_file, quiet = FALSE)
 }
 \arguments{
 \item{csv_file}{As defined in metadata_map}
@@ -12,6 +12,9 @@ data_load(csv_file, domain_file, look_up_file)
 \item{domain_file}{As defined in metadata_map}
 
 \item{look_up_file}{As defined in metadata_map}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.}
 }
 \value{
 A list of 6: all inputs needed for the metadata_map function to run.

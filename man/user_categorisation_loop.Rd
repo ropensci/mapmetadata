@@ -12,7 +12,8 @@ user_categorisation_loop(
   df_prev,
   lookup,
   df_plots,
-  output_df
+  output_df,
+  quiet = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ user_categorisation_loop(
 \item{df_plots}{Output from ref_plot, to indicate mac domain code allowed}
 
 \item{output_df}{Empty output dataframe, to fill}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.}
 }
 \value{
 An output dataframe containing info about the table, data elements

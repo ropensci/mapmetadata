@@ -10,7 +10,8 @@ map_compare(
   session2_base,
   metadata_file,
   domain_file,
-  output_dir = session_dir
+  output_dir = session_dir,
+  quiet = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ metadata_map (should be the same for session 1 and session 2)}
 
 \item{output_dir}{The path to the directory where the consensus output file
 will be saved. By default, the session_dir is used.}
+
+\item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.}
 }
 \value{
 It returns a csv output, which represents the consensus decisions
