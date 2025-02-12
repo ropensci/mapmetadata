@@ -142,6 +142,5 @@ map_compare <- function(session_dir, session1_base, session2_base,
                                    timestamp_now_fname, ".csv"))
 
   write.csv(ses_join, output_fname, row.names = FALSE)
-  cat("\n")
-  cli_alert_success("Consensus categorisations been saved to: {output_fname}")
+  cli_alert_success("Consensus categorisations saved to: {output_fname}")
 }
