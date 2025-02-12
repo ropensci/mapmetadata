@@ -79,7 +79,8 @@ function in a demo mode.</p>
 <span>  look_up_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  output_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  table_copy <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  long_output <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  long_output <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -125,6 +126,11 @@ user time, and ensure consistency of categorisations across tables.</p></dd>
 <dt id="arg-long-output">long_output<a class="anchor" aria-label="anchor" href="#arg-long-output"></a></dt>
 <dd><p>Run map_convert.R to create a new longer output
 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.</p></dd>
+
+
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.</p></dd>
 
 </dl></div>
     <div class="section level2">

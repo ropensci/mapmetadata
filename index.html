@@ -104,17 +104,14 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/metadata_map.html">metadata_map</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>In the R console you should see:</p>
 <pre><code>ℹ Running demo mode using package data files
+ℹ Using the default look-up table in data/look-up.rda
+ℹ Processing dataset '360_NCCHD' containing 13 tables
 
- ℹ Using the default look-up table in data/look-up.rda
+ℹ A bar plot should have opened in your browser (also saved to your project directory).
+Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
 
-ℹ Processing dataset: 360_NCCHD
-ℹ There are 13 tables in this dataset
-
-ℹ A bar plot should have opened in your browser. It has also been saved to your project directory (alongside a csv).
-ℹ Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
-
-Press 'Esc' key to finish here, or press any other key to continue with mapping variables</code></pre>
-<p>Stopping here just gets you the summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory)</code>.</p>
+Enter the table number you want to process: </code></pre>
+<p>You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory)</code>.</p>
 <p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
 <p>If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
 </div>

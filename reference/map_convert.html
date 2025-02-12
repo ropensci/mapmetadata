@@ -58,7 +58,8 @@ This 'L-MAPPING_' may be useful when using these csv files in later analyses</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">map_convert</span><span class="op">(</span></span>
 <span>  <span class="va">csv_to_convert</span>,</span>
 <span>  <span class="va">csv_to_convert_dir</span>,</span>
-<span>  output_dir <span class="op">=</span> <span class="va">csv_to_convert_dir</span></span>
+<span>  output_dir <span class="op">=</span> <span class="va">csv_to_convert_dir</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,7 +76,12 @@ This 'L-MAPPING_' may be useful when using these csv files in later analyses</p>
 
 
 <dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
-<dd><p>Location where the 'L-MAPPING_' csv file will be saved.
+<dd><p>Location where the 'L-MAPPING_' csv file will be saved.</p></dd>
+
+
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Default is FALSE. Change to TRUE to quiet the cli_alert_info
+and cli_alert_success messages.
 Default is csv_to_convert_dir.</p></dd>
 
 </dl></div>
@@ -95,8 +101,8 @@ Default is csv_to_convert_dir.</p></dd>
 <span class="r-in"><span>csv_to_convert <span class="op">=</span> <span class="va">demo_csv_to_convert</span>,</span></span>
 <span class="r-in"><span>csv_to_convert_dir <span class="op">=</span> <span class="va">demo_csv_to_convert_dir</span>,</span></span>
 <span class="r-in"><span>output_dir <span class="op">=</span> <span class="va">temp_output_dir</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Long format categorisations have been saved to:, /tmp/Rtmp2g2Qio/L-MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Long format categorisations saved to:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> /tmp/Rtmpsp31GC/L-MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
