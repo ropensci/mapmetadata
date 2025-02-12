@@ -21,12 +21,9 @@ data_load <- function(csv_file, domain_file, look_up_file) {
     metadata_desc <- "360_NCCHD"
     domains <- get("domain_list")
     domain_list_desc <- "DemoList"
-    cat("\n")
     cli_alert_info("Running demo mode using package data files")
-    cat("\n ")
     demo_mode <- TRUE
   } else if (is.null(csv_file) || is.null(domain_file)) {
-    cat("\n")
     cli_alert_danger("Provide both csv & domain file (or neither to run demo)")
     stop()
   } else { # read in user specified files
@@ -42,12 +39,10 @@ data_load <- function(csv_file, domain_file, look_up_file) {
   # Collect look up table
   if (is.null(look_up_file)) {
     cli_alert_info("Using the default look-up table in data/look-up.rda")
-    cat("\n")
     lookup <- get("look_up")
   } else {
     lookup <- read.csv(look_up_file)
     cli_alert_info("Using look up file inputted by user")
-    cat("\n ")
   }
 
   list(metadata = metadata,
@@ -86,10 +81,8 @@ output_copy <- function(dataset_name, output_dir) {
     df_prev <- df_prev %>% distinct(data_element, .keep_all = TRUE)
     df_prev <- df_prev[-(which(df_prev$note %in% "AUTO CATEGORISED")), ]
     df_prev_exist <- TRUE
-    cat("\n")
-    cli_alert_info(paste0("Copying from previous session(s): "))
-    cat("\n")
-    print(csv_list$file)
+    cli_alert_info(paste0("Copying from previous session(s):\n",
+                          paste(csv_list$file, collapse = "\n")))
   } else {
     df_prev <- NULL
     df_prev_exist <- FALSE
