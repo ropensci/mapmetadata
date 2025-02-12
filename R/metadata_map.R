@@ -84,7 +84,7 @@ metadata_map <- function(
   ## Print info about dataset to user
   if (!quiet) {
     cli_alert_info(paste("Processing dataset '{dataset_name}' containing",
-                       "{n_tables} tables\n\n"))
+                         "{n_tables} tables\n\n"))
   }
 
   # SECTION 2 - CREATE SUMMARY BAR PLOT FOR DATASET ----
@@ -142,8 +142,8 @@ metadata_map <- function(
   table_name <- levels(dataset$Section)[chosen_table_n]
   if (!quiet) {
     cli_alert_info(paste("Processing Table {chosen_table_n} of {n_tables}",
-                       "({table_name})\n\n"))
-    }
+                         "({table_name})\n\n"))
+  }
 
   #### Use 'output_copy.R' to copy from previous output(s) if they exist
   if (table_copy == TRUE) {
@@ -265,24 +265,24 @@ metadata_map <- function(
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- paste0("MAPPING_",gsub(" ", "", dataset_name),"_",
+  csv_fname <- paste0("MAPPING_", gsub(" ", "", dataset_name), "_",
                       gsub(" ", "", table_name),
                       "_", timestamp_now_fname, ".csv")
 
   csv_path <- file.path(output_dir, paste0("MAPPING_",
-                                            gsub(" ", "", dataset_name),
-                                            "_", gsub(" ", "", table_name),
-                                            "_", timestamp_now_fname, ".csv"))
+                                           gsub(" ", "", dataset_name),
+                                           "_", gsub(" ", "", table_name),
+                                           "_", timestamp_now_fname, ".csv"))
 
   csv_log_path <- file.path(output_dir, paste0("MAPPING_LOG_",
-                                                gsub(" ", "", dataset_name),
-                                                "_", gsub(" ", "", table_name),
-                                                "_", timestamp_now_fname,
-                                                ".csv"))
+                                               gsub(" ", "", dataset_name),
+                                               "_", gsub(" ", "", table_name),
+                                               "_", timestamp_now_fname,
+                                               ".csv"))
   png_path <- file.path(output_dir, paste0("MAPPING_PLOT_",
-                                            gsub(" ", "", dataset_name),
-                                            "_", gsub(" ", "", table_name),
-                                            "_", timestamp_now_fname, ".png"))
+                                           gsub(" ", "", dataset_name),
+                                           "_", gsub(" ", "", table_name),
+                                           "_", timestamp_now_fname, ".png"))
 
   ### Save final categorisations for this Table
   write.csv(output_df, csv_path, row.names = FALSE)

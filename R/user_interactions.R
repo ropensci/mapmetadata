@@ -108,7 +108,7 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist,
   for (data_v in start_v:end_v) {
     if (!quiet) {
       cli_alert_info(paste0("Data element {data_v} of {nrow(table_df)} (",
-                           length(data_v:end_v), " left to process)"))
+                            length(data_v:end_v), " left to process)"))
     }
     this_data_element <- table_df$Column.name[data_v]
     this_data_element_n <- paste(

@@ -19,7 +19,7 @@ test_that("metadata_map function works correctly with user input", {
   local_mocked_bindings(
     readline = function(prompt) {
       response <- switch(prompt,
-                         "Optional note about this table: " = "demo run"
+        "Optional note about this table: " = "demo run"
       )
     }
   )

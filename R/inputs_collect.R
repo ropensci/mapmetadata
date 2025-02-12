@@ -93,7 +93,7 @@ output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
     df_prev_exist <- TRUE
     if (!quiet) {
       cli_alert_info(paste0("Copying from previous session(s):\n",
-                            paste(csv_list$file, collapse = "\n"),"\n\n"))
+                            paste(csv_list$file, collapse = "\n"), "\n\n"))
     }
   } else {
     df_prev <- NULL
