@@ -27,3 +27,4 @@ available, it prints error for the user.
 If inputs are not NULL, it loads the user-specified inputs.
 }
 \keyword{internal}
+\keyword{internal}

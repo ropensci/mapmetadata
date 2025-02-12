@@ -17,12 +17,12 @@ data(metadata)
 Example metadata for a health dataset, to demo metadata_map \cr \cr
 This data was created with these steps:
 \enumerate{
-  \item Go to https://healthdatagateway.org
-  \item Navigate to the dataset of interest, select 'Download data' and
-  download the Structural Metadata file
-  \item Shorten name of downloaded file e.g. 360_NCCHD_Metadata.csv
-  \item \code{metadata <- read.csv("inst/inputs/360_NCCHD_Metadata.csv")}
-  \item \code{usethis::use_data(metadata)}
+\item Go to https://healthdatagateway.org
+\item Navigate to the dataset of interest, select 'Download data' and
+download the Structural Metadata file
+\item Shorten name of downloaded file e.g. 360_NCCHD_Metadata.csv
+\item \code{metadata <- read.csv("inst/inputs/360_NCCHD_Metadata.csv")}
+\item \code{usethis::use_data(metadata)}
 }
 }
 \keyword{internal}

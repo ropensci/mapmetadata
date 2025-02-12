@@ -16,3 +16,12 @@
 
 
 ^codemeta\.json$
+^man/valid_comparison\.Rd$
+^man/consensus_on_mismatch\.Rd$
+^man/empty_count\.Rd$
+^man/data_load\.Rd$
+^man/output_copy\.Rd$
+^man/empty_plot\.Rd$
+^man/ref_plot\.Rd$
+^man/user_categorisation\.Rd$
+^man/user_categorisation_loop\.Rd$

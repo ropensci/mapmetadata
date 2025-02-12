@@ -6,9 +6,10 @@
 #' @param dataframe Dataframe representing metadata, 'Section' column as factor
 #' @return Returns a long dataframe with 3 columns: Empty (No, Yes),
 #' Table (table name), N_Variables (count).
-#' @keywords internal
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr %>% group_by summarise mutate select arrange n
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 empty_count <- function(dataframe) {
   empty_count_df <- dataframe %>%

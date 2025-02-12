@@ -5,8 +5,9 @@
 #' @param dataframe Dataframe to plot. Output of empty_count.R function.
 #' @param bar_title Title for the plot.
 #' @return A plotly object
-#' @keywords internal
 #' @importFrom plotly plot_ly layout
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 empty_plot <- function(dataframe, bar_title) {
   barplot_html <- plot_ly(dataframe,
@@ -41,9 +42,10 @@ empty_plot <- function(dataframe, bar_title) {
 #' @param domains The output of load_data
 #' @return A reference table that appears in the Plots tab. A list of 2
 #' containing the derivatives for this plot, used later in metadata_map'
-#' @keywords internal
 #' @importFrom gridExtra tableGrob grid.arrange
 #' @importFrom graphics plot.new
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 ref_plot <- function(domains) {
   colnames(domains)[1] <- "Domain Name"

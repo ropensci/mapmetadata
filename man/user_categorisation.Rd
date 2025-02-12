@@ -26,3 +26,4 @@ a domain. \cr \cr
 An optional note can be included with the categorisation.
 }
 \keyword{internal}
+\keyword{internal}

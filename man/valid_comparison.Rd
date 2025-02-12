@@ -26,3 +26,4 @@ Warning severity: if unequal inputs, gives warning but continues. \cr \cr
 Danger severity: if unequal inputs, exits with error message. \cr \cr
 }
 \keyword{internal}
+\keyword{internal}

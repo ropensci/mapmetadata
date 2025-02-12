@@ -11,8 +11,9 @@
 #' @param severity_text The text to print if inputs are not equal.
 #' @return Returns nothing if inputs are equal. If inputs are not equal,
 #' returns variable text depending on level of severity.
-#' @keywords internal
 #' @importFrom cli cli_alert_warning
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 valid_comparison <- function(input_1, input_2, severity, severity_text) {
   if (!severity %in% c("danger", "warning")) {
@@ -47,8 +48,9 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 #' @param datavar Data Element n
 #' @param domain_code_max The maximum allowable domain code integer
 #' @return Returns list of 2: domain code and note from the consensus decision
-#' @keywords internal
 #' @importFrom cli cli_alert_warning
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 consensus_on_mismatch <- function(ses_join, table_df, datavar,
                                   domain_code_max) {

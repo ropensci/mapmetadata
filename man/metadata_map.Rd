@@ -21,9 +21,11 @@ metadata_map(
 
 \item{domain_file}{This should be a csv file created by the user, with each
 domain on a separate line, no header. Default is 'data/domain_list.rda'
-- run '?domain_list' to see how it was created.
+\itemize{
+\item run '?domain_list' to see how it was created.
 Note that 4 domains will be added automatically (NO MATCH/UNSURE, METADATA,
-ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.}
+ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.
+}}
 
 \item{look_up_file}{The lookup file makes auto-categorisations intended for
 variables that appear regularly in health datasets. It only works for 1:1

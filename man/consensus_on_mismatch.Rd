@@ -25,3 +25,4 @@ between two sessions. If the categorisation differs, it prompts the user for
 a new consensus decision by presenting the metadata info. \cr \cr
 }
 \keyword{internal}
+\keyword{internal}

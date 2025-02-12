@@ -11,10 +11,11 @@
 #' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
 #' and cli_alert_success messages.
 #' @return A list of 6: all inputs needed for the metadata_map function to run.
-#' @keywords internal
 #' @importFrom cli cli_alert_info cli_alert_danger
 #' @importFrom utils read.csv
 #' @importFrom tools file_path_sans_ext
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 data_load <- function(csv_file, domain_file, look_up_file, quiet = FALSE) {
   # Collect metadata and domains
@@ -75,9 +76,10 @@ data_load <- function(csv_file, domain_file, look_up_file, quiet = FALSE) {
 #' and cli_alert_success messages.
 #' @return It returns a list of 2: df_prev_exist (a boolean) and df_prev
 #' (NULL or populated with data elements to copy)
-#' @keywords internal
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
   o_search <- paste0("^MAPPING_", gsub(" ", "", dataset_name), "*")

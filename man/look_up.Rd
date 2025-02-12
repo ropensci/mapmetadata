@@ -20,8 +20,8 @@ If it is contained within this look-up table, it uses the auto-categorised
 domain code rather than asking the user to categorise.\cr\cr
 This data was created with these two steps:
 \enumerate{
- \item \code{look_up <- read.csv('inst/inputs/look_up.csv')}
- \item \code{usethis::use_data(look_up)}
+\item \code{look_up <- read.csv('inst/inputs/look_up.csv')}
+\item \code{usethis::use_data(look_up)}
 }
 }
 \keyword{internal}

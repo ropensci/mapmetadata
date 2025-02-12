@@ -17,14 +17,14 @@ data(log_output_df)
 Internal Dataset: Empty log output dataframe for metadata_map to fill.
 Created by: \cr \cr
 \enumerate{
- \item \code{log_output_df <- data.frame(timestamp = character(1),
+\item \code{log_output_df <- data.frame(timestamp = character(1),
  mapmetadata = character(1),
  initials = character(1),
  domain_list_desc = character(1),
  dataset = character(1),
  table = character(1),
  table_note = character(1))}
- \item \code{usethis::use_data(log_output_df)}
+\item \code{usethis::use_data(log_output_df)}
 }
 }
 \keyword{internal}

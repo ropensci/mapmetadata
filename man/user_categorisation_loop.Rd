@@ -49,3 +49,4 @@ Given a specific table and a number of data elements to search, it checks for
 3 - If no match for 1 or 2, data elements are categorised by the user \cr \cr
 }
 \keyword{internal}
+\keyword{internal}

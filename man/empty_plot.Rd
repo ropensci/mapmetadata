@@ -19,3 +19,4 @@ This function is called within the metadata_map function. \cr \cr
 It plots  \cr \cr
 }
 \keyword{internal}
+\keyword{internal}

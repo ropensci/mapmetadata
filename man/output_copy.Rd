@@ -26,3 +26,4 @@ If files exist, it removes duplicates and autos, and stores the rest of the
 data elements in a dataframe. \cr \cr
 }
 \keyword{internal}
+\keyword{internal}

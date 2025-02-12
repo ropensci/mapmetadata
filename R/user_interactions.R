@@ -13,9 +13,10 @@ scan <- NULL
 #' @param data_type Data type of the variable
 #' @param domain_code_max Max code in the domain list (0-3 auto included,
 #' then N included via domain_file)
-#' @keywords internal
 #' @return It returns a list containing the decision and decision note
 #' @importFrom cli cli_alert_warning
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 user_categorisation <- function(data_element, data_desc, data_type,
                                 domain_code_max) {
@@ -98,9 +99,10 @@ user_categorisation <- function(data_element, data_desc, data_type,
 #' and cli_alert_success messages.
 #' @return An output dataframe containing info about the table, data elements
 #' and categorisations
-#' @keywords internal
 #' @importFrom dplyr %>% add_row
 #' @importFrom cli cli_alert_info
+#' @keywords internal
+#' @dev generate help files for unexported objects, for developers
 
 user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist,
                                      df_prev, lookup, df_plots, output_df,
