@@ -111,7 +111,7 @@ metadata_map <- function(
   browseURL(file.path(output_dir, bar_fname))
   if (!quiet) {
     cli_alert_info(paste("A bar plot should have opened in your browser",
-                         "(also been saved to your project directory).\n",
+                         "(also saved to your project directory).\n",
                          "Use this bar plot, and the information on the HDRUK",
                          "Gateway, to guide your mapping approach.\n\n"))
   }
