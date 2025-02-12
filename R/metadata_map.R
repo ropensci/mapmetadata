@@ -272,43 +272,46 @@ metadata_map <- function(
   log_output_df$table_note <- table_note
 
   ### Create output file names
-  csv_fname <- file.path(output_dir, paste0("MAPPING_",
+  csv_fname <- paste0("MAPPING_",gsub(" ", "", dataset_name),"_",
+                      gsub(" ", "", table_name),
+                      "_", timestamp_now_fname, ".csv")
+
+  csv_path <- file.path(output_dir, paste0("MAPPING_",
                                             gsub(" ", "", dataset_name),
                                             "_", gsub(" ", "", table_name),
                                             "_", timestamp_now_fname, ".csv"))
 
-  csv_log_fname <- file.path(output_dir, paste0("MAPPING_LOG_",
+  csv_log_path <- file.path(output_dir, paste0("MAPPING_LOG_",
                                                 gsub(" ", "", dataset_name),
                                                 "_", gsub(" ", "", table_name),
                                                 "_", timestamp_now_fname,
                                                 ".csv"))
-  png_fname <- file.path(output_dir, paste0("MAPPING_PLOT_",
+  png_path <- file.path(output_dir, paste0("MAPPING_PLOT_",
                                             gsub(" ", "", dataset_name),
                                             "_", gsub(" ", "", table_name),
                                             "_", timestamp_now_fname, ".png"))
 
   ### Save final categorisations for this Table
-  write.csv(output_df, csv_fname, row.names = FALSE)
-  write.csv(log_output_df, csv_log_fname, row.names = FALSE)
+  write.csv(output_df, csv_path, row.names = FALSE)
+  write.csv(log_output_df, csv_log_path, row.names = FALSE)
   cat("\n")
-  cli_alert_success("Final categorisations saved as:\n{csv_fname}")
-  cli_alert_success("Session log saved as:\n{csv_log_fname}")
+  cli_alert_success("Final categorisations saved to:\n{csv_path}")
+  cli_alert_success("Session log saved to:\n{csv_log_path}")
 
   ### Create and save a summary plot
   end_plot_save <- end_plot(df = output_df, table_name,
                             ref_table = df_plots$domain_table)
   ggsave(
     plot = end_plot_save,
-    filename = png_fname,
+    filename = png_path,
     width = 14,
     height = 8,
     units = "in"
   )
-  cli_alert_success("A summary plot has been saved:\n{png_fname}")
+  cli_alert_success("Summary plot saved to:\n{png_path}")
 
   ### Create long output
   if (long_output == TRUE) {
     map_convert(csv_fname, output_dir)
-    cli_alert_success("Alternative format saved as:\nL-{csv_fname}")
   }
 } # end of function
