@@ -2,8 +2,8 @@ utils::globalVariables(c("Column.description",
                          "Empty",
                          "Section",
                          "contains",
-                         "data_element",
                          "domain_code",
                          "no_count",
                          "note",
-                         "total_variables"))
+                         "total_variables",
+                         "variable"))

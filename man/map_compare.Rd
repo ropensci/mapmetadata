@@ -18,11 +18,9 @@ map_compare(
 \item{session_dir}{This directory should contain 2 csv files for each session
 (LOG_ and OUTPUT_), 4 csv files in total.}
 
-\item{session1_base}{Base file name for session 1 e.g.
-'NCCHD_BLOOD_TEST_2024-07-05-16-07-38'}
+\item{session1_base}{Base file name for session 1, see Example below.}
 
-\item{session2_base}{Base file name for session 2 e.g.
-'NCCHD_BLOOD_TEST_2024-07-08-12-03-30'}
+\item{session2_base}{Base file name for session 2, see Example below.}
 
 \item{metadata_file}{The full path to the metadata file used when running
 metadata_map (should be the same for session 1 and session 2)}
@@ -52,8 +50,8 @@ if(interactive()) {
     temp_output_dir <- tempdir()
     # Locate file paths for the example files in the package
     demo_session_dir <- system.file("outputs", package = "mapmetadata")
-    demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-    demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+    demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+    demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
     demo_metadata_file <- system.file("inputs","360_NCCHD_Metadata.csv",
     package = "mapmetadata")
     demo_domain_file <- system.file("inputs","domain_list_demo.csv",

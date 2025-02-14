@@ -3,23 +3,23 @@ test_that("metadata_map function works correctly with user input", {
   temp_dir <- withr::local_tempdir()
 
   demo_log_output <-
-    system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
   demo_output <-
-    system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/MAPPING_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
 
-  demo_bar <- system.file("outputs/BAR_360_NCCHD_2024-12-19-14-11-55.csv",
+  demo_bar <- system.file("outputs/BAR_360_NCCHD_2025-02-14-18-14-01.csv",
                           package = "mapmetadata")
 
-  # IMPROVE - also test MAPPING_PLOT_360_NCCHD_CHILD_2024-12-19-14-11-55.png
-  # IMPROVE - also test BAR_360_NCCHD_2024-12-19-14-11-55.html
+  # IMPROVE - also test MAPPING_PLOT_360_NCCHD_CHILD_2025-02-14-18-14-01.png
+  # IMPROVE - also test BAR_360_NCCHD_2025-02-14-18-14-01.html
 
   # Mock functions
   local_mocked_bindings(
     readline = function(prompt) {
       response <- switch(prompt,
-        "Optional note about this table: " = "demo run"
+        "Optional note about this table: " = "demo run 1"
       )
     }
   )
@@ -92,4 +92,38 @@ test_that("metadata_map function works correctly with user input", {
   expect_equal(actual_log_output, expected_log_output)
   expect_equal(actual_output, expected_output)
   expect_equal(actual_bar, expected_bar)
+})
+
+
+test_that("metadata_map errors with incorrect output_dir", {
+  expect_error(metadata_map(output_dir = "non_existent_directory"),
+               "The output_dir does not exist.")
+})
+
+test_that("metadata_map errors with non-boolean table_copy", {
+  expect_error(metadata_map(table_copy = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-boolean long_output", {
+  expect_error(metadata_map(long_output = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-boolean quiet", {
+  expect_error(metadata_map(quiet = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-integer demo_number", {
+  expect_error(metadata_map(demo_number = "not_integer"),
+               "demo_number should be an integer of 5 or greater")
+})
+
+test_that("metadata_map errors with demo_number <= 5", {
+  expect_error(metadata_map(demo_number = 4),
+               "demo_number should be an integer of 5 or greater")
 })

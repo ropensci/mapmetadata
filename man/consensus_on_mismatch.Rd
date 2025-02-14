@@ -4,14 +4,14 @@
 \alias{consensus_on_mismatch}
 \title{consensus_on_mismatch}
 \usage{
-consensus_on_mismatch(ses_join, table_df, datavar, domain_code_max)
+consensus_on_mismatch(ses_join, table_df, var_int, domain_code_max)
 }
 \arguments{
 \item{ses_join}{The joined dataframes from the two sessions}
 
 \item{table_df}{Metadata, for one table in the dataset}
 
-\item{datavar}{Data Element n}
+\item{var_int}{Integer to indicate which variable}
 
 \item{domain_code_max}{The maximum allowable domain code integer}
 }
@@ -20,7 +20,7 @@ Returns list of 2: domain code and note from the consensus decision
 }
 \description{
 Internal Function: Called within the map_compare.R function. \cr \cr
-For a specific data element, it compares the domain code categorisation
+For each table variable, it compares the domain code categorisation
 between two sessions. If the categorisation differs, it prompts the user for
 a new consensus decision by presenting the metadata info. \cr \cr
 }

@@ -50,10 +50,8 @@ empty_plot <- function(dataframe, bar_title) {
 ref_plot <- function(domains) {
   colnames(domains)[1] <- "Domain Name"
   plot.new()
-  domains_extend <- rbind(c("*NO MATCH / UNSURE*"), c("*METADATA*"), c("*ID*"),
-                          c("*DEMOGRAPHICS*"), domains)
-  code <- data.frame(code = 0:(nrow(domains_extend) - 1))
-  domain_table <- tableGrob(cbind(code, domains_extend), rows = NULL)
+  code <- data.frame(code = seq_len(nrow(domains)))
+  domain_table <- tableGrob(cbind(code, domains), rows = NULL)
   grid.arrange(domain_table, nrow = 1, ncol = 1)
 
   return(list(code = code, domain_table = domain_table))
@@ -84,7 +82,7 @@ end_plot <- function(df, table_name, ref_table) {
   domain_plot <- counts %>%
     ggplot(aes(x = reorder(domain_code, -n), y = n)) +
     geom_col() +
-    ggtitle(paste("Data Elements in", table_name, "grouped by domain code")) +
+    ggtitle(paste("Variables in", table_name, "grouped by domain code")) +
     theme_gray(base_size = 18) +
     theme(axis.text.x = element_text(
       angle = 90,

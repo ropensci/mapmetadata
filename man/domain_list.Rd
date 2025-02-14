@@ -5,7 +5,7 @@
 \alias{domain_list}
 \title{Internal: List of Domains}
 \format{
-A data frame with 5 rows and 1 column
+A data frame with 8 rows and 1 column
 }
 \source{
 The csv was manually created

@@ -39,39 +39,39 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 #' consensus_on_mismatch
 #'
 #' Internal Function: Called within the map_compare.R function. \cr \cr
-#' For a specific data element, it compares the domain code categorisation
+#' For each table variable, it compares the domain code categorisation
 #' between two sessions. If the categorisation differs, it prompts the user for
 #' a new consensus decision by presenting the metadata info. \cr \cr
 #'
 #' @param ses_join The joined dataframes from the two sessions
 #' @param table_df Metadata, for one table in the dataset
-#' @param datavar Data Element n
+#' @param var_int Integer to indicate which variable
 #' @param domain_code_max The maximum allowable domain code integer
 #' @return Returns list of 2: domain code and note from the consensus decision
 #' @importFrom cli cli_alert_warning
 #' @keywords internal
 #' @dev generate help files for unexported objects, for developers
 
-consensus_on_mismatch <- function(ses_join, table_df, datavar,
+consensus_on_mismatch <- function(ses_join, table_df, var_int,
                                   domain_code_max) {
-  if (ses_join$domain_code_ses1[datavar]
-      != ses_join$domain_code_ses2[datavar]) {
+  if (ses_join$domain_code_ses1[var_int]
+      != ses_join$domain_code_ses2[var_int]) {
     cat("\n\n")
     cli_alert_warning("Mismatch found, provide concensus decision below.")
     cli_alert_warning(paste("\nDOMAIN CODE (note) for session 1 --> ",
-                            ses_join$domain_code_ses1[datavar],
-                            "(", ses_join$note_ses1[datavar], ")"))
+                            ses_join$domain_code_ses1[var_int],
+                            "(", ses_join$note_ses1[var_int], ")"))
     cli_alert_warning(paste("\nDOMAIN CODE (note) for session 2 --> ",
-                            ses_join$domain_code_ses2[datavar],
-                            "(", ses_join$note_ses2[datavar], ")\n"))
-    decision_output <- user_categorisation(table_df$Column.name[datavar],
-                                           table_df$Column.description[datavar],
-                                           table_df$Data.type[datavar],
+                            ses_join$domain_code_ses2[var_int],
+                            "(", ses_join$note_ses2[var_int], ")\n"))
+    decision_output <- user_categorisation(table_df$Column.name[var_int],
+                                           table_df$Column.description[var_int],
+                                           table_df$Data.type[var_int],
                                            domain_code_max)
     domain_code_join <- decision_output$decision
     note_join <- decision_output$decision_note
   } else {
-    domain_code_join <- ses_join$domain_code_ses1[datavar]
+    domain_code_join <- ses_join$domain_code_ses1[var_int]
     note_join <- "No mismatch!"
   }
   return(list(domain_code_join = domain_code_join, note_join = note_join))

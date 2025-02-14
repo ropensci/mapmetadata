@@ -19,8 +19,8 @@ Created by: \cr \cr
 \enumerate{
 \item \code{output_df <- data.frame(timestamp = character(0),
  table = character(0),
- data_element_n = character(0),
- data_element = character(0),
+ variable_n = character(0),
+ variable = character(0),
  domain_code = character(0),
  note = character(0))}
 \item \code{usethis::use_data(output_df)}

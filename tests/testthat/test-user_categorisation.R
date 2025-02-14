@@ -5,9 +5,9 @@ test_that("user_categorisation works with valid input", {
   # the `mock_readline` mock object
   mockery::stub(user_categorisation, "readline", mock_readline)
 
-  response <- user_categorisation(data_element = "Element1",
-                                  data_desc = "Description1",
-                                  data_type = "Type1", domain_code_max = 5)
+  response <- user_categorisation(var = "Variable1",
+                                  desc = "Description1",
+                                  type = "Type1", domain_code_max = 5)
   expect_equal(response, list(decision = "3", decision_note = "This is a note"))
 })
 
@@ -18,9 +18,9 @@ test_that("user_categorisation handles invalid input and then valid input", {
   # the `mock_readline` mock object
   mockery::stub(user_categorisation, "readline", mock_readline)
 
-  response <- user_categorisation(data_element = "Element1",
-                                  data_desc = "Description1",
-                                  data_type = "Type1", domain_code_max = 5)
+  response <- user_categorisation(var = "Variable1",
+                                  desc = "Description1",
+                                  type = "Type1", domain_code_max = 5)
   expect_equal(response, list(decision = "3", decision_note = "This is a note"))
 })
 
@@ -31,9 +31,9 @@ test_that("user_categorisation handles multiple valid inputs", {
   # the `mock_readline` mock object
   mockery::stub(user_categorisation, "readline", mock_readline)
 
-  response <- user_categorisation(data_element = "Element1",
-                                  data_desc = "Description1",
-                                  data_type = "Type1", domain_code_max = 5)
+  response <- user_categorisation(var = "Variable1",
+                                  desc = "Description1",
+                                  type = "Type1", domain_code_max = 5)
   expect_equal(response, list(decision = "3,4",
                               decision_note = "This is another note"))
 })
@@ -46,8 +46,8 @@ test_that("user_categorisation handles re-do input", {
   # the `mock_readline` mock object
   mockery::stub(user_categorisation, "readline", mock_readline)
 
-  response <- user_categorisation(data_element = "Element1",
-                                  data_desc = "Description1",
-                                  data_type = "Type1", domain_code_max = 5)
+  response <- user_categorisation(var = "Variable1",
+                                  desc = "Description1",
+                                  type = "Type1", domain_code_max = 5)
   expect_equal(response, list(decision = "4", decision_note = "Another note"))
 })
