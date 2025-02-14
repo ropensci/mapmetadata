@@ -3,8 +3,8 @@ test_that("map_compare function works correctly with user input", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
@@ -74,8 +74,8 @@ test_that("map_compare errors when session_dir is not valid", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
@@ -96,8 +96,8 @@ test_that("map_compare errors when demo_session1_base is not valid", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
@@ -118,8 +118,8 @@ test_that("map_compare errors when metadata_file is incorrect format", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
@@ -141,8 +141,8 @@ test_that("map_compare errors when metadata_file does not exist", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",
@@ -163,8 +163,8 @@ test_that("map_compare errors when domain_file does not exist", {
   temp_dir <- withr::local_tempdir()
 
   demo_session_dir <- system.file("outputs", package = "mapmetadata")
-  demo_session1_base <- "360_NCCHD_CHILD_2024-12-19-14-11-55"
-  demo_session2_base <- "360_NCCHD_CHILD_2024-12-19-14-17-45"
+  demo_session1_base <- "360_NCCHD_CHILD_2025-02-14-18-14-01"
+  demo_session2_base <- "360_NCCHD_CHILD_2025-02-14-18-17-47"
   demo_metadata_file <- system.file("inputs", "360_NCCHD_Metadata.csv",
                                     package = "mapmetadata")
   demo_domain_file <- system.file("inputs", "domain_list_demo.csv",

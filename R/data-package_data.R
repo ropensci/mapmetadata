@@ -64,7 +64,7 @@
 #'
 #' @keywords internal
 #'
-#' @format A data frame with 5 rows and 1 column
+#' @format A data frame with 8 rows and 1 column
 #'
 #' @source The csv was manually created
 "domain_list"

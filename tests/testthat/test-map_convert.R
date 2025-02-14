@@ -2,10 +2,10 @@ test_that("map_convert function outputs files correctly", {
   # Setup
   temp_dir <- withr::local_tempdir()
   file_in <-
-    system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/MAPPING_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
   file_out <-
-    system.file("outputs/L-MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/L-MAPPING_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
 
   # Copy the demo input file to the temporary directory

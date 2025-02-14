@@ -87,7 +87,7 @@ Add a note for processing this table:
 
 Optional note about this table: Demo run
 ```
-This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
+This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png). We input '8' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
 
 ```
 ℹ Table variable 1 of 35 (5 left to process)
@@ -101,9 +101,9 @@ DESCRIPTION ----->  APGAR 1 score. This is a measure of a baby's physical state 
 
 DATA TYPE ----->  CHARACTER 
 
-Categorise variable into domain(s). E.g. 3 or 3,4: 7
+Categorise variable into domain(s). E.g. 3 or 3,4: 8
 Categorisation note (or press enter to continue): level of asphyxia at birth
-Response to be saved is ' 7 '. Would you like to re-do? (y/n): n
+Response to be saved is ' 8 '. Would you like to re-do? (y/n): n
 ```
 Repeat the categorisation for the 5th variable to finish. You will then be asked to review the categorisations:
 - First, you will be shown the auto-categorisations and asked if you want to manually edit them (i.e. override the auto categorisation). 

@@ -18,7 +18,7 @@
 #' @examples
 #' # Locate file path and file name for the example files in the package
 #' demo_csv_to_convert_dir <- system.file("outputs", package = "mapmetadata")
-#' demo_csv_to_convert <- "MAPPING_360_NCCHD_CHILD_2024-12-19-14-17-45.csv"
+#' demo_csv_to_convert <- "MAPPING_360_NCCHD_CHILD_2025-02-14-18-14-01.csv"
 #' temp_output_dir <- tempdir()
 #' # Run the function
 #' map_convert(

@@ -3,23 +3,23 @@ test_that("metadata_map function works correctly with user input", {
   temp_dir <- withr::local_tempdir()
 
   demo_log_output <-
-    system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/MAPPING_LOG_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
   demo_output <-
-    system.file("outputs/MAPPING_360_NCCHD_CHILD_2024-12-19-14-11-55.csv",
+    system.file("outputs/MAPPING_360_NCCHD_CHILD_2025-02-14-18-14-01.csv",
                 package = "mapmetadata")
 
-  demo_bar <- system.file("outputs/BAR_360_NCCHD_2024-12-19-14-11-55.csv",
+  demo_bar <- system.file("outputs/BAR_360_NCCHD_2025-02-14-18-14-01.csv",
                           package = "mapmetadata")
 
-  # IMPROVE - also test MAPPING_PLOT_360_NCCHD_CHILD_2024-12-19-14-11-55.png
-  # IMPROVE - also test BAR_360_NCCHD_2024-12-19-14-11-55.html
+  # IMPROVE - also test MAPPING_PLOT_360_NCCHD_CHILD_2025-02-14-18-14-01.png
+  # IMPROVE - also test BAR_360_NCCHD_2025-02-14-18-14-01.html
 
   # Mock functions
   local_mocked_bindings(
     readline = function(prompt) {
       response <- switch(prompt,
-        "Optional note about this table: " = "demo run"
+        "Optional note about this table: " = "demo run 1"
       )
     }
   )

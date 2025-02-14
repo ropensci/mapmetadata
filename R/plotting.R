@@ -50,10 +50,8 @@ empty_plot <- function(dataframe, bar_title) {
 ref_plot <- function(domains) {
   colnames(domains)[1] <- "Domain Name"
   plot.new()
-  domains_extend <- rbind(c("*NO MATCH / UNSURE*"), c("*METADATA*"), c("*ID*"),
-                          c("*DEMOGRAPHICS*"), domains)
-  code <- data.frame(code = 0:(nrow(domains_extend) - 1))
-  domain_table <- tableGrob(cbind(code, domains_extend), rows = NULL)
+  code <- data.frame(code = 1:(nrow(domains)))
+  domain_table <- tableGrob(cbind(code, domains), rows = NULL)
   grid.arrange(domain_table, nrow = 1, ncol = 1)
 
   return(list(code = code, domain_table = domain_table))
