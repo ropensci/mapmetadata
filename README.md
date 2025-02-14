@@ -87,7 +87,7 @@ Add a note for processing this table:
 
 Optional note about this table: Demo run
 ```
-This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
+This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
 
 ```
 ℹ Table variable 1 of 35 (5 left to process)
@@ -107,7 +107,7 @@ Response to be saved is ' 7 '. Would you like to re-do? (y/n): n
 ```
 Repeat the categorisation for the 5th variable to finish. You will then be asked to review the categorisations:
 - First, you will be shown the auto-categorisations and asked if you want to manually edit them (i.e. override the auto categorisation). 
-    - 'ALF' refers to ‘Anonymous Linking Field’ - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/s).
+    - 'ALF' refers to ‘Anonymous Linking Field’ - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/).
 - Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.
 
 You can use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
