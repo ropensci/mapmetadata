@@ -11,6 +11,7 @@ metadata_map(
   output_dir = getwd(),
   table_copy = TRUE,
   long_output = TRUE,
+  demo_number = 5,
   quiet = FALSE
 )
 }
@@ -42,7 +43,10 @@ useful when the same data elements (variables) appear across multiple
 tables within one dataset; copying from one table to the next will save the
 user time, and ensure consistency of categorisations across tables.}
 
-\item{long_output}{Run map_convert.R to create a new longer output
+\item{long_output}{Run map_convert.R to create a new longer output}
+
+\item{demo_number}{How many table variables to loop through in the demo.
+Default is 5.
 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.}
 
 \item{quiet}{Default is FALSE. Change to TRUE to quiet the cli_alert_info

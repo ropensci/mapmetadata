@@ -36,6 +36,8 @@ select.list <- NULL
 #' tables within one dataset; copying from one table to the next will save the
 #' user time, and ensure consistency of categorisations across tables.
 #' @param long_output Run map_convert.R to create a new longer output
+#' @param demo_number How many table variables to loop through in the demo.
+#' Default is 5.
 #' 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.
 #' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
 #' and cli_alert_success messages.
@@ -62,6 +64,7 @@ metadata_map <- function(
     output_dir = getwd(),
     table_copy = TRUE,
     long_output = TRUE,
+    demo_number = 5,
     quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
@@ -93,28 +96,37 @@ metadata_map <- function(
   empty_count_df <- empty_count(dataset)
 
   ## Use 'empty_plot.R' to create bar plot then save it
-  bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables, " table(s)")
-  barplot_html <- empty_plot(empty_count_df, bar_title)
-  original_wd <- getwd()
-  setwd(output_dir) # saveWidget has a bug with paths & saving
-  base_fname <- paste0(
-    "BAR_", gsub(" ", "", dataset_name), "_",
-    timestamp_now_fname
-  )
+  base_fname_notime <- paste0("BAR_", gsub(" ", "", dataset_name))
+  base_fname <- paste0(base_fname_notime, "_",timestamp_now_fname)
   bar_fname <- paste0(base_fname, ".html")
-  saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
   bar_data_fname <- paste0(base_fname, ".csv")
-  write.csv(empty_count_df, bar_data_fname, row.names = FALSE)
-  setwd(original_wd) # saveWidget has a bug with paths & saving
 
-  ## Display outputs to the user
-  browseURL(file.path(output_dir, bar_fname))
-  if (!quiet) {
-    cli_alert_info(paste("A bar plot should have opened in your browser",
+  existing_files <- list.files(output_dir,
+                               pattern = paste0("^", base_fname_notime))
+
+  if (length(existing_files) > 0) {
+    cli_alert_warning(paste("A bar plot already exists for this dataset,",
+                            "saved in your output directory.\nSkipping creation",
+                            "of a new plot and opening existing plot.\n\n"))
+    } else {
+      bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables, " table(s)")
+      barplot_html <- empty_plot(empty_count_df, bar_title)
+
+      original_wd <- getwd()
+      setwd(output_dir) # saveWidget has a bug with paths & saving
+      saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
+      write.csv(empty_count_df, bar_data_fname, row.names = FALSE)
+      setwd(original_wd) # saveWidget has a bug with paths & saving
+
+      ## Display outputs to the user
+      browseURL(file.path(output_dir, bar_fname))
+      if (!quiet) {
+        cli_alert_info(paste("A bar plot should have opened in your browser",
                          "(also saved to your project directory).\n",
                          "Use this bar plot, and the information on the HDRUK",
                          "Gateway, to guide your mapping approach.\n\n"))
-  }
+      }
+    }
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
@@ -160,10 +172,10 @@ metadata_map <- function(
   table_df <- dataset %>%
     filter(Section == levels(dataset$Section)[chosen_table_n])
 
-  #### If demo, only process the first 20 elements
+  #### If demo, only process the first n elements (default n is 20)
   if (data$demo_mode == TRUE) {
     start_v <- 1
-    end_v <- min(20, nrow(table_df))
+    end_v <- min(demo_number, nrow(table_df))
   } else {
     start_v <- 1
     end_v <- nrow(table_df)
