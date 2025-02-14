@@ -40,8 +40,6 @@ library(mapmetadata)
 
 ### Demo (using the `R Studio` IDE)
 
-For a longer more detailed demo, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
-
 There are three main functions you can interact with: `metadata_map()`, `map_compare()`, and `map_convert()`. For more information on any function, type `?function_name`. 
 
 Run it in demo mode using the files located in the [inst/inputs](https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs) directory:
@@ -62,38 +60,55 @@ Use this bar plot, and the information on the HDRUK Gateway, to guide your mappi
 Enter the table number you want to process: 
 ```
 
-You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory)`.
+You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory')`.
 
 <img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
-If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
+If you continue to the mapping stage, you will see all the tables in this dataset are listed. Select the 4th table for demo purposes:
 
-## Using a custom metadata input (recommended)
+```
+Enter the table number you want to process: 
 
-You can run `metadata_map()` with a custom metadata file instead of the demo input file, to map metadata from a different dataset. Currently, the recommended way of retrieving these metadata files is to download them from [Health Data Research Gateway](https://healthdatagateway.org/en/search?type=datasets). Browse for the dataset you want, click on it to move to its main page, click on 'Download data' and select 'Structural Metadata' - this file is your metadata file input. 
+ 1: BLOOD_TEST          2: BREAST_FEEDING       3: CHE_HEALTHYCHILDWALESPROGRAMME
+ 4: CHILD               5: CHILD_BIRTHS         6: CHILD_MEASUREMENT_PROGRAM     
+ 7: CHILD_TRUST         8: EXAM                 9: IMM                           
+10: PATH_BLOOD_TESTS    11: PATH_SPCM_DETAIL    12: REFR_IMM_VAC                  
+13: SIG_COND                        
 
-To use this download with `metadata_map()`, the metadata file name is expected to be 'ID_Name_Metadata.csv' with 'ID' and 'Name' being changed depending on the specific dataset download. For example, the demo metadata file used in this package is [360_NCCHD_Metadata.csv](inst/inputs/360_NCCHD_Metadata.csv), with 360 being the ID given by HDRUK Gateway and NCCHD being the abbreviation for the dataset name (National Community Child Health Database).
-
-```r
-new_file <- "path/ID_Name_Metadata.csv"
-demo_domains_file <- system.file("inputs/domain_list_demo.csv", package = "mapmetadata")
-
-metadata_map(metadata_file = new_file, domain_file = demo_domains_file)
+Selection: 4
 ```
 
-## Using a custom domain list input (recommended)
+Add a note for processing this table:
 
-You can replace the default demo domains with research-specific domains. Remember any domain file input will have Codes 0, 1, 2 and 3 automatically appended to the start of the domain list, so do not include these in your domain list. 
+```
+ℹ Processing Table 4 of 13 (CHILD)
 
-## Using a custom lookup table input (advanced)
+Optional note about this table: Demo run
+```
+This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a data element with one (or more) of the numbers shown in the [key that has appeared in your plots tab](inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
 
-The lookup table governs the automatic categorisations. If you modify the [default lookup file](https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv), ensure that all domain codes in the lookup file are also included in your domain file for valid outputs.
+```
+ℹ Data element 1 of 35 (5 left to process)
+ℹ Data element 2 of 35 (4 left to process)
+ℹ Data element 3 of 35 (3 left to process)
+ℹ Data element 4 of 35 (2 left to process)
 
-## Tips and future steps
+DATA ELEMENT ----->  APGAR_1 
 
-- If you're processing multiple tables, save all outputs in the same directory to enable table copying. This feature will speed up categorisation and ensure consistency.
-- You can compare categorisations across researchers using the `map_compare()` function.
-- Use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain.
+DESCRIPTION ----->  APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries. 
+
+DATA TYPE ----->  CHARACTER 
+
+Categorise data element into domain(s). E.g. 3 or 3,4: 7
+Categorisation note (or press enter to continue): level of asphyxia at birth
+Response to be saved is ' 7 '. Would you like to re-do? (y/n): n
+```
+Repeat the categorisation for the 5th variable to finish. You will then be asked to review the categorisations:
+- First, you will be shown the auto-categorisations and asked if you want to manually edit them (i.e. override the auto categorisation). 
+    - 'ALF' refers to ‘Anonymous Linking Field’ - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/s).
+- Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.
+
+You can use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
 ## License
 
