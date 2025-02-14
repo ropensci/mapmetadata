@@ -64,7 +64,7 @@ Enter the table number you want to process:
 
 You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this `metadata_map` function are saved to your project directory. You can change the save location by adjusting the `output_dir` argument (an argument means the information given to a function, to alter how it runs). For example `metadata_map(output_dir = 'username/sub_directory')`.
 
-<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
+<img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2025-02-14-18-14-01.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions">
 
 If you continue to the mapping stage, you will see all the tables in this dataset are listed. Select the 4th table for demo purposes:
 
