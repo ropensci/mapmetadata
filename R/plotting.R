@@ -50,7 +50,7 @@ empty_plot <- function(dataframe, bar_title) {
 ref_plot <- function(domains) {
   colnames(domains)[1] <- "Domain Name"
   plot.new()
-  code <- data.frame(code = 1:(nrow(domains)))
+  code <- data.frame(code = seq_len(nrow(domains)))
   domain_table <- tableGrob(cbind(code, domains), rows = NULL)
   grid.arrange(domain_table, nrow = 1, ncol = 1)
 

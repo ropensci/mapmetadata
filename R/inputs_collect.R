@@ -88,7 +88,7 @@ data_load <- function(metadata_file, domain_file, look_up_file, quiet = FALSE) {
       cli_alert_info("Using look up file inputted by user")
       if (file.exists(look_up_file) && tools::file_ext(look_up_file) == "csv") {
         lookup <- read.csv(look_up_file)
-        expected_column_names <- c("variable","domain_label","domain_code")
+        expected_column_names <- c("variable", "domain_label", "domain_code")
         if (!all(colnames(lookup) == expected_column_names)) {
           stop("Look_up file does not have expected column names")
         }
