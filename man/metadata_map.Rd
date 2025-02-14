@@ -43,7 +43,8 @@ useful when the same variables appear across multiple tables within one
 dataset; copying from one table to the next will save the user time, and
 ensure consistency of categorisations across tables.}
 
-\item{long_output}{Run map_convert.R to create a new longer output}
+\item{long_output}{Run map_convert.R to create a new longer output. Default
+is TRUE.}
 
 \item{demo_number}{How many table variables to loop through in the demo.
 Default is 5.

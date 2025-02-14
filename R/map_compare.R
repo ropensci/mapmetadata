@@ -55,27 +55,76 @@ map_compare <- function(session_dir,
                         quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
 
-  # DEFINE INPUTS ----
+  # VALIDATE & DEFINE INPUTS ----
 
-  csv_1a <- read.csv(file.path(session_dir,
-                               paste0("MAPPING_LOG_", session1_base, ".csv")))
-  csv_2a <- read.csv(file.path(session_dir,
-                               paste0("MAPPING_LOG_", session2_base, ".csv")))
-  csv_1b <- read.csv(file.path(session_dir,
-                               paste0("MAPPING_", session1_base, ".csv")))
-  csv_2b <- read.csv(file.path(session_dir,
-                               paste0("MAPPING_", session2_base, ".csv")))
+  ## Check that quiet is a boolean
+  if (!is.logical(quiet)) {
+    stop(paste("quiet should take the value of 'TRUE' or 'FALSE'"))
+  }
 
-  dataset <- read.csv(metadata_file)
-  domains <- read.csv(domain_file, header = FALSE)
+  ## Check if output_dir exists
+  if (!dir.exists(output_dir)) {
+    stop("The output_dir does not exist.")
+  }
 
-  ## Extract name of dataset
-  metadata_file_base <- basename(metadata_file)
-  metadata_file_base_0suffix <- sub("_Metadata.csv$", "",
-                                    metadata_file_base)
-  dataset_name <- gsub(" ", "", metadata_file_base_0suffix)
+  # Define csv file paths
+  csv_1a_path <- file.path(session_dir, paste0("MAPPING_LOG_", session1_base,
+                                               ".csv"))
+  csv_2a_path <- file.path(session_dir, paste0("MAPPING_LOG_", session2_base,
+                                               ".csv"))
+  csv_1b_path <- file.path(session_dir, paste0("MAPPING_", session1_base,
+                                               ".csv"))
+  csv_2b_path <- file.path(session_dir, paste0("MAPPING_", session2_base,
+                                               ".csv"))
 
-  # VALIDATION CHECKS ----
+  ## Check if csv files exist
+  if (!file.exists(csv_1a_path) || !file.exists(csv_2a_path)
+      || !file.exists(csv_1b_path) || !file.exists(csv_2b_path))  {
+    stop("Cannot locate all four input files.")
+  }
+
+  # Read csv files
+  csv_1a <- read.csv(csv_1a_path)
+  csv_2a <- read.csv(csv_2a_path)
+  csv_1b <- read.csv(csv_1b_path)
+  csv_2b <- read.csv(csv_2b_path)
+
+  # Verify the metadata file name pattern and that it is a .csv file
+  metadata_base <- basename(metadata_file)
+  if (!grepl("^[0-9]+_.*_Metadata\\.csv$", metadata_base) ||
+        tools::file_ext(metadata_file) != "csv") {
+    stop(paste("Metadata file name must be a .csv file in the format",
+               "ID_Name_Metadata.csv where ID is an integer"))
+  } else {
+    if (!file.exists(metadata_file)) {
+      stop("Metadata filename is the correct format but it does not exist!")
+    }
+  }
+
+  # Check if metadata column names match what is expected
+  metadata <- read.csv(metadata_file)
+  column_names <- colnames(metadata)
+  expected_column_names <- c("Section", "Column.name", "Data.type",
+                             "Column.description", "Sensitive")
+  if (!all(column_names == expected_column_names)) {
+    stop("Metadata file does not have expected column names")
+  }
+
+  metadata_base_0suffix <- sub("_Metadata.csv$", "", metadata_base)
+  metadata_desc <- gsub(" ", "", metadata_base_0suffix)
+
+  # Check if the domain_file is a csv and has one column
+  if (file.exists(domain_file) && tools::file_ext(domain_file) == "csv") {
+    domains <- read.csv(domain_file, header = FALSE)
+    if (ncol(domains) == 1) {
+    } else {
+      stop("The domain_file should only have one column.")
+    }
+  } else {
+    stop("This domain_file does not exist or is not in csv format.")
+  }
+
+  # CHECK IF A VALID COMPARISON BETWEEN SESSIONS IS POSSIBLE ----
 
   ## Use 'valid_comparison.R' to check if sessions can be compared to each other
   #and to the metadata file (min requirements):
@@ -96,7 +145,7 @@ map_compare <- function(session_dir,
 
   valid_comparison(
     input_1 = csv_1a$dataset[1],
-    input_2 = dataset_name,
+    input_2 = metadata_desc,
     severity = "danger",
     severity_text = "Different dataset to metadata"
   )
@@ -124,7 +173,7 @@ map_compare <- function(session_dir,
 
   # EXTRACT TABLE INFO FROM METADATA ----
   table_name <- csv_1a$table[1]
-  table_df <- dataset %>% filter(Section == table_name)
+  table_df <- metadata %>% filter(Section == table_name)
 
   # JOIN DATAFRAMES FROM SESSIONS IN ORDER TO COMPARE ----
   ses_join <- left_join(csv_1b, csv_2b, suffix = c("_ses1", "_ses2"),
@@ -144,7 +193,7 @@ map_compare <- function(session_dir,
   # SAVE TO NEW CSV ----
   output_fname <- file.path(output_dir,
                             paste0("CONSENSUS_MAPPING_",
-                                   gsub(" ", "", dataset_name), "_",
+                                   gsub(" ", "", metadata_desc), "_",
                                    table_name, "_",
                                    timestamp_now_fname, ".csv"))
 

@@ -93,3 +93,37 @@ test_that("metadata_map function works correctly with user input", {
   expect_equal(actual_output, expected_output)
   expect_equal(actual_bar, expected_bar)
 })
+
+
+test_that("metadata_map errors with incorrect output_dir", {
+  expect_error(metadata_map(output_dir = "non_existent_directory"),
+               "The output_dir does not exist.")
+})
+
+test_that("metadata_map errors with non-boolean table_copy", {
+  expect_error(metadata_map(table_copy = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-boolean long_output", {
+  expect_error(metadata_map(long_output = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-boolean quiet", {
+  expect_error(metadata_map(quiet = "not_boolean"),
+               paste("table_copy, long_output and quiet should take the value",
+                     "of 'TRUE' or 'FALSE'"))
+})
+
+test_that("metadata_map errors with non-integer demo_number", {
+  expect_error(metadata_map(demo_number = "not_integer"),
+               "demo_number should be an integer of 5 or greater")
+})
+
+test_that("metadata_map errors with demo_number <= 5", {
+  expect_error(metadata_map(demo_number = 4),
+               "demo_number should be an integer of 5 or greater")
+})

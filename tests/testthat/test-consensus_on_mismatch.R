@@ -28,7 +28,8 @@ test_that("consensus_on_mismatch handles mismatch correctly", {
   domain_code_max <- 5
 
   # Call the function
-  result <- consensus_on_mismatch(ses_join, table_df, table_var, domain_code_max)
+  result <- consensus_on_mismatch(ses_join, table_df, table_var,
+                                  domain_code_max)
 
   # Check the result
   expect_equal(result$domain_code_join, "mock_decision")
@@ -57,7 +58,8 @@ test_that("consensus_on_mismatch handles no mismatch correctly", {
   domain_code_max <- 5
 
   # Call the function
-  result <- consensus_on_mismatch(ses_join, table_df, table_var, domain_code_max)
+  result <- consensus_on_mismatch(ses_join, table_df, table_var,
+                                  domain_code_max)
 
   # Check the result
   expect_equal(result$domain_code_join, "2,4")

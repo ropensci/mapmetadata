@@ -36,7 +36,8 @@ select.list <- NULL
 #' useful when the same variables appear across multiple tables within one
 #' dataset; copying from one table to the next will save the user time, and
 #' ensure consistency of categorisations across tables.
-#' @param long_output Run map_convert.R to create a new longer output
+#' @param long_output Run map_convert.R to create a new longer output. Default
+#' is TRUE.
 #' @param demo_number How many table variables to loop through in the demo.
 #' Default is 5.
 #' 'L-OUTPUT_' which gives each categorisation its own row. Default is TRUE.
@@ -53,7 +54,7 @@ select.list <- NULL
 #' }
 #' @export
 #' @importFrom dplyr %>% filter
-#' @importFrom cli cli_alert_info cli_alert_success cli_alert_danger
+#' @importFrom cli cli_alert_info cli_alert_success
 #' @importFrom utils packageVersion write.csv browseURL menu select.list
 #' @importFrom ggplot2 ggsave
 #' @importFrom htmlwidgets saveWidget
@@ -69,6 +70,26 @@ metadata_map <- function(
     quiet = FALSE) {
   timestamp_now_fname <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
   timestamp_now <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
+
+  # SECTION 0 - VALIDATE INPUTS ----
+  # first three are validated in data_load function
+
+  ## Check if output_dir exists
+  if (!dir.exists(output_dir)) {
+    stop("The output_dir does not exist.")
+  }
+
+  ## Check that table_copy, long_output and quiet are all booleans
+  if (!is.logical(table_copy) || !is.logical(long_output)
+      || !is.logical(quiet)) {
+    stop(paste("table_copy, long_output and quiet should take the",
+               "value of 'TRUE' or 'FALSE'"))
+  }
+
+  ## Check demo_number is >5 and is an integer
+  if (!is.numeric(demo_number) || demo_number < 5 || demo_number %% 1 != 0) {
+    stop("demo_number should be an integer of 5 or greater")
+  }
 
   # SECTION 1 - DEFINE & PREPARE INPUTS ----
 
@@ -140,10 +161,9 @@ metadata_map <- function(
   ## Check if look_up_file and domain_file are compatible
   mismatch <- setdiff(data$lookup$domain_code, df_plots$code$code)
   if (length(mismatch) > 0) {
-    cli_alert_danger("The look_up_file and domain_file are not compatible.
-                     These look up codes are not listed in the domain codes:\n")
     print(mismatch)
-    stop()
+    stop(paste("The look_up_file and domain_file are not compatible. These",
+               "look up codes are not listed in the domain codes:\n"))
   }
 
   ## CHOOSE TABLE TO PROCESS
@@ -243,7 +263,7 @@ metadata_map <- function(
                               "note (first 12 chars)")], row.names = FALSE)
 
     not_auto_variables <- output_df$variable[output_df$note
-                                                != "AUTO CATEGORISED"]
+                                             != "AUTO CATEGORISED"]
 
     not_auto_row_names <- select.list(not_auto_variables,
       multiple = TRUE,

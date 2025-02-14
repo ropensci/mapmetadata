@@ -4,10 +4,10 @@
 \alias{data_load}
 \title{data_load}
 \usage{
-data_load(csv_file, domain_file, look_up_file, quiet = FALSE)
+data_load(metadata_file, domain_file, look_up_file, quiet = FALSE)
 }
 \arguments{
-\item{csv_file}{As defined in metadata_map}
+\item{metadata_file}{As defined in metadata_map}
 
 \item{domain_file}{As defined in metadata_map}
 

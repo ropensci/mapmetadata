@@ -29,6 +29,20 @@ map_convert <- function(csv_to_convert,
                         csv_to_convert_dir,
                         output_dir = csv_to_convert_dir,
                         quiet = FALSE) {
+
+  # VALIDATE INPUTS ----
+  if (!dir.exists(output_dir)) {
+    stop("The output_dir does not exist.")
+  }
+
+  if (!is.logical(quiet)) {
+    stop(paste("quiet should take the value of 'TRUE' or 'FALSE'"))
+  }
+
+  if (!file.exists(paste0(csv_to_convert_dir, "/", csv_to_convert))) {
+    stop("Cannot locate the MAPPING_ file to convert.")
+  }
+
   output <- read.csv(file.path(csv_to_convert_dir, csv_to_convert))
   output_long <- output[0, ] # make duplicate
 
