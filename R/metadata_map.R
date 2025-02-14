@@ -97,7 +97,7 @@ metadata_map <- function(
 
   ## Use 'empty_plot.R' to create bar plot then save it
   base_fname_notime <- paste0("BAR_", gsub(" ", "", dataset_name))
-  base_fname <- paste0(base_fname_notime, "_",timestamp_now_fname)
+  base_fname <- paste0(base_fname_notime, "_", timestamp_now_fname)
   bar_fname <- paste0(base_fname, ".html")
   bar_data_fname <- paste0(base_fname, ".csv")
 
@@ -105,28 +105,27 @@ metadata_map <- function(
                                pattern = paste0("^", base_fname_notime))
 
   if (length(existing_files) > 0) {
-    cli_alert_warning(paste("A bar plot already exists for this dataset,",
-                            "saved in your output directory.\nSkipping creation",
+    cli_alert_warning(paste("A bar plot already exists for this dataset, saved",
+                            "in your output directory.\nSkipping creation",
                             "of a new plot and opening existing plot.\n\n"))
-    } else {
-      bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables, " table(s)")
-      barplot_html <- empty_plot(empty_count_df, bar_title)
-
-      original_wd <- getwd()
-      setwd(output_dir) # saveWidget has a bug with paths & saving
-      saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
-      write.csv(empty_count_df, bar_data_fname, row.names = FALSE)
-      setwd(original_wd) # saveWidget has a bug with paths & saving
-
-      ## Display outputs to the user
-      browseURL(file.path(output_dir, bar_fname))
-      if (!quiet) {
-        cli_alert_info(paste("A bar plot should have opened in your browser",
-                         "(also saved to your project directory).\n",
-                         "Use this bar plot, and the information on the HDRUK",
-                         "Gateway, to guide your mapping approach.\n\n"))
-      }
+  } else {
+    bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables,
+                        " table(s)")
+    barplot_html <- empty_plot(empty_count_df, bar_title)
+    original_wd <- getwd()
+    setwd(output_dir) # saveWidget has a bug with paths & saving
+    saveWidget(widget = barplot_html, file = bar_fname, selfcontained = TRUE)
+    write.csv(empty_count_df, bar_data_fname, row.names = FALSE)
+    setwd(original_wd) # saveWidget has a bug with paths & saving
+    ## Display outputs to the user
+    browseURL(file.path(output_dir, bar_fname))
+    if (!quiet) {
+      cli_alert_info(paste("A bar plot should have opened in your browser",
+                           "(also saved to your project directory).\n",
+                           "Use this bar plot, and information on the HDRUK",
+                           "Gateway, to guide your mapping approach.\n\n"))
     }
+  }
 
   # SECTION 3 - MAPPING VARIABLES TO CONCEPTS (DOMAINS) FOR EACH TABLE ----
 
