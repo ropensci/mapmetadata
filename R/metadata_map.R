@@ -17,17 +17,15 @@ select.list <- NULL
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
 #' @param metadata_file This should be a csv download from HDRUK gateway
-#' (in the form of ID_Dataset_Metadata.csv). Default is 'data/metadata.rda': run
-#' '?metadata' to see how it was created.
+#' (in the form of ID_Dataset_Metadata.csv). Run '?mapmetadata::metadata' to
+#' see how the metadata_file for the demo was created.
 #' @param domain_file This should be a csv file created by the user, with each
-#' domain on a separate line, no header. Default is 'data/domain_list.rda'
-#' - run '?domain_list' to see how it was created.
-#' Note that 4 domains will be added automatically (NO MATCH/UNSURE, METADATA,
-#' ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.
+#' domain on a separate line, no header. Run '?mapmetadata::domain_list' to
+#' see how the domain_file for the demo was created.
 #' @param look_up_file The lookup file makes auto-categorisations intended for
 #' variables that appear regularly in health datasets. It only works for 1:1
 #' mappings right now, i.e. variable should only be listed once in the file.
-#' Default is 'data/look-up.rda' - run '?look_up' to see how it was created.
+#' Run '?mapmetadata::look_up' to see how the default look_up was created.
 #' @param output_dir The path to the directory where the two csv output files
 #' will be saved. Default is the current working directory.
 #' @param table_copy Turn on copying between tables (default TRUE).
