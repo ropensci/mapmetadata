@@ -40,13 +40,15 @@ library(mapmetadata)
 
 ### Demo (using the `R Studio` IDE)
 
-There are three main functions you can interact with: `metadata_map()`, `map_compare()`, and `map_convert()`. For more information on any function, type `?function_name`. 
+There are three main functions you can interact with: `metadata_map`, `map_compare`, and `map_convert`. For more information on any function, type `?function_name`. 
 
-Run it in demo mode using the files located in the [inst/inputs](https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs) directory:
+The main function is `metadata_map` and you can run it in demo mode using the files located in the [inst/inputs](https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs) directory:
 
 ``` r
 metadata_map()
 ``` 
+Terminology used in this package: a *dataset* can contain one or more *tables* which contains multiple column *variables*. It creates a plot at the dataset level, and guides you through an interactive session at the table level, to sort table variables into pre-defined categories/domains. 
+
 In the R console you should see:
 
 ```
@@ -85,21 +87,21 @@ Add a note for processing this table:
 
 Optional note about this table: Demo run
 ```
-This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a data element with one (or more) of the numbers shown in the [key that has appeared in your plots tab](inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
+This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](inst/outputs/plots_tab_demo_domains.png). We input '7' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
 
 ```
-ℹ Data element 1 of 35 (5 left to process)
-ℹ Data element 2 of 35 (4 left to process)
-ℹ Data element 3 of 35 (3 left to process)
-ℹ Data element 4 of 35 (2 left to process)
+ℹ Table variable 1 of 35 (5 left to process)
+ℹ Table variable 2 of 35 (4 left to process)
+ℹ Table variable 3 of 35 (3 left to process)
+ℹ Table variable 4 of 35 (2 left to process)
 
-DATA ELEMENT ----->  APGAR_1 
+VARIABLE ----->  APGAR_1 
 
 DESCRIPTION ----->  APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries. 
 
 DATA TYPE ----->  CHARACTER 
 
-Categorise data element into domain(s). E.g. 3 or 3,4: 7
+Categorise variable into domain(s). E.g. 3 or 3,4: 7
 Categorisation note (or press enter to continue): level of asphyxia at birth
 Response to be saved is ' 7 '. Would you like to re-do? (y/n): n
 ```

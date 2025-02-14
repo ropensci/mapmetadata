@@ -5,8 +5,8 @@ test_that("end_plot function works correctly", {
   df <- df %>% dplyr::add_row(
     timestamp = format(Sys.time(), "%Y-%m-%d-%H-%M-%S"),
     table = "Sample Table",
-    data_element = "DataElement 1",
-    data_element_n = "1 of 2",
+    variable = "Variable 1",
+    variable_n = "1 of 2",
     domain_code = "1",
     note = "AUTO CATEGORISED"
   )
@@ -14,8 +14,8 @@ test_that("end_plot function works correctly", {
   df <- df %>% dplyr::add_row(
     timestamp = format(Sys.time(), "%Y-%m-%d-%H-%M-%S"),
     table = "Sample Table",
-    data_element = "DataElement 2",
-    data_element_n = "2 of 2",
+    variable = "Variable 2",
+    variable_n = "2 of 2",
     domain_code = "3",
     note = "DEMOGRAPHICS"
   )

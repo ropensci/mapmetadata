@@ -84,7 +84,7 @@ end_plot <- function(df, table_name, ref_table) {
   domain_plot <- counts %>%
     ggplot(aes(x = reorder(domain_code, -n), y = n)) +
     geom_col() +
-    ggtitle(paste("Data Elements in", table_name, "grouped by domain code")) +
+    ggtitle(paste("Variables in", table_name, "grouped by domain code")) +
     theme_gray(base_size = 18) +
     theme(axis.text.x = element_text(
       angle = 90,

@@ -68,14 +68,14 @@ data_load <- function(csv_file, domain_file, look_up_file, quiet = FALSE) {
 #' Searches for previous OUTPUT files in the output_dir, that match the dataset
 #' name. \cr \cr
 #' If files exist, it removes duplicates and autos, and stores the rest of the
-#' data elements in a dataframe. \cr \cr
+#' table variables in a dataframe. \cr \cr
 #'
 #' @param dataset_name Name of the dataset
 #' @param output_dir Output directory to be searched
 #' @param quiet Default is FALSE. Change to TRUE to quiet the cli_alert_info
 #' and cli_alert_success messages.
 #' @return It returns a list of 2: df_prev_exist (a boolean) and df_prev
-#' (NULL or populated with data elements to copy)
+#' (NULL or populated with table variables to copy)
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info
 #' @keywords internal
@@ -90,7 +90,7 @@ output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
     ## make a new date column, order by earliest, remove duplicates & auto
     df_prev$time2 <- as.POSIXct(df_prev$timestamp, format = "%Y-%m-%d-%H-%M-%S")
     df_prev <- df_prev[order(df_prev$time2), ]
-    df_prev <- df_prev %>% distinct(data_element, .keep_all = TRUE)
+    df_prev <- df_prev %>% distinct(variable, .keep_all = TRUE)
     df_prev <- df_prev[-(which(df_prev$note %in% "AUTO CATEGORISED")), ]
     df_prev_exist <- TRUE
     if (!quiet) {

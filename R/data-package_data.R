@@ -5,8 +5,8 @@
 #' \enumerate{
 #'  \item \code{output_df <- data.frame(timestamp = character(0),
 #'  table = character(0),
-#'  data_element_n = character(0),
-#'  data_element = character(0),
+#'  variable_n = character(0),
+#'  variable = character(0),
 #'  domain_code = character(0),
 #'  note = character(0))}
 #'  \item \code{usethis::use_data(output_df)}
@@ -30,7 +30,6 @@
 #' \enumerate{
 #'  \item \code{log_output_df <- data.frame(timestamp = character(1),
 #'  mapmetadata = character(1),
-#'  initials = character(1),
 #'  domain_list_desc = character(1),
 #'  dataset = character(1),
 #'  table = character(1),
@@ -96,8 +95,8 @@
 
 #' Internal: Auto-categorisations
 #'
-#' A list of pre-defined pairings between data element and domain code. \cr \cr
-#' For each data element that metadata_map processes: \cr \cr
+#' Pre-defined pairings between table variables and domain codes. \cr \cr
+#' For each variable that metadata_map processes: \cr \cr
 #' If it is contained within this look-up table, it uses the auto-categorised
 #' domain code rather than asking the user to categorise.\cr\cr
 #' This data was created with these two steps:

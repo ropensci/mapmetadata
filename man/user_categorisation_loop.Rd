@@ -17,9 +17,9 @@ user_categorisation_loop(
 )
 }
 \arguments{
-\item{start_v}{Index of data element to start}
+\item{start_v}{Index of variable to start}
 
-\item{end_v}{Index of data element to end}
+\item{end_v}{Index of variables to end}
 
 \item{table_df}{Dataframe with table info, extracted from metadata file}
 
@@ -37,16 +37,16 @@ user_categorisation_loop(
 and cli_alert_success messages.}
 }
 \value{
-An output dataframe containing info about the table, data elements
+An output dataframe containing info about the table, variables
 and categorisations
 }
 \description{
 Internal Function: Called within the metadata_map function. \cr \cr
-Given a specific table and a number of data elements to search, it checks for
+Given a specific table and a number of variables to search, it checks for
 3 different sources of domain categorisation: \cr \cr
-1 - If data elements match look-up table, auto categorise \cr \cr
-2 - If data elements match to previous table output, copy them \cr \cr
-3 - If no match for 1 or 2, data elements are categorised by the user \cr \cr
+1 - If variables match look-up table, auto categorise \cr \cr
+2 - If variables match to previous table output, copy them \cr \cr
+3 - If no match for 1 or 2, variables are categorised by the user \cr \cr
 }
 \keyword{internal}
 \keyword{internal}

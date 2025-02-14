@@ -1,4 +1,4 @@
-"timestamp","table","data_element_n","data_element","domain_code","note"
+"timestamp","table","variable_n","variable","domain_code","note"
 "2024-12-19 14:17:45","CHILD","1 of 35","ALF_E","2","AUTO CATEGORISED"
 "2024-12-19 14:17:45","CHILD","2 of 35","ALF_MTCH_PCT","2","AUTO CATEGORISED"
 "2024-12-19 14:17:45","CHILD","3 of 35","ALF_STS_CD","2","AUTO CATEGORISED"

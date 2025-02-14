@@ -4,15 +4,16 @@ select.list <- NULL
 
 #' metadata_map
 #'
-#' This function will read in the metadata file for a chosen dataset, loop
-#' through all the data elements, and ask the user to map (to categorise) each
-#' data element to one or more domains. The domains will appear
-#' in the Plots tab for the user's reference. \cr \cr
+#' This function will read in the metadata file for a chosen dataset and create
+#' a summary plot. It will ask a user to select a table from this dataset to
+#' process, and loop through all the variables in this table, asking the user to
+#' map (categorise) each variable to one or more domains. The domains will
+#' appear in the Plots tab for the user's reference. \cr \cr
 #' These categorisations will be saved to a csv file, alongside a log file which
 #' summarises the session details. To speed up this process, some
-#' auto-categorisations will be made by the function for commonly occurring data
-#' elements, and categorisations for the same data element can be copied from
-#' one table to another. \cr \cr
+#' auto-categorisations will be made by the function for commonly occurring
+#' variables, and categorisations for the same variable can be copied from one
+#' table to another. \cr \cr
 #' Example inputs are provided within the package data, for the user to run this
 #' function in a demo mode.
 #' @param metadata_file This should be a csv download from HDRUK gateway
@@ -25,16 +26,16 @@ select.list <- NULL
 #' ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.
 #' @param look_up_file The lookup file makes auto-categorisations intended for
 #' variables that appear regularly in health datasets. It only works for 1:1
-#' mappings right now, i.e. DataElement should only be listed once in the file.
+#' mappings right now, i.e. variable should only be listed once in the file.
 #' Default is 'data/look-up.rda' - run '?look_up' to see how it was created.
 #' @param output_dir The path to the directory where the two csv output files
 #' will be saved. Default is the current working directory.
 #' @param table_copy Turn on copying between tables (default TRUE).
 #' If TRUE, categorisations you made for all other tables in this dataset will
 #' be copied over (if 'OUTPUT_' files are found in output_dir). This can be
-#' useful when the same data elements (variables) appear across multiple
-#' tables within one dataset; copying from one table to the next will save the
-#' user time, and ensure consistency of categorisations across tables.
+#' useful when the same variables appear across multiple tables within one
+#' dataset; copying from one table to the next will save the user time, and
+#' ensure consistency of categorisations across tables.
 #' @param long_output Run map_convert.R to create a new longer output
 #' @param demo_number How many table variables to loop through in the demo.
 #' Default is 5.
@@ -171,7 +172,7 @@ metadata_map <- function(
   table_df <- dataset %>%
     filter(Section == levels(dataset$Section)[chosen_table_n])
 
-  #### If demo, only process the first n elements (default n is 20)
+  #### If demo, only process the first n variables (default n is 20)
   if (data$demo_mode == TRUE) {
     start_v <- 1
     end_v <- min(demo_number, nrow(table_df))
@@ -196,39 +197,39 @@ metadata_map <- function(
   output_df$table <- table_name
 
 
-  #### Review auto categorized data elements
+  #### Review auto categorized table variables
   if (!quiet) {
-    cli_alert_info("These are the auto categorised data elements:\n\n")
+    cli_alert_info("These are the auto categorised variables:\n\n")
   }
   output_auto <- subset(output_df, note == "AUTO CATEGORISED")
-  output_auto <- output_auto[, c("data_element", "domain_code", "note")]
+  output_auto <- output_auto[, c("variable", "domain_code", "note")]
   print(output_auto, row.names = FALSE)
 
-  auto_elements <- output_df$data_element[output_df$note == "AUTO CATEGORISED"]
+  auto_variables <- output_df$variable[output_df$note == "AUTO CATEGORISED"]
 
-  auto_row_names <- select.list(auto_elements,
+  auto_row_names <- select.list(auto_variables,
     multiple = TRUE,
     title = "\nSelect those you want to manually edit:"
   )
 
-  auto_row <- which(output_df$data_element %in% auto_row_names)
+  auto_row <- which(output_df$variable %in% auto_row_names)
 
   if (length(auto_row) != 0) {
-    for (data_v_auto in auto_row) {
+    for (v_auto in auto_row) {
       ##### collect user responses with with 'user_categorisation.R'
       decision_output <- user_categorisation(
-        table_df$Column.name[data_v_auto],
-        table_df$Column.description[data_v_auto],
-        table_df$Data.type[data_v_auto],
+        table_df$Column.name[v_auto],
+        table_df$Column.description[v_auto],
+        table_df$Data.type[v_auto],
         max(df_plots$code$code)
       )
       ##### input user responses into output
-      output_df$domain_code[data_v_auto] <- decision_output$decision
-      output_df$note[data_v_auto] <- decision_output$decision_note
+      output_df$domain_code[v_auto] <- decision_output$decision
+      output_df$note[v_auto] <- decision_output$decision_note
     }
   }
 
-  ### Review user categorized data elements (optional)
+  ### Review user categorized variables (optional)
   review_cats <- menu(c("Yes", "No"), title =
                         "\nWould you like to review your categorisations?")
   if (review_cats == 1) {
@@ -236,33 +237,33 @@ metadata_map <- function(
     output_not_auto["note (first 12 chars)"] <-
       substring(output_not_auto$note, 1, 11)
     if (!quiet) {
-      cli_alert_info("These are the data elements you categorised:\n")
+      cli_alert_info("These are the variables you categorised:\n")
     }
-    print(output_not_auto[, c("data_element", "domain_code",
+    print(output_not_auto[, c("variable", "domain_code",
                               "note (first 12 chars)")], row.names = FALSE)
 
-    not_auto_elements <- output_df$data_element[output_df$note
+    not_auto_variables <- output_df$variable[output_df$note
                                                 != "AUTO CATEGORISED"]
 
-    not_auto_row_names <- select.list(not_auto_elements,
+    not_auto_row_names <- select.list(not_auto_variables,
       multiple = TRUE,
       title = "\nSelect those you want to edit:"
     )
 
-    not_auto_row <- which(output_df$data_element %in% not_auto_row_names)
+    not_auto_row <- which(output_df$variable %in% not_auto_row_names)
 
     if (length(not_auto_row) != 0) {
-      for (data_v_not_auto in not_auto_row) {
+      for (v_not_auto in not_auto_row) {
         #####  collect user responses with with 'user_categorisation.R'
         decision_output <- user_categorisation(
-          table_df$Column.name[data_v_not_auto],
-          table_df$Column.description[data_v_not_auto],
-          table_df$Data.type[data_v_not_auto],
+          table_df$Column.name[v_not_auto],
+          table_df$Column.description[v_not_auto],
+          table_df$Data.type[v_not_auto],
           max(df_plots$code$code)
         )
         ##### input user responses into output
-        output_df$domain_code[data_v_not_auto] <- decision_output$decision
-        output_df$note[data_v_not_auto] <- decision_output$decision_note
+        output_df$domain_code[v_not_auto] <- decision_output$decision
+        output_df$note[v_not_auto] <- decision_output$decision_note
       }
     }
   }

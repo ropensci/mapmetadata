@@ -105,7 +105,7 @@ map_compare <- function(session_dir,
     input_1 = nrow(csv_1b),
     input_2 = nrow(csv_2b),
     severity = "danger",
-    severity_text = "Different number of data elements!"
+    severity_text = "Different number of variavles!"
   )
 
   ##  Check if sessions can be compared (warnings for user to check):
@@ -128,18 +128,18 @@ map_compare <- function(session_dir,
 
   # JOIN DATAFRAMES FROM SESSIONS IN ORDER TO COMPARE ----
   ses_join <- left_join(csv_1b, csv_2b, suffix = c("_ses1", "_ses2"),
-                        join_by(data_element))
-  ses_join <- select(ses_join, contains("_ses"), "data_element")
+                        join_by(variable))
+  ses_join <- select(ses_join, contains("_ses"), "variable")
   ses_join$domain_code_join <- NA
   ses_join$note_join <- NA
 
   # FIND MISMATCHES AND ASK FOR CONSENSUS DECISION ----
-  for (datavar in seq_len(nrow(ses_join))) {
-    consensus <- consensus_on_mismatch(ses_join, table_df, datavar,
+  for (variable in seq_len(nrow(ses_join))) {
+    consensus <- consensus_on_mismatch(ses_join, table_df, variable,
                                        max(df_plots$code$code))
-    ses_join$domain_code_join[datavar] <- consensus$domain_code_join
-    ses_join$note_join[datavar] <- consensus$note_join
-  } # end of loop for DataElement
+    ses_join$domain_code_join[variable] <- consensus$domain_code_join
+    ses_join$note_join[variable] <- consensus$note_join
+  } # end of loop for variable
 
   # SAVE TO NEW CSV ----
   output_fname <- file.path(output_dir,

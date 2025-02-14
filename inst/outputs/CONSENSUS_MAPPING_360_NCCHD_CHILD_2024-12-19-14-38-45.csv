@@ -1,4 +1,4 @@
-"timestamp_ses1","table_ses1","data_element_n_ses1","domain_code_ses1","note_ses1","timestamp_ses2","table_ses2","data_element_n_ses2","domain_code_ses2","note_ses2","data_element","domain_code_join","note_join"
+"timestamp_ses1","table_ses1","variable_n_ses1","domain_code_ses1","note_ses1","timestamp_ses2","table_ses2","variable_n_ses2","domain_code_ses2","note_ses2","variable","domain_code_join","note_join"
 "2024-12-19 14:11:55","CHILD","1 of 35","2","AUTO CATEGORISED","2024-12-19 14:17:45","CHILD","1 of 35","2","AUTO CATEGORISED","ALF_E","2","No mismatch!"
 "2024-12-19 14:11:55","CHILD","2 of 35","2","AUTO CATEGORISED","2024-12-19 14:17:45","CHILD","2 of 35","2","AUTO CATEGORISED","ALF_MTCH_PCT","2","No mismatch!"
 "2024-12-19 14:11:55","CHILD","3 of 35","2","AUTO CATEGORISED","2024-12-19 14:17:45","CHILD","3 of 35","2","AUTO CATEGORISED","ALF_STS_CD","2","No mismatch!"

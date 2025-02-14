@@ -14,8 +14,8 @@ The csv was manually created
 data(look_up)
 }
 \description{
-A list of pre-defined pairings between data element and domain code. \cr \cr
-For each data element that metadata_map processes: \cr \cr
+Pre-defined pairings between table variables and domain codes. \cr \cr
+For each variable that metadata_map processes: \cr \cr
 If it is contained within this look-up table, it uses the auto-categorised
 domain code rather than asking the user to categorise.\cr\cr
 This data was created with these two steps:

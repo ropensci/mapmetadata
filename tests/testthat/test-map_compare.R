@@ -12,7 +12,7 @@ test_that("map_compare function works correctly with user input", {
 
   # mock consensus_on_mismatch
   local_mocked_bindings(
-    consensus_on_mismatch = function(ses_join, table_df, datavar,
+    consensus_on_mismatch = function(ses_join, table_df, table_var,
                                      domain_code_max) {
       domain_code_join <- "0"
       note_join <- "consensus note"
@@ -44,16 +44,16 @@ test_that("map_compare function works correctly with user input", {
   expect_equal(ncol(consensus_df), 13)
   expect_true(all(consensus_df$domain_code_join == 0))
   expect_true(all(consensus_df$note_join == "consensus note"))
-  expect_equal(demo_1_df$data_element, consensus_df$data_element)
-  expect_equal(demo_2_df$data_element, consensus_df$data_element)
+  expect_equal(demo_1_df$variable, consensus_df$variable)
+  expect_equal(demo_2_df$variable, consensus_df$variable)
   expect_equal(demo_1_df$timestamp, consensus_df$timestamp_ses1)
   expect_equal(demo_1_df$table, consensus_df$table_ses1)
-  expect_equal(demo_1_df$data_element_n, consensus_df$data_element_n_ses1)
+  expect_equal(demo_1_df$variable_n, consensus_df$variable_n_ses1)
   expect_equal(demo_1_df$domain_code, consensus_df$domain_code_ses1)
   expect_equal(demo_1_df$note, consensus_df$note_ses1)
   expect_equal(demo_2_df$timestamp, consensus_df$timestamp_ses2)
   expect_equal(demo_2_df$table, consensus_df$table_ses2)
-  expect_equal(demo_2_df$data_element_n, consensus_df$data_element_n_ses2)
+  expect_equal(demo_2_df$variable_n, consensus_df$variable_n_ses2)
   expect_equal(demo_2_df$domain_code, consensus_df$domain_code_ses2)
   expect_equal(demo_2_df$note, consensus_df$note_ses2)
 })

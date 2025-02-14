@@ -30,7 +30,7 @@ ID, DEMOGRAPHICS) and therefore should not be included in the domain_file.
 
 \item{look_up_file}{The lookup file makes auto-categorisations intended for
 variables that appear regularly in health datasets. It only works for 1:1
-mappings right now, i.e. DataElement should only be listed once in the file.
+mappings right now, i.e. variable should only be listed once in the file.
 Default is 'data/look-up.rda' - run '?look_up' to see how it was created.}
 
 \item{output_dir}{The path to the directory where the two csv output files
@@ -39,9 +39,9 @@ will be saved. Default is the current working directory.}
 \item{table_copy}{Turn on copying between tables (default TRUE).
 If TRUE, categorisations you made for all other tables in this dataset will
 be copied over (if 'OUTPUT_' files are found in output_dir). This can be
-useful when the same data elements (variables) appear across multiple
-tables within one dataset; copying from one table to the next will save the
-user time, and ensure consistency of categorisations across tables.}
+useful when the same variables appear across multiple tables within one
+dataset; copying from one table to the next will save the user time, and
+ensure consistency of categorisations across tables.}
 
 \item{long_output}{Run map_convert.R to create a new longer output}
 
@@ -57,15 +57,16 @@ The function will return two csv files: 'OUTPUT_' which contains the
 mappings and 'LOG_' which contains details about the dataset and session.
 }
 \description{
-This function will read in the metadata file for a chosen dataset, loop
-through all the data elements, and ask the user to map (to categorise) each
-data element to one or more domains. The domains will appear
-in the Plots tab for the user's reference. \cr \cr
+This function will read in the metadata file for a chosen dataset and create
+a summary plot. It will ask a user to select a table from this dataset to
+process, and loop through all the variables in this table, asking the user to
+map (categorise) each variable to one or more domains. The domains will
+appear in the Plots tab for the user's reference. \cr \cr
 These categorisations will be saved to a csv file, alongside a log file which
 summarises the session details. To speed up this process, some
-auto-categorisations will be made by the function for commonly occurring data
-elements, and categorisations for the same data element can be copied from
-one table to another. \cr \cr
+auto-categorisations will be made by the function for commonly occurring
+variables, and categorisations for the same variable can be copied from one
+table to another. \cr \cr
 Example inputs are provided within the package data, for the user to run this
 function in a demo mode.
 }
