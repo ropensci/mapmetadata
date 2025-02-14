@@ -81,7 +81,7 @@ outputs.</p>
 </h2>
 <p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
 <p>This bar plot is produced automatically when you run the
-<code>metadata_map</code> function with the demo metadata file, which
+<code><a href="../reference/metadata_map.html">metadata_map()</a></code> function with the demo metadata file, which
 contains metadata about the <strong>National Community Child Health
 Database (NCCHD).</strong></p>
 <p>The bar plot shows us there are 13 tables in the dataset. The height
@@ -116,119 +116,15 @@ more context on their contents and how to use them:</p>
 <p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/NCCHD_gateway_table.png" alt="screenshot of HRDRUK gateway showing table descriptions for the NCCHD dataset"></p>
 </div>
 <div class="section level2">
-<h2 id="mapping">Mapping<a class="anchor" aria-label="anchor" href="#mapping"></a>
-</h2>
-<p>Use the bar plot and the HDRUK Gateway to guide your mapping choices.
-The main functionality of this package is to aid a researcher in mapping
-variables from health datasets onto their research domains
-(concepts/latent variables).</p>
-<p>Run the demo mode by typing <code><a href="../reference/metadata_map.html">metadata_map()</a></code>. You you will
-see this in the R console:</p>
-<pre><code>ℹ Running demo mode using package data files
-ℹ Using the default look-up table in data/look-up.rda
-ℹ Processing dataset '360_NCCHD' containing 13 tables
-
-ℹ A bar plot should have opened in your browser (also saved to your project directory).
-Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
-
-Enter the table number you want to process: 
-
- 1: BLOOD_TEST    
- 2: BREAST_FEEDING                   
- 3: CHE_HEALTHYCHILDWALESPROGRAMME   
- 4: CHILD                   
- 5: CHILD_BIRTHS  
- 6: CHILD_MEASUREMENT_PROGRAM        
- 7: CHILD_TRUST                      
- 8: EXAM                    
- 9: IMM           
- 10: PATH_BLOOD_TESTS                
- 11: PATH_SPCM_DETAIL                
- 12: REFR_IMM_VAC            
- 13: SIG_COND                        
-
-Selection: 4</code></pre>
-<p>Enter 4 to follow this demo. Demo mode only processes the first 20
-data elements (variables) in the selected table.</p>
-<pre><code>ℹ Processing Table 4 of 13 (CHILD)
-
-Optional note about this table: tutorial testing</code></pre>
-<p>You can include a note about this table (e.g. project name, who is
-processing), or press enter to leave it blank.</p>
-<p>You will be asked to label data elements with one (or more) of the
-numbers shown in the Plots tab [0-7]. Here we have very simple domains
-[4-7] for the demo run. For a research study, your domains are likely to
-be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or
-‘Health behaviours and diet’. The 4 default domains are always included
-[0-3], appended on to any domain list given by the user.</p>
-<p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/plots_tab_demo_domains.png" alt="description of research domains used for categorisations" width="25%"></p>
-<p>If it skips over a data element it means it was auto-categorised or
-copied from a previous table already processed (more on that later).</p>
-<pre><code>ℹ Data element 1 of 35 (20 left to process)
-ℹ Data element 2 of 35 (19 left to process)
-ℹ Data element 3 of 35 (18 left to process)
-ℹ Data element 4 of 35 (17 left to process)
-
-DATA ELEMENT -----&gt; APGAR_1
-
-DESCRIPTION -----&gt; APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries.
-
-DATA TYPE -----&gt; CHARACTER
-
-Categorise data element into domain(s). E.g. 3 or 3,4: 7
-Categorisation note (or press enter to continue): your note here</code></pre>
-<p>We chose to respond with ‘7’ because that corresponds to the ‘Health
-info’ domain in the table. More than one domain can be chosen, separated
-by commas. Do remember that this demo has over-simplified domain labels,
-and they will likely be more specific for a research study.</p>
-<p>You have the option to re-do the categorisation (and note) you just
-made, by replying ‘y’ to the question:</p>
-<pre><code>Response to be saved is '7'. Would you like to re-do? (y/n): n</code></pre>
-<p>After completing 20, it will then ask you to review the
-auto-categorisations it made, displaying these to the R console. These
-auto-categorisations are based on the mappings included in the default
-<a href="https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv" class="external-link">look_up.csv</a>.
-Type <code>get("look_up")</code> in <code>R</code>. This look-up file
-can be changed by the user. ALF refers to ‘Anonymous Linking Field’ -
-this field is used within datasets that have been anonymised and
-encrypted for inclusion within <a href="https://saildatabank.com/governance/privacy-by-design/" class="external-link">SAIL
-Databank</a>. After displaying what the auto categorisations are, it
-will show:</p>
-<pre><code>Select those you want to manually edit:
-
-1: ALF_E 2: ALF_MTCH_PCT 3: ALF_STS_CD 4: AVAIL_FROM_DT 5: GNDR_CD
-
-Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel 1:</code></pre>
-<p>Press enter for now, as these look good, but know that you can always
-manually override an auto categorisation. It will then ask you if you
-want to review the categorisations you made. Respond 1 to review:</p>
-<pre><code>Would you like to review your categorisations?
-
-1: Yes 2: No
-
-Selection: 1
-
-ℹ These are the data elements you categorised:</code></pre>
-<p>After displaying what your categorisations are, it will show:</p>
-<p>Select those you want to edit:</p>
-<pre><code>1: APGAR_1
-2: APGAR_2
-3: BIRTH_ORDER
-4: BIRTH_TM
-5: BIRTH_WEIGHT
-...
-
-Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel 1: </code></pre>
-<p>If you select a number, it will guide you through that categorisation
-again.</p>
-<p>All finished! Take a look at the outputs in your project
-directory.</p>
-</div>
-<div class="section level2">
 <h2 id="understanding-mapping-outputs">Understanding mapping outputs<a class="anchor" aria-label="anchor" href="#understanding-mapping-outputs"></a>
 </h2>
-<p>You can <a href="https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/" class="external-link">view
-outputs generated from the demo run</a>, which include:</p>
+<p>Running <code><a href="../reference/metadata_map.html">metadata_map()</a></code> will run this function in demo
+mode (as explained in the README) and generate four files in your
+project directory.</p>
+<p>By default, the demo mode processes the first 5 variables in a table.
+Running <code>metadata_map(demo_number = 20)</code> will process the
+first 20 variables in a table. Here you can <a href="https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/" class="external-link">view
+outputs generated from this longer demo run</a>, which include:</p>
 <ul>
 <li>
 <strong>BAR_360_NCCHD_timestamp.png</strong>
@@ -255,7 +151,9 @@ domains.</li>
 <ul>
 <li>The same mappings as the previous file, but saved in a longer
 format. See the argument <code>long_output = TRUE</code> in
-<code>metadata_map</code>.</li>
+<code><a href="../reference/metadata_map.html">metadata_map()</a></code>. If <code>long_output = FALSE</code> was
+used, the long outputs can be generated by directly calling the
+<code><a href="../reference/map_convert.html">map_convert()</a></code> function.</li>
 </ul>
 </li>
 <li>
@@ -277,12 +175,92 @@ of each domain code.</li>
 <div class="section level2">
 <h2 id="compare-mapping">Compare mapping<a class="anchor" aria-label="anchor" href="#compare-mapping"></a>
 </h2>
-<p>Running the function <code>map_compare</code> will allow you to
+<p>Running the function <code><a href="../reference/map_compare.html">map_compare()</a></code> will allow you to
 compare the mappings from two sessions, perhaps two different
 researchers. This function compares csv outputs from two sessions, finds
 their differences, and asks for a consensus, creating a new output
 file:</p>
 <p><strong>CONSENSUS_MAPPING_360_NCCHD_CHILD_timestamp.csv</strong></p>
+</div>
+<div class="section level2">
+<h2 id="beyond-the-demo-using-a-custom-metadata-input-recommended">Beyond the demo: using a custom metadata input (recommended)<a class="anchor" aria-label="anchor" href="#beyond-the-demo-using-a-custom-metadata-input-recommended"></a>
+</h2>
+<p>Currently, the way to retrieve a metadata file that is compatible
+with this package is to:</p>
+<ol style="list-style-type: decimal">
+<li>Visit the <a href="https://healthdatagateway.org/en/search?type=datasets" class="external-link">Health Data
+Research Gateway</a> website</li>
+<li>Browse for the dataset you want, click on it to move to its main
+page</li>
+<li>Click on ‘Download data’ button and select ‘Structural
+Metadata’<br>
+</li>
+<li>Rename this file to be ‘ID_Name_Metadata.csv’ with ‘ID’ and ‘Name’
+being changed depending on the specific dataset download</li>
+</ol>
+<p>The demo metadata file used in this package is <a href="inst/inputs/360_NCCHD_Metadata.csv">360_NCCHD_Metadata.csv</a>,
+with 360 being the ID given by HDRUK Gateway and NCCHD being the
+abbreviation for the dataset name (National Community Child Health
+Database).</p>
+<p>Any metadata file in the same format as this download should work
+with this package.</p>
+<p>Run <code>data("metadata")</code> to load the demo metadata into your
+R environment. This demo metadata is also included as a package file and
+is retrieved using the <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code> function:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ncchd_metadata_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"inputs/360_NCCHD_Metadata.csv"</span>, package <span class="op">=</span> <span class="st">"mapmetadata"</span><span class="op">)</span></span>
+<span><span class="va">demo_domains_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"inputs/domain_list_demo.csv"</span>, package <span class="op">=</span> <span class="st">"mapmetadata"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/metadata_map.html">metadata_map</a></span><span class="op">(</span>metadata_file <span class="op">=</span> <span class="va">ncchd_metadata_csv</span>, domain_file <span class="op">=</span> <span class="va">demo_domains_csv</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="beyond-the-demo-using-a-custom-domain-list-input-recommended">Beyond the demo: using a custom domain list input (recommended)<a class="anchor" aria-label="anchor" href="#beyond-the-demo-using-a-custom-domain-list-input-recommended"></a>
+</h2>
+<p>Run <code>data("domain_list")</code> to load the demo metadata into
+your R environment (you can also read the package file with
+<code>system.file("inputs/domain_list_demo.csv", package = "mapmetadata"</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"domain_list"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">print</span>(domain_list)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dv">1</span> Socioeconomic info</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dv">2</span>      Location info</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="dv">3</span>     Education info</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="dv">4</span>        Health info</span></code></pre></div>
+<p>Change this csv domain file to be more specific to your research
+domains (sometimes called latent variables or concepts) as these are
+broad and generic categories for demo purposes.</p>
+<p>Any domain file input will automatically have 4 codes appended to the
+start of the domain list, so do not include these in your domain list: -
+NO MATCH / UNSURE - METADATA - ID - DEMOGRAPHICS</p>
+<p>You should see these automatically appended domains as 0-3 in the <a href="inst/outputs/plots_tab_demo_domains.png">plot that R generates for
+your reference</a> when you run <code><a href="../reference/metadata_map.html">metadata_map()</a></code>.</p>
+</div>
+<div class="section level2">
+<h2 id="beyond-the-demo-using-a-custom-lookup-table-input-advanced">Beyond the demo: using a custom lookup table input (advanced)<a class="anchor" aria-label="anchor" href="#beyond-the-demo-using-a-custom-lookup-table-input-advanced"></a>
+</h2>
+<p>Run <code>data("look_up")</code> to load the demo metadata into your
+R environment (you can also read the package file with
+<code>system.file("inputs/look_up.csv", package = "mapmetadata")</code>).</p>
+<p>The lookup table governs the automatic categorisations. If you modify
+the default lookup file, ensure that all domain codes in the lookup file
+are also included in your domain file for valid outputs.</p>
+</div>
+<div class="section level2">
+<h2 id="copying-across-tables">Copying across tables<a class="anchor" aria-label="anchor" href="#copying-across-tables"></a>
+</h2>
+<p>If you’re processing multiple tables (i.e. in run one of
+<code><a href="../reference/metadata_map.html">metadata_map()</a></code> select table one, in run two select table
+two) save all outputs in the same directory to enable table copying.
+This feature will speed up categorisation and ensure consistency. If it
+finds other MAPPING files with the same ID_Name in the output directory,
+and they contain overlapping variables, it will automatically copy the
+mappings from this previous table to the current table.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>ℹ Processing Table <span class="dv">4</span> of <span class="dv">13</span> (CHILD)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>ℹ Copying from previous <span class="fu">session</span>(s)<span class="sc">:</span> MAPPING_360_NCCHD_BLOOD_TEST_2025<span class="dv">-02-13-15-40</span><span class="fl">-58.</span>csv</span></code></pre></div>
+<p>Instead of ‘AUTO CATEGORISED’ the note will say ‘COPED FROM:
+BLOOD_TEST’ but you always have the option to manually override this
+copying during your review, or turn it off altogether with the option
+<code>table_copy = FASLE</code>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

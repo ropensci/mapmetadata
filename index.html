@@ -97,7 +97,6 @@
 <div class="section level3">
 <h3 id="demo-using-the-r-studio-ide">Demo (using the <code>R Studio</code> IDE)<a class="anchor" aria-label="anchor" href="#demo-using-the-r-studio-ide"></a>
 </h3>
-<p>For a longer more detailed demo, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
 <p>There are three main functions you can interact with: <code><a href="reference/metadata_map.html">metadata_map()</a></code>, <code><a href="reference/map_compare.html">map_compare()</a></code>, and <code><a href="reference/map_convert.html">map_convert()</a></code>. For more information on any function, type <code>?function_name</code>.</p>
 <p>Run it in demo mode using the files located in the <a href="https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs" class="external-link">inst/inputs</a> directory:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -111,40 +110,40 @@
 Use this bar plot, and the information on the HDRUK Gateway, to guide your mapping approach.
 
 Enter the table number you want to process: </code></pre>
-<p>You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory)</code>.</p>
+<p>You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory')</code>.</p>
 <p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2024-12-19-14-11-55.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
-<p>If you continue, the function will ask you to pick a table in the dataset. In demo mode, the function processes only the first 20 variables from the selected table. Follow the on-screen instructions, and categorise variables into research domains, using the Plot tab as your reference. The demo will simplify domains for ease of use; in a real scenario, you can define more specific domains. For more tips on these mapping steps, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
+<p>If you continue to the mapping stage, you will see all the tables in this dataset are listed. Select the 4th table for demo purposes:</p>
+<pre><code>Enter the table number you want to process:
+
+ 1: BLOOD_TEST          2: BREAST_FEEDING       3: CHE_HEALTHYCHILDWALESPROGRAMME
+ 4: CHILD               5: CHILD_BIRTHS         6: CHILD_MEASUREMENT_PROGRAM
+ 7: CHILD_TRUST         8: EXAM                 9: IMM
+10: PATH_BLOOD_TESTS    11: PATH_SPCM_DETAIL    12: REFR_IMM_VAC
+13: SIG_COND
+
+Selection: 4</code></pre>
+<p>Add a note for processing this table:</p>
+<pre><code>ℹ Processing Table 4 of 13 (CHILD)
+
+Optional note about this table: Demo run</code></pre>
+<p>This table has 35 variables (see ‘n of 35’ below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a data element with one (or more) of the numbers shown in the <a href="inst/outputs/plots_tab_demo_domains.png">key that has appeared in your plots tab</a>. We input ‘7’ which means ‘Health Info’ as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’.</p>
+<pre><code>ℹ Data element 1 of 35 (5 left to process)
+ℹ Data element 2 of 35 (4 left to process)
+ℹ Data element 3 of 35 (3 left to process)
+ℹ Data element 4 of 35 (2 left to process)
+
+DATA ELEMENT -----&gt;  APGAR_1
+
+DESCRIPTION -----&gt;  APGAR 1 score. This is a measure of a baby's physical state at birth with particular reference to asphyxia - taken at 1 minute. Scores 3 and below are generally regarded as critically low; 4-6 fairly low, and 7-10 generally normal. Field can contain high amount of unknowns/non-entries.
+
+DATA TYPE -----&gt;  CHARACTER
+
+Categorise data element into domain(s). E.g. 3 or 3,4: 7
+Categorisation note (or press enter to continue): level of asphyxia at birth
+Response to be saved is ' 7 '. Would you like to re-do? (y/n): n</code></pre>
+<p>Repeat the categorisation for the 5th variable to finish. You will then be asked to review the categorisations: - First, you will be shown the auto-categorisations and asked if you want to manually edit them (i.e. override the auto categorisation). - ‘ALF’ refers to ‘Anonymous Linking Field’ - this field is used within datasets that have been anonymised and encrypted for inclusion within <a href="https://saildatabank.com/governance/privacy-by-design/s" class="external-link">SAIL Databank</a>. - Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.</p>
+<p>You can use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="using-a-custom-metadata-input-recommended">Using a custom metadata input (recommended)<a class="anchor" aria-label="anchor" href="#using-a-custom-metadata-input-recommended"></a>
-</h2>
-<p>You can run <code><a href="reference/metadata_map.html">metadata_map()</a></code> with a custom metadata file instead of the demo input file, to map metadata from a different dataset. Currently, the recommended way of retrieving these metadata files is to download them from <a href="https://healthdatagateway.org/en/search?type=datasets" class="external-link">Health Data Research Gateway</a>. Browse for the dataset you want, click on it to move to its main page, click on ‘Download data’ and select ‘Structural Metadata’ - this file is your metadata file input.</p>
-<p>To use this download with <code><a href="reference/metadata_map.html">metadata_map()</a></code>, the metadata file name is expected to be ‘ID_Name_Metadata.csv’ with ‘ID’ and ‘Name’ being changed depending on the specific dataset download. For example, the demo metadata file used in this package is <a href="inst/inputs/360_NCCHD_Metadata.csv">360_NCCHD_Metadata.csv</a>, with 360 being the ID given by HDRUK Gateway and NCCHD being the abbreviation for the dataset name (National Community Child Health Database).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">new_file</span> <span class="op">&lt;-</span> <span class="st">"path/ID_Name_Metadata.csv"</span></span>
-<span><span class="va">demo_domains_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"inputs/domain_list_demo.csv"</span>, package <span class="op">=</span> <span class="st">"mapmetadata"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/metadata_map.html">metadata_map</a></span><span class="op">(</span>metadata_file <span class="op">=</span> <span class="va">new_file</span>, domain_file <span class="op">=</span> <span class="va">demo_domains_file</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="using-a-custom-domain-list-input-recommended">Using a custom domain list input (recommended)<a class="anchor" aria-label="anchor" href="#using-a-custom-domain-list-input-recommended"></a>
-</h2>
-<p>You can replace the default demo domains with research-specific domains. Remember any domain file input will have Codes 0, 1, 2 and 3 automatically appended to the start of the domain list, so do not include these in your domain list.</p>
-</div>
-<div class="section level2">
-<h2 id="using-a-custom-lookup-table-input-advanced">Using a custom lookup table input (advanced)<a class="anchor" aria-label="anchor" href="#using-a-custom-lookup-table-input-advanced"></a>
-</h2>
-<p>The lookup table governs the automatic categorisations. If you modify the <a href="https://github.com/aim-rsf/mapmetadata/blob/main/inst/inputs/look_up.csv" class="external-link">default lookup file</a>, ensure that all domain codes in the lookup file are also included in your domain file for valid outputs.</p>
-</div>
-<div class="section level2">
-<h2 id="tips-and-future-steps">Tips and future steps<a class="anchor" aria-label="anchor" href="#tips-and-future-steps"></a>
-</h2>
-<ul>
-<li>If you’re processing multiple tables, save all outputs in the same directory to enable table copying. This feature will speed up categorisation and ensure consistency.</li>
-<li>You can compare categorisations across researchers using the <code><a href="reference/map_compare.html">map_compare()</a></code> function.</li>
-<li>Use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain.</li>
-</ul>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -160,13 +159,13 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 <p>Stickland R (2025). mapmetadata: map health metadata onto predefined research domains. R package version 3.0.0.</p>
 </blockquote>
 <p>A BibTeX entry for LaTeX users:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="sc">@</span>Manual{,</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>    title <span class="ot">=</span> {mapmetadata<span class="sc">:</span> map health metadata onto predefined research domains},</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    author <span class="ot">=</span> {Rachael Stickland},</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2025</span>},</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">3</span>.<span class="fl">0.0</span>},</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    doi <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10581499</span>}, </span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  <span class="sc">@</span>Manual{,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    title <span class="ot">=</span> {mapmetadata<span class="sc">:</span> map health metadata onto predefined research domains},</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    author <span class="ot">=</span> {Rachael Stickland},</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2025</span>},</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">3</span>.<span class="fl">0.0</span>},</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    doi <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10581499</span>}, </span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
