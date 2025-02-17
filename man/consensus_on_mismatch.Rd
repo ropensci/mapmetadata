@@ -24,5 +24,11 @@ For each table variable, it compares the domain code categorisation
 between two sessions. If the categorisation differs, it prompts the user for
 a new consensus decision by presenting the metadata info. \cr \cr
 }
+\seealso{
+Other map_compare_internal: 
+\code{\link{user_categorisation}()},
+\code{\link{valid_comparison}()}
+}
+\concept{map_compare_internal}
 \keyword{internal}
 \keyword{internal}

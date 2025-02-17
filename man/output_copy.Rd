@@ -25,5 +25,15 @@ name. \cr \cr
 If files exist, it removes duplicates and autos, and stores the rest of the
 table variables in a dataframe. \cr \cr
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_count}()},
+\code{\link{empty_plot}()},
+\code{\link{end_plot}()},
+\code{\link{user_categorisation}()},
+\code{\link{user_categorisation_loop}()}
+}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}

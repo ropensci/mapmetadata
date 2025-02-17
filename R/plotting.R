@@ -7,6 +7,7 @@
 #' @return A plotly object
 #' @importFrom plotly plot_ly layout
 #' @keywords internal
+#' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
 
 empty_plot <- function(dataframe, bar_title) {
@@ -42,11 +43,13 @@ empty_plot <- function(dataframe, bar_title) {
 #' @param table_name Table name
 #' @param ref_table Domain code reference table (domains mapped to integers)
 #' @return It returns a ggplot
-#' @keywords internal
 #' @importFrom dplyr %>% group_by count arrange
 #' @importFrom stats reorder
 #' @importFrom gridExtra grid.arrange
 #' @import ggplot2
+#' @keywords internal
+#' @family metadata_map_internal
+#' @dev generate help files for unexported objects, for developers
 
 end_plot <- function(df, table_name, ref_table) {
   counts <- df %>%

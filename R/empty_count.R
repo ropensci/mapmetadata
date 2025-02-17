@@ -1,6 +1,6 @@
 #' empty_count
 #'
-#' Internal Function: Called within the map_compare.R function. \cr \cr
+#' Internal Function: Called within the metadata_map function. \cr \cr
 #' It reads in the metadata dataframe and counts how many of the variables have
 #' empty descriptions.
 #' @param dataframe Dataframe representing metadata, 'Section' column as factor
@@ -9,6 +9,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr %>% group_by summarise mutate select arrange n
 #' @keywords internal
+#' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
 
 empty_count <- function(dataframe) {

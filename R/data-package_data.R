@@ -13,13 +13,9 @@
 #' }
 #'
 #' @docType data
-#
 #' @usage data(output_df)
-#'
 #' @keywords internal
-#'
 #' @format A data frame with 0 rows and 6 columns
-#'
 #' @source Dataframe was manually created as package data, using the above code.
 "output_df"
 
@@ -38,13 +34,9 @@
 #' }
 #'
 #' @docType data
-#
 #' @usage data(log_output_df)
-#'
 #' @keywords internal
-#'
 #' @format A data frame with 1 empty row and 9 columns
-#'
 #' @source Dataframe was manually created as package data, using the above code.
 "log_output_df"
 
@@ -59,13 +51,9 @@
 #'  \item \code{usethis::use_data(domain_list)}
 #' }
 #' @docType data
-#
 #' @usage data(domain_list)
-#'
 #' @keywords internal
-#'
 #' @format A data frame with 8 rows and 2 columns
-#'
 #' @source The csv was manually created
 "domain_list"
 
@@ -84,13 +72,9 @@
 #' }
 #'
 #' @docType data
-#
 #' @usage data(metadata)
-#'
 #' @keywords internal
-#'
 #' @format Nested lists
-#'
 #' @source https://healthdatagateway.org/en/dataset/360
 "metadata"
 
@@ -107,12 +91,8 @@
 #'  \item \code{usethis::use_data(look_up)}
 #' }
 #' @docType data
-#
 #' @usage data(look_up)
-#'
 #' @keywords internal
-#'
 #' @format A data frame with a variable number of rows and 2 columns
-#'
 #' @source The csv was manually created
 "look_up"

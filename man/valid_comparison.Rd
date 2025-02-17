@@ -25,5 +25,11 @@ It reads two inputs to see if they are equal. \cr \cr
 Warning severity: if unequal inputs, gives warning but continues. \cr \cr
 Danger severity: if unequal inputs, exits with error message. \cr \cr
 }
+\seealso{
+Other map_compare_internal: 
+\code{\link{consensus_on_mismatch}()},
+\code{\link{user_categorisation}()}
+}
+\concept{map_compare_internal}
 \keyword{internal}
 \keyword{internal}

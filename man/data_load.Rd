@@ -26,5 +26,15 @@ If some inputs are NULL, it loads the default inputs. If defaults not
 available, it prints error for the user.
 If inputs are not NULL, it loads the user-specified inputs.
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{empty_count}()},
+\code{\link{empty_plot}()},
+\code{\link{end_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation}()},
+\code{\link{user_categorisation_loop}()}
+}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}

@@ -16,6 +16,8 @@ scan <- NULL
 #' @return It returns a list containing the decision and decision note
 #' @importFrom cli cli_alert_warning
 #' @keywords internal
+#' @family metadata_map_internal
+#' @family map_compare_internal
 #' @dev generate help files for unexported objects, for developers
 
 user_categorisation <- function(var, desc, type,
@@ -102,6 +104,7 @@ user_categorisation <- function(var, desc, type,
 #' @importFrom dplyr %>% add_row filter
 #' @importFrom cli cli_alert_info
 #' @keywords internal
+#' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
 
 user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist,

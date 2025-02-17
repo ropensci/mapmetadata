@@ -48,5 +48,15 @@ Given a specific table and a number of variables to search, it checks for
 2 - If variables match to previous table output, copy them \cr \cr
 3 - If no match for 1 or 2, variables are categorised by the user \cr \cr
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_count}()},
+\code{\link{empty_plot}()},
+\code{\link{end_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation}()}
+}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}
