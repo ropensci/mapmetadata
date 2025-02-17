@@ -148,6 +148,7 @@ print(look_up, row.names = FALSE)
 ```
 
 The default lookup table (printed above) governs the automatic categorisations within the [metadata_map](https://aim-rsf.github.io/mapmetadata/reference/metadata_map.html) function:
+
 1. When a variable needs to be mapped to a domain, before asking the user it searches the lookup table
 2. If the variable name is contained within the 'Variable' column of the lookup table, this triggers the auto-categorisation 
 3. For this variable, the Domain_Name is extracted from the lookup table and the Domain_Code from the domain_list (therefore for a variable to be auto-categorised there must be a matching Domain_Name in the lookup and the domain_list files)
