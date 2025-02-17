@@ -275,13 +275,17 @@ your R environment (you can also read the package file with
 <span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>                     GNDR_CD      DEMOGRAPHICS</span></code></pre></div>
 <p>The default lookup table (printed above) governs the automatic
 categorisations within the <a href="https://aim-rsf.github.io/mapmetadata/reference/metadata_map.html">metadata_map</a>
-function: 1. When a variable needs to be mapped to a domain, before
-asking the user it searches the lookup table 2. If the variable name is
-contained within the ‘Variable’ column of the lookup table, this
-triggers the auto-categorisation 3. For this variable, the Domain_Name
-is extracted from the lookup table and the Domain_Code from the
-domain_list (therefore for a variable to be auto-categorised there must
-be a matching Domain_Name in the lookup and the domain_list files)</p>
+function:</p>
+<ol style="list-style-type: decimal">
+<li>When a variable needs to be mapped to a domain, before asking the
+user it searches the lookup table</li>
+<li>If the variable name is contained within the ‘Variable’ column of
+the lookup table, this triggers the auto-categorisation</li>
+<li>For this variable, the Domain_Name is extracted from the lookup
+table and the Domain_Code from the domain_list (therefore for a variable
+to be auto-categorised there must be a matching Domain_Name in the
+lookup and the domain_list files)</li>
+</ol>
 <p>When creating a custom lookup table, you can use this lookup table as
 a base and just append new rows to the bottom. Alternatively, if you do
 not want variables to be automatically mapped in the way defined by this
