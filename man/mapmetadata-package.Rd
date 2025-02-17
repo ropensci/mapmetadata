@@ -27,6 +27,8 @@ Other contributors:
   \item Mahwish Mohammad (\href{https://orcid.org/0009-0004-5295-0726}{ORCID}) [contributor]
   \item Daniel Delbarre (\href{https://orcid.org/0000-0003-4633-4252}{ORCID}) [contributor]
   \item Nida Ziauddeen (\href{https://orcid.org/0000-0002-8964-5029}{ORCID}) [contributor]
+  \item Zoë Turner (Zoë reviewed the package for rOpenSci, see https://github.com/ropensci/software-review/issues/674) [reviewer]
+  \item Yohann Mansiaux (Yohann reviewed the package for rOpenSci, see https://github.com/ropensci/software-review/issues/674) [reviewer]
 }
 
 }

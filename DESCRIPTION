@@ -12,7 +12,11 @@ Authors@R: c(
     person("Daniel", "Delbarre", role = "ctb",
            comment = c(ORCID = "0000-0003-4633-4252")),
     person("Nida", "Ziauddeen", role = "ctb",
-           comment = c(ORCID = "0000-0002-8964-5029"))
+           comment = c(ORCID = "0000-0002-8964-5029")),
+    person("Zoë", "Turner", role = "rev",
+           comment = "Zoë reviewed the package for rOpenSci, see https://github.com/ropensci/software-review/issues/674"),
+    person("Yohann", "Mansiaux", role = "rev",
+           comment = "Yohann reviewed the package for rOpenSci, see https://github.com/ropensci/software-review/issues/674")
   )
 Description: Prior to gaining full access to health datasets, explore
     publicly available metadata and map metadata onto predefined research
@@ -44,9 +48,10 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
+Config/Needs/build: moodymudskipper/devtag
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace",
+    "devtag::dev_roclet"))
 RoxygenNote: 7.3.2
-Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
-Config/Needs/build: moodymudskipper/devtag
