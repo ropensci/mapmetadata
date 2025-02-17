@@ -220,21 +220,22 @@ e.g. <code>metadata_map(metadata_file = ID_Name_Metadata.csv, domain_file = my_
 into your R environment (you can also read the package file with
 <code>system.file("inputs/domain_list_demo.csv", package = "mapmetadata"</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"domain_list"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">print</span>(domain_list)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dv">1</span>  NO MATCH <span class="sc">/</span> UNSURE</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dv">2</span>           METADATA</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="dv">3</span>                 ID</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="dv">4</span>       DEMOGRAPHICS</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="dv">5</span> Socioeconomic info</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="dv">6</span>      Location info</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="dv">7</span>     Education info</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="dv">8</span>        Health info</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">print</span>(domain_list, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>Domain_Code        Domain_Name</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>           <span class="dv">1</span>  NO MATCH <span class="sc">/</span> UNSURE</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>           <span class="dv">2</span>           METADATA</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>           <span class="dv">3</span>                 ID</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>           <span class="dv">4</span>       DEMOGRAPHICS</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>           <span class="dv">5</span> Socioeconomic info</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>           <span class="dv">6</span>      Location info</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>           <span class="dv">7</span>     Education info</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>           <span class="dv">8</span>        Health info</span></code></pre></div>
 <p>Change this csv domain file to be more specific to your research
 domains (sometimes called latent variables or concepts) as these are
 broad and generic categories for demo purposes.</p>
-<p>It is strongly recommended to keep the first four domains (NO MATCH /
-UNSURE, METADATA, ID, DEMOGRAPHICS). If you change them, you also have
-to change the lookup table.</p>
+<p>It is recommended to keep the first four domains (NO MATCH / UNSURE,
+METADATA, ID, DEMOGRAPHICS) as they map to the demo lookup table, but
+this is not essential.</p>
 </div>
 <div class="section level2">
 <h2 id="using-a-custom-lookup-table-input-advanced">Using a custom lookup table input (advanced)<a class="anchor" aria-label="anchor" href="#using-a-custom-lookup-table-input-advanced"></a>
@@ -243,43 +244,51 @@ to change the lookup table.</p>
 your R environment (you can also read the package file with
 <code>system.file("inputs/look_up.csv", package = "mapmetadata")</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"look_up"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">print</span>(look_up)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                      variable      domain_label domain_code</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="dv">1</span>                         <span class="cn">NA</span>   No Match <span class="sc">/</span> Unsure           <span class="dv">1</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="dv">2</span>                AVAIL_FROM_DT          Metadata           <span class="dv">2</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="dv">3</span>                        ALF_E                ID           <span class="dv">3</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="dv">4</span>                 MOTHER_ALF_E                ID           <span class="dv">3</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="dv">5</span>                  CHILD_ALF_E                ID           <span class="dv">3</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="dv">6</span>                         RALF                ID           <span class="dv">3</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="dv">7</span>                   ALF_STS_CD                ID           <span class="dv">3</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="dv">8</span>            MOTHER_ALF_STS_CD                ID           <span class="dv">3</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="dv">9</span>             CHILD_ALF_STS_CD                ID           <span class="dv">3</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="dv">10</span>                ALF_MTCH_PCT                ID           <span class="dv">3</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="dv">11</span>         MOTHER_ALF_MTCH_PCT                ID           <span class="dv">3</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="dv">12</span>          CHILD_ALF_MTCH_PCT                ID           <span class="dv">3</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="dv">13</span>     SERVICE_USER_LOCAL_ID_E                ID           <span class="dv">3</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="dv">14</span> MAT_SERVICE_USER_LOCAL_ID_E                ID           <span class="dv">3</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="dv">15</span>                 CLIENT_ID_E                ID           <span class="dv">3</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="dv">16</span>                         AGE      Demographics           <span class="dv">4</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="dv">17</span>                     MAT_AGE      Demographics           <span class="dv">4</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="dv">18</span>              MAT_AGE_AT_ASS      Demographics           <span class="dv">4</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="dv">19</span>                 CONTACT_AGE      Demographics           <span class="dv">4</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="dv">20</span>                         WOB      Demographics           <span class="dv">4</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="dv">21</span>                     MAT_WOB      Demographics           <span class="dv">4</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="dv">22</span>                         SEX      Demographics           <span class="dv">4</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="dv">23</span>         SERVICE_USER_SEX_CD      Demographics           <span class="dv">4</span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="dv">24</span>             NENONATE_SEX_CD      Demographics           <span class="dv">4</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="dv">25</span>                      GENDER      Demographics           <span class="dv">4</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="dv">26</span>                        GNDR      Demographics           <span class="dv">4</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="dv">27</span>                     GNDR_CD      Demographics           <span class="dv">4</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">print</span>(look_up, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                    Variable       Domain_Name</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                        <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> NO MATCH <span class="sc">/</span> UNSURE</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>               AVAIL_FROM_DT          METADATA</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                       ALF_E                ID</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                MOTHER_ALF_E                ID</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                 CHILD_ALF_E                ID</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>                        RALF                ID</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>                  ALF_STS_CD                ID</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>           MOTHER_ALF_STS_CD                ID</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>            CHILD_ALF_STS_CD                ID</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>                ALF_MTCH_PCT                ID</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>         MOTHER_ALF_MTCH_PCT                ID</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>          CHILD_ALF_MTCH_PCT                ID</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>     SERVICE_USER_LOCAL_ID_E                ID</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a> MAT_SERVICE_USER_LOCAL_ID_E                ID</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>                 CLIENT_ID_E                ID</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>                         AGE      DEMOGRAPHICS</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>                     MAT_AGE      DEMOGRAPHICS</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>              MAT_AGE_AT_ASS      DEMOGRAPHICS</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>                 CONTACT_AGE      DEMOGRAPHICS</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>                         WOB      DEMOGRAPHICS</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>                     MAT_WOB      DEMOGRAPHICS</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>                         SEX      DEMOGRAPHICS</span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>         SERVICE_USER_SEX_CD      DEMOGRAPHICS</span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>             NENONATE_SEX_CD      DEMOGRAPHICS</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a>                      GENDER      DEMOGRAPHICS</span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a>                        GNDR      DEMOGRAPHICS</span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>                     GNDR_CD      DEMOGRAPHICS</span></code></pre></div>
 <p>The default lookup table (printed above) governs the automatic
-categorisations. If you modify the default lookup file you must ensure
-that all values contained in the domain_code column map to the the
-domain_file in the way you intend. For example, we can see that the
-domain_file has 8 domains, which will be labelled with 1-8 by the
-function. If we included a ‘0’ or ‘9’ in the domain_code column of the
-lookup file, they would have nothing to map to, and the function would
-crash.</p>
+categorisations within the <a href="https://github.com/aim-rsf/mapmetadata/tree/main/R/metadata_map.R" class="external-link">metadata_map</a>
+function: 1. When a variable needs to be mapped to a domain, before
+asking the user it searches the lookup table 2. If the variable name is
+contained within the ‘Variable’ column of the lookup table, this
+triggers the auto-categorisation 3. For this variable, the Domain_Name
+is extracted from the lookup table and the Domain_Code from the
+domain_list (therefore for a variable to be auto-categorised there must
+be a matching Domain_Name in the lookup and the domain_list files)</p>
+<p>When creating a custom lookup table, you can use this lookup table as
+a base and just append new rows to the bottom. Alternatively, if you do
+not want variables to be automatically mapped in the way defined by this
+lookup table, you can delete the rows for those specific variables.
+Remember, you will always have the opportunity to review the variables
+that have been auto-categorised, and change the mapping decision as
+needed.</p>
 </div>
 <div class="section level2">
 <h2 id="copying-across-tables">Copying across tables<a class="anchor" aria-label="anchor" href="#copying-across-tables"></a>

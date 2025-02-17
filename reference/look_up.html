@@ -4,7 +4,8 @@ For each variable that metadata_map processes:
 If it is contained within this look-up table, it uses the auto-categorised
 domain code rather than asking the user to categorise.
 This data was created with these two steps:
-look_up &amp;lt;- read.csv('inst/inputs/look_up.csv')
+look_up &amp;lt;- read.csv(system.file('inputs',
+ 'look_up.csv',package = 'mapmetadata'))
 usethis::use_data(look_up)
 
 "><meta property="og:description" content="Pre-defined pairings between table variables and domain codes.
@@ -12,7 +13,8 @@ For each variable that metadata_map processes:
 If it is contained within this look-up table, it uses the auto-categorised
 domain code rather than asking the user to categorise.
 This data was created with these two steps:
-look_up &amp;lt;- read.csv('inst/inputs/look_up.csv')
+look_up &amp;lt;- read.csv(system.file('inputs',
+ 'look_up.csv',package = 'mapmetadata'))
 usethis::use_data(look_up)
 
 "><meta property="og:image" content="https://aim-rsf.github.io/mapmetadata/logo.png"><script defer data-domain="pkgdown.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script></head><body>
@@ -58,7 +60,8 @@ usethis::use_data(look_up)
 For each variable that metadata_map processes: <br><br>
 If it is contained within this look-up table, it uses the auto-categorised
 domain code rather than asking the user to categorise.<br><br>
-This data was created with these two steps:</p><ol><li><p><code>look_up &lt;- read.csv('inst/inputs/look_up.csv')</code></p></li>
+This data was created with these two steps:</p><ol><li><p><code>look_up &lt;- read.csv(system.file('inputs',
+ 'look_up.csv',package = 'mapmetadata'))</code></p></li>
 <li><p><code>usethis::use_data(look_up)</code></p></li>
 </ol></div>
 
@@ -69,7 +72,7 @@ This data was created with these two steps:</p><ol><li><p><code>look_up &lt;- re
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with a variable number of rows and 3 columns</p>
+    <p>A data frame with a variable number of rows and 2 columns</p>
     </div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
