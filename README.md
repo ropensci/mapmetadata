@@ -106,8 +106,11 @@ Categorisation note (or press enter to continue): level of asphyxia at birth
 Response to be saved is ' 8 '. Would you like to re-do? (y/n): n
 ```
 Repeat the categorisation for the 5th variable to finish. You will then be asked to review the categorisations:
+
 - First, you will be shown the auto-categorisations and asked if you want to manually edit them (i.e. override the auto categorisation). 
+
     - 'ALF' refers to ‘Anonymous Linking Field’ - this field is used within datasets that have been anonymised and encrypted for inclusion within [SAIL Databank](https://saildatabank.com/governance/privacy-by-design/).
+    
 - Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.
 
 You can use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the [mapmetadata tutorial](https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
