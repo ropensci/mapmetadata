@@ -14,6 +14,7 @@
 #' @importFrom cli cli_alert_warning
 #' @keywords internal
 #' @dev generate help files for unexported objects, for developers
+#' @family map_compare_internal
 
 valid_comparison <- function(input_1, input_2, severity, severity_text) {
   if (!severity %in% c("danger", "warning")) {
@@ -51,6 +52,7 @@ valid_comparison <- function(input_1, input_2, severity, severity_text) {
 #' @importFrom cli cli_alert_warning
 #' @keywords internal
 #' @dev generate help files for unexported objects, for developers
+#' @family map_compare_internal
 
 consensus_on_mismatch <- function(ses_join, table_df, var_int,
                                   domain_code_max) {

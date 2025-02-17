@@ -21,4 +21,15 @@ This function is called within the metadata_map function. \cr \cr
 A summary plot is created that includes the domain code reference table and
 counts of domain code categorisations \cr \cr
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_count}()},
+\code{\link{empty_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation}()},
+\code{\link{user_categorisation_loop}()}
+}
+\concept{metadata_map_internal}
+\keyword{internal}
 \keyword{internal}

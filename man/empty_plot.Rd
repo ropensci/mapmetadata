@@ -18,5 +18,15 @@ A plotly object
 This function is called within the metadata_map function. \cr \cr
 It plots  \cr \cr
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_count}()},
+\code{\link{end_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation}()},
+\code{\link{user_categorisation_loop}()}
+}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}

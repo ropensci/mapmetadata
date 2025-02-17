@@ -16,6 +16,7 @@
 #' @importFrom tools file_path_sans_ext
 #' @importFrom dplyr left_join
 #' @keywords internal
+#' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
 
 data_load <- function(metadata_file, domain_file, look_up_file, quiet = FALSE) {
@@ -143,6 +144,7 @@ data_load <- function(metadata_file, domain_file, look_up_file, quiet = FALSE) {
 #' @importFrom dplyr %>% distinct
 #' @importFrom cli cli_alert_info
 #' @keywords internal
+#' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
 
 output_copy <- function(dataset_name, output_dir, quiet = FALSE) {

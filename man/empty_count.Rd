@@ -14,9 +14,19 @@ Returns a long dataframe with 3 columns: Empty (No, Yes),
 Table (table name), N_Variables (count).
 }
 \description{
-Internal Function: Called within the map_compare.R function. \cr \cr
+Internal Function: Called within the metadata_map function. \cr \cr
 It reads in the metadata dataframe and counts how many of the variables have
 empty descriptions.
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_plot}()},
+\code{\link{end_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation}()},
+\code{\link{user_categorisation_loop}()}
+}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}

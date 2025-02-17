@@ -25,5 +25,20 @@ It displays data properties to the user and requests a categorisation into
 a domain. \cr \cr
 An optional note can be included with the categorisation.
 }
+\seealso{
+Other metadata_map_internal: 
+\code{\link{data_load}()},
+\code{\link{empty_count}()},
+\code{\link{empty_plot}()},
+\code{\link{end_plot}()},
+\code{\link{output_copy}()},
+\code{\link{user_categorisation_loop}()}
+
+Other map_compare_internal: 
+\code{\link{consensus_on_mismatch}()},
+\code{\link{valid_comparison}()}
+}
+\concept{map_compare_internal}
+\concept{metadata_map_internal}
 \keyword{internal}
 \keyword{internal}
