@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
 title: "mapmetadata"
-version: 3.0.1
-date-released: 2025-01-30
+version: 4.0.0
+date-released: 2025-02-18
 authors:
   - family-names: "Stickland"
     given-names: "Rachael"
