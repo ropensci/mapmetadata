@@ -87,7 +87,7 @@ Add a note for processing this table:
 
 Optional note about this table: Demo run
 ```
-This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables. If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png). We input '8' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
+This table has 35 variables (see 'n of 35' below) but the demo run will only process the first 5 variables (by default). If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the [key that has appeared in your plots tab](https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png). We input '8' which means 'Health Info' as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’. 
 
 ```
 ℹ Table variable 1 of 35 (5 left to process)

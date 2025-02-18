@@ -37,7 +37,8 @@ test_that("metadata_map function works correctly with user input", {
 
   local_mocked_bindings(
     user_categorisation_loop = function(start_v, end_v, table_df, df_prev_exist,
-                                        df_prev, lookup, df_plots, output_df) {
+                                        df_prev, lookup, df_plots, output_df,
+                                        quiet) {
       output_df <- read.csv(demo_output)
       output_df$timestamp <- NA
       output_df$table <- NA

@@ -51,7 +51,7 @@ select.list <- NULL
 #'     metadata_map(output_dir = temp_output_dir)
 #' }
 #' @export
-#' @importFrom dplyr %>% filter
+#' @importFrom dplyr %>% filter left_join
 #' @importFrom cli cli_alert_info cli_alert_success
 #' @importFrom utils packageVersion write.csv browseURL menu select.list
 #' @importFrom ggplot2 ggsave
@@ -94,7 +94,10 @@ metadata_map <- function(
   # SECTION 1 - DEFINE & PREPARE INPUTS ----
 
   ## Use 'data_load.R' to collect inputs (defaults or user inputs)
-  data <- data_load(metadata_file, domain_file, look_up_file)
+  data <- data_load(metadata_file, domain_file, look_up_file, quiet)
+
+  ## Add Domain_Code column into lookup table
+  data$lookup <- data$lookup %>% left_join(data$domains, by = "Domain_Name")
 
   ## Extract Dataset from metadata_file
   dataset <- data$metadata
@@ -129,7 +132,7 @@ metadata_map <- function(
   if (length(existing_files) > 0) {
     cli_alert_warning(paste("A bar plot already exists for this dataset, saved",
                             "in your output directory.\nSkipping creation",
-                            "of a new plot and opening existing plot.\n\n"))
+                            "of a new plot.\n\n"))
   } else {
     bar_title <- paste0("\n'", dataset_name, "' contains ", n_tables,
                         " table(s)")
@@ -173,13 +176,12 @@ metadata_map <- function(
 
   #### Use 'output_copy.R' to copy from previous output(s) if they exist
   if (table_copy == TRUE) {
-    copy_prev <- output_copy(dataset_name, output_dir)
+    copy_prev <- output_copy(dataset_name, output_dir, quiet)
     df_prev_exist <- copy_prev$df_prev_exist
     df_prev <- copy_prev$df_prev
   } else {
     df_prev_exist <- FALSE
   }
-
   table_note <- readline(paste("Optional note about this table: "))
 
   ####  Extract table from metadata
@@ -202,9 +204,10 @@ metadata_map <- function(
     table_df,
     df_prev_exist,
     df_prev,
-    lookup = data$lookup,
+    data$lookup,
     n_codes,
-    output_df
+    output_df,
+    quiet
   )
 
   output_df$timestamp <- timestamp_now

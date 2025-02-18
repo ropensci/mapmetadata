@@ -14,7 +14,6 @@
 #' @importFrom cli cli_alert_info
 #' @importFrom utils read.csv
 #' @importFrom tools file_path_sans_ext
-#' @importFrom dplyr left_join
 #' @keywords internal
 #' @family metadata_map_internal
 #' @dev generate help files for unexported objects, for developers
@@ -105,8 +104,6 @@ data_load <- function(metadata_file, domain_file, look_up_file, quiet = FALSE) {
       if (!all(colnames(lookup) == expected_column_names)) {
         stop("look_up file does not have expected column names")
       }
-      # Add Domain_Code column into lookup table
-      lookup <- lookup %>% left_join(domains, by = "Domain_Name")
       # Check for look_up rows not covered by domain_list
       no_match <- lookup[!lookup$Domain_Name %in% domains$Domain_Name, ]
       if (nrow(no_match) != 0) {
@@ -148,16 +145,16 @@ data_load <- function(metadata_file, domain_file, look_up_file, quiet = FALSE) {
 #' @dev generate help files for unexported objects, for developers
 
 output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
-  o_search <- paste0("^MAPPING_", gsub(" ", "", dataset_name), "*")
+  o_search <- paste0("^MAPPING_", gsub(" ", "", dataset_name), ".*\\.csv$")
   csv_list <- data.frame(file = list.files(output_dir, pattern = o_search))
   if (nrow(csv_list) != 0) {
     df_list <- lapply(file.path(output_dir, csv_list$file), read.csv)
     df_prev <- do.call("rbind", df_list) # combine all df
     ## make a new date column, order by earliest, remove duplicates & auto
-    df_prev$time2 <- as.POSIXct(df_prev$timestamp, format = "%Y-%m-%d-%H-%M-%S")
+    df_prev$time2 <- as.POSIXct(df_prev$timestamp, format = "%Y-%m-%d %H:%M:%S")
     df_prev <- df_prev[order(df_prev$time2), ]
     df_prev <- df_prev %>% distinct(variable, .keep_all = TRUE)
-    df_prev <- df_prev[-(which(df_prev$note %in% "AUTO CATEGORISED")), ]
+    df_prev <- df_prev[!(df_prev$note %in% "AUTO CATEGORISED"), ]
     df_prev_exist <- TRUE
     if (!quiet) {
       cli_alert_info(paste0("Copying from previous session(s):\n",
@@ -168,6 +165,6 @@ output_copy <- function(dataset_name, output_dir, quiet = FALSE) {
     df_prev_exist <- FALSE
   }
 
-  copy_prev <- list(df_prev = df_prev, df_prev_exist = df_prev_exist)
-  copy_prev
+  list(df_prev = df_prev, df_prev_exist = df_prev_exist)
+
 }
