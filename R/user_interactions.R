@@ -49,7 +49,7 @@ user_categorisation <- function(var, desc, type,
       suppressWarnings(decision_int_max <- max(decision_int, na.rm = TRUE))
       suppressWarnings(decision_int_min <- min(decision_int, na.rm = TRUE))
       if (decision_int_na == TRUE || decision_int_max > domain_code_max ||
-            decision_int_min < 0) {
+            decision_int_min < 1) {
         cli_alert_warning(paste("Formatting is invalid or integer out of",
                                 "range. Provide one integer or a comma",
                                 "seperated list of integers."))
@@ -123,7 +123,7 @@ user_categorisation_loop <- function(start_v, end_v, table_df, df_prev_exist,
 
     ##### search if variable matches any variable from previous table
     if (df_prev_exist == TRUE) {
-      data_v_index <- which(df_prev$var ==
+      data_v_index <- which(df_prev$variable ==
                               table_df$Column.name[data_v])
       df_prev_subset <- df_prev[data_v_index, ]
     } else {
