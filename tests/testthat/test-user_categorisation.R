@@ -1,9 +1,19 @@
 test_that("user_categorisation works with valid input", {
   # create a mock object that returns user inputs in sequence
-  mock_readline <- mockery::mock("3", "This is a note", "n")
+  mock_factory <- function(...) {
+    i <- 0
+
+    function(...) {
+      things <- c("3", "This is a note", "n")
+      i <<- i + 1
+      things[i]
+    }
+  }
   # replace `readline` function within the `user_categorisation` function with
   # the `mock_readline` mock object
-  mockery::stub(user_categorisation, "readline", mock_readline)
+  local_mocked_bindings(
+    readline = mock_factory()
+  )
 
   response <- user_categorisation(var = "Variable1",
                                   desc = "Description1",
