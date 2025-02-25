@@ -42,7 +42,6 @@ Imports:
 Suggests: 
     devtools,
     knitr,
-    mockery,
     rmarkdown,
     testthat (>= 3.0.0),
     withr
