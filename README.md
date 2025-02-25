@@ -5,7 +5,7 @@
 <a href="https://aim-rsf.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="121" alt="mapmetadata website" /></a>
 
 <!-- badges: start -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10581500.svg)](https://zenodo.org/records/14605021)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10581500.svg)](https://zenodo.org/records/14605021)
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![R-CMD-check](https://github.com/aim-rsf/mapmetadata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aim-rsf/mapmetadata/actions/workflows/R-CMD-check.yaml)
 [![pkgcheck](https://github.com/aim-rsf/mapmetadata/workflows/pkgcheck/badge.svg)](https://github.com/aim-rsf/mapmetadata/actions?query=workflow%3Apkgcheck) [![codecov](https://codecov.io/gh/aim-rsf/mapmetadata/graph/badge.svg?token=59S2QVG7CQ)](https://codecov.io/gh/aim-rsf/mapmetadata) [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/674_status.svg)](https://github.com/ropensci/software-review/issues/674)
