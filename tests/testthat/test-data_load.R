@@ -113,7 +113,7 @@ test_that("data_load errors when look_up_file has incorrect column names", {
                "look_up file does not have expected column names")
 })
 
-test_that("data_load gives warning when look_up and domain_file mistmatch", {
+test_that("data_load gives warning when look_up and domain_file mismatch", {
   look_up_temp2 <- look_up
   look_up_row <- data.frame(Variable = "test", Domain_Name = "test")
   look_up_temp2 <- rbind(look_up_temp2, look_up_row)

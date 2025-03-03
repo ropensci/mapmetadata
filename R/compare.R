@@ -59,7 +59,7 @@ consensus_on_mismatch <- function(ses_join, table_df, var_int,
   if (ses_join$domain_code_ses1[var_int]
       != ses_join$domain_code_ses2[var_int]) {
     cat("\n\n")
-    cli_alert_warning("Mismatch found, provide concensus decision below.")
+    cli_alert_warning("Mismatch found, provide consensus decision below.")
     cli_alert_warning(paste("\nDOMAIN CODE (note) for session 1 --> ",
                             ses_join$domain_code_ses1[var_int],
                             "(", ses_join$note_ses1[var_int], ")"))
