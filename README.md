@@ -31,6 +31,11 @@ Run in the R console:
 install.packages("pak")
 pak::pak("aim-rsf/mapmetadata")
 ```
+or 
+
+```r
+install.packages("<package-name>", repos = "https://ropensci.r-universe.dev")
+```
 
 Load the library:
 
