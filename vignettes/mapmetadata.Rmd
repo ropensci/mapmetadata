@@ -153,9 +153,7 @@ The default lookup table (printed above) governs the automatic categorisations w
 2. If the variable name is contained within the 'Variable' column of the lookup table, this triggers the auto-categorisation 
 3. For this variable, the Domain_Name is extracted from the lookup table and the Domain_Code from the domain_list (therefore for a variable to be auto-categorised there must be a matching Domain_Name in the lookup and the domain_list files)
 
-When creating a custom lookup table, you can use this lookup table as a base and just append new rows to the bottom.
-Alternatively, if you do not want variables to be automatically mapped in the way defined by this lookup table, you can delete the rows for those specific variables. 
-Remember, you will always have the opportunity to review the variables that have been auto-categorised, and change the mapping decision as needed. 
+When creating a custom lookup table, create your own csv and provide that as an input to the function (i.e. `metadata_map(metadata_file = 360_NCCHD_Metadata.csv, domain_file = my_domains.csv, look_up_file = my_look_up.csv)`. In `my_look_up.csv` you could use rows from the current lookup table (shown above) as a base and manually append new rows to the bottom to make your new csv. Alternatively, if you do not want variables to be automatically mapped in the way defined by this default lookup table, do not include these rows in the csv you provide. Remember, you will always have the opportunity to review the variables that have been auto-categorised, and change the mapping decision as needed. 
 
 # Copying across tables
 
