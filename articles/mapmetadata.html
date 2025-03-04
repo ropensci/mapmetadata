@@ -220,7 +220,7 @@ e.g. <code>metadata_map(metadata_file = ID_Name_Metadata.csv, domain_file = my_
 into your R environment (you can also read the package file with
 <code>system.file("inputs/domain_list_demo.csv", package = "mapmetadata"</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"domain_list"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">print</span>(domain_list, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>domain_list</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>Domain_Code        Domain_Name</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>           <span class="dv">1</span>  NO MATCH <span class="sc">/</span> UNSURE</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>           <span class="dv">2</span>           METADATA</span>
@@ -244,7 +244,7 @@ this is not essential.</p>
 your R environment (you can also read the package file with
 <code>system.file("inputs/look_up.csv", package = "mapmetadata")</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"look_up"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">print</span>(look_up, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>look_up</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                    Variable       Domain_Name</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                        <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> NO MATCH <span class="sc">/</span> UNSURE</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>               AVAIL_FROM_DT          METADATA</span>
