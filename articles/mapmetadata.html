@@ -286,13 +286,16 @@ table and the Domain_Code from the domain_list (therefore for a variable
 to be auto-categorised there must be a matching Domain_Name in the
 lookup and the domain_list files)</li>
 </ol>
-<p>When creating a custom lookup table, you can use this lookup table as
-a base and just append new rows to the bottom. Alternatively, if you do
-not want variables to be automatically mapped in the way defined by this
-lookup table, you can delete the rows for those specific variables.
-Remember, you will always have the opportunity to review the variables
-that have been auto-categorised, and change the mapping decision as
-needed.</p>
+<p>When creating a custom lookup table, create your own csv and provide
+that as an input to the function
+(i.e. <code>metadata_map(metadata_file = 360_NCCHD_Metadata.csv, domain_file = my_domains.csv, look_up_file = my_look_up.csv)</code>.
+In <code>my_look_up.csv</code> you could use rows from the current
+lookup table (shown above) as a base and manually append new rows to the
+bottom to make your new csv. Alternatively, if you do not want variables
+to be automatically mapped in the way defined by this default lookup
+table, do not include these rows in the csv you provide. Remember, you
+will always have the opportunity to review the variables that have been
+auto-categorised, and change the mapping decision as needed.</p>
 </div>
 <div class="section level2">
 <h2 id="copying-across-tables">Copying across tables<a class="anchor" aria-label="anchor" href="#copying-across-tables"></a>
