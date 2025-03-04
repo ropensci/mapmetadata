@@ -95,7 +95,7 @@ Run `data("domain_list")` to load the demo domain list into your R environment (
 
 ```r
 data("domain_list")
-print(domain_list, row.names = FALSE)
+domain_list
 Domain_Code        Domain_Name
            1  NO MATCH / UNSURE
            2           METADATA
@@ -116,7 +116,7 @@ Run `data("look_up")` to load the demo look up table into your R environment (yo
 
 ```r
 data("look_up")
-print(look_up, row.names = FALSE)
+look_up
                     Variable       Domain_Name
                         <NA> NO MATCH / UNSURE
                AVAIL_FROM_DT          METADATA
