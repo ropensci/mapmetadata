@@ -34,7 +34,7 @@ pak::pak("aim-rsf/mapmetadata")
 or 
 
 ```r
-install.packages("<package-name>", repos = "https://ropensci.r-universe.dev")
+install.packages("mapmetadata", repos = "https://ropensci.r-universe.dev")
 ```
 
 Load the library:
