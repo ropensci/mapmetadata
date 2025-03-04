@@ -1,7 +1,7 @@
 # mapmetadata <a href="https://aim-rsf.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="180" alt="mapmetadata website" /></a>
 
 <!-- badges: start -->
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10581500.svg)](https://zenodo.org/records/14605021)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14605021.svg)](https://doi.org/10.5281/zenodo.10581499)
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/674_status.svg)](https://github.com/ropensci/software-review/issues/674)
