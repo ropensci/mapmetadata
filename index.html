@@ -72,7 +72,7 @@
 <div class="section level2">
 <h2 id="what-is-the-mapmetadata-package">What is the <code>mapmetadata</code> package?<a class="anchor" aria-label="anchor" href="#what-is-the-mapmetadata-package"></a>
 </h2>
-<p>For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata in our <a href="https://aim-rsf.github.io/mapmetadata/articles/HealthMetadata.html">Health Metadata article hosted on the package website</a>.</p>
+<p>For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata in our <a href="https://docs.ropensci.org/mapmetadata/articles/HealthMetadata.html" class="external-link">Health Metadata article hosted on the package website</a>.</p>
 <p>One comprehensive open resource is the <a href="https://healthdatagateway.org/search?search=&amp;datasetSort=latest&amp;tab=Datasets" class="external-link">Health Data Research Gateway</a>, managed by <a href="https://www.hdruk.ac.uk/" class="external-link">Health Data Research UK</a> in collaboration with the <a href="https://ukhealthdata.org/" class="external-link">UK Health Data Research Alliance</a>. The gateway can help a researcher address questions such as: <em>What datasets are available? What are the features of these datasets? Which datasets fit my research? How do I access these datasets? How have these datasets been used by the community before, and do they link to others? What publications, or other resources exist, using these datasets?</em></p>
 <p>This <code>mapmetadata</code> package uses structural metadata files, downloaded from the Health Data Research Gateway. In theory, any metadata file with the same structure as the the files downloaded from this gateway can be used with this package. The <code>mapmetadata</code> package goes beyond just browsing structural metadata, and helps a researcher interact with this metadata and map it to their research domains/concepts. Firstly, it creates a plot (see example below) displaying number of variables in each table, number of tables, and the completeness of the metadata (i.e. whether the description for each variable in a table exists).</p>
 <p>Secondly, it helps the researcher address the question <em>Which variables map onto with my research domains?</em> (e.g. socioeconomic, childhood adverse events, diagnoses, culture and community). The package guides users in mapping each variable into predefined research domains. Research domains could otherwise be called concepts or latent variables. To speed up this manual mapping process, the package automatically categorises variables that frequently occur in health datasets (e.g. ID, Sex, Age). The package also accounts for variables that appear across multiple tables within a dataset and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.</p>
@@ -86,8 +86,7 @@
 </h3>
 <p>Run in the R console:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"aim-rsf/mapmetadata"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mapmetadata"</span>, repos <span class="op">=</span> <span class="st">"https://ropensci.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
 <p>Load the library:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/mapmetadata/" class="external-link">mapmetadata</a></span><span class="op">)</span></span></code></pre></div>
@@ -96,7 +95,7 @@
 <h3 id="demo-using-the-r-studio-ide">Demo (using the <code>R Studio</code> IDE)<a class="anchor" aria-label="anchor" href="#demo-using-the-r-studio-ide"></a>
 </h3>
 <p>There are three main functions you can interact with: <code>metadata_map</code>, <code>map_compare</code>, and <code>map_convert</code>. For more information on any function, type <code>?function_name</code>.</p>
-<p>The main function is <code>metadata_map</code> and you can run it in demo mode using the files located in the <a href="https://github.com/aim-rsf/mapmetadata/tree/main/inst/inputs" class="external-link">inst/inputs</a> directory:</p>
+<p>The main function is <code>metadata_map</code> and you can run it in demo mode using the files located in the <a href="https://github.com/ropensci/mapmetadata/tree/main/inst/inputs" class="external-link">inst/inputs</a> directory:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/metadata_map.html">metadata_map</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Terminology used in this package: a <em>dataset</em> can contain one or more <em>tables</em> which contains multiple column <em>variables</em>. It creates a plot at the dataset level, and guides you through an interactive session at the table level, to sort table variables into pre-defined categories/domains.</p>
@@ -110,7 +109,7 @@ Use this bar plot, and the information on the HDRUK Gateway, to guide your mappi
 
 Enter the table number you want to process: </code></pre>
 <p>You can exit here (with Clt-C or Esc) to just get this summary plot, which is saved to your project directory. All outputs from this <code>metadata_map</code> function are saved to your project directory. You can change the save location by adjusting the <code>output_dir</code> argument (an argument means the information given to a function, to alter how it runs). For example <code>metadata_map(output_dir = 'username/sub_directory')</code>.</p>
-<p><img src="https://raw.githubusercontent.com/aim-rsf/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2025-02-14-18-14-01.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
+<p><img src="https://raw.githubusercontent.com/ropensci/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2025-02-14-18-14-01.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"></p>
 <p>If you continue to the mapping stage, you will see all the tables in this dataset are listed. Select the 4th table for demo purposes:</p>
 <pre><code>Enter the table number you want to process:
 
@@ -125,7 +124,7 @@ Selection: 4</code></pre>
 <pre><code>ℹ Processing Table 4 of 13 (CHILD)
 
 Optional note about this table: Demo run</code></pre>
-<p>This table has 35 variables (see ‘n of 35’ below) but the demo run will only process the first 5 variables (by default). If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the <a href="https://github.com/aim-rsf/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png" class="external-link">key that has appeared in your plots tab</a>. We input ‘8’ which means ‘Health Info’ as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’.</p>
+<p>This table has 35 variables (see ‘n of 35’ below) but the demo run will only process the first 5 variables (by default). If it skips over a variable (as is the case with 1, 2 and 3) this means it has been auto-categorised. Variable 4 has not been auto-categorised and is asking you to categorise it. You will be asked to categorise a variable with one (or more) of the numbers shown in the <a href="https://github.com/ropensci/mapmetadata/tree/main/inst/outputs/plots_tab_demo_domains.png" class="external-link">key that has appeared in your plots tab</a>. We input ‘8’ which means ‘Health Info’ as defined by the key. The demo simplifies domains for demonstration purposes; for a research study, your domains are likely to be much more specific e.g. ‘Prenatal, antenatal, neonatal and birth’ or ‘Health behaviours and diet’.</p>
 <pre><code>ℹ Table variable 1 of 35 (5 left to process)
 ℹ Table variable 2 of 35 (4 left to process)
 ℹ Table variable 3 of 35 (3 left to process)
@@ -150,14 +149,19 @@ Response to be saved is ' 8 '. Would you like to re-do? (y/n): n</code></pre>
 </li>
 <li><p>Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.</p></li>
 </ul>
-<p>You can use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the <a href="https://aim-rsf.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
+<p>You can use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the <a href="https://ropensci.github.io/mapmetadata/articles/mapmetadata.html" class="external-link">mapmetadata tutorial</a> page on the package website.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
-<p>This project is licensed under the GNU General Public License v3.0 - see the <a href="https://github.com/aim-rsf/mapmetadata/blob/main/LICENSE.md" class="external-link">LICENSE</a> file for details.<br>
+<p>This project is licensed under the GNU General Public License v3.0 - see the <a href="https://github.com/ropensci/mapmetadata/blob/main/LICENSE.md" class="external-link">LICENSE</a> file for details.<br>
 For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link">GNU General Public License</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that this package is released with a <a href="https://ropensci.org/code-of-conduct/" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -178,12 +182,12 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
-<p>We welcome contributions to <code>mapmetadata</code>. Please read our <a href="https://github.com/aim-rsf/mapmetadata/blob/main/CONTRIBUTING.md" class="external-link">Contribution Guidelines</a> for details on how to contribute.</p>
+<p>We welcome contributions to <code>mapmetadata</code>. Please read our <a href="https://github.com/ropensci/mapmetadata/blob/main/CONTRIBUTING.md" class="external-link">Contribution Guidelines</a> for details on how to contribute.</p>
 <ul>
 <li>
-<strong>Report Issues</strong>: Found a bug? Have a feature request? Report it on <a href="https://github.com/aim-rsf/mapmetadata/issues" class="external-link">GitHub Issues</a>.</li>
+<strong>Report Issues</strong>: Found a bug? Have a feature request? Report it on <a href="https://github.com/ropensci/mapmetadata/issues" class="external-link">GitHub Issues</a>.</li>
 <li>
-<strong>Submit Pull Requests</strong>: Follow our <a href="https://github.com/aim-rsf/mapmetadata/blob/main/CONTRIBUTING.md" class="external-link">Contribution Guidelines</a> for pull requests.</li>
+<strong>Submit Pull Requests</strong>: Follow our <a href="https://github.com/ropensci/mapmetadata/blob/main/CONTRIBUTING.md" class="external-link">Contribution Guidelines</a> for pull requests.</li>
 <li>
 <strong>Feedback</strong>: Share your thoughts by opening an issue.</li>
 </ul>
@@ -197,13 +201,13 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 <table class="table"><tbody>
 <tr>
 <td align="center" valign="top" width="14.28%">
-<a href="http://linkedin.com/in/rstickland-phd" class="external-link"><img src="https://avatars.githubusercontent.com/u/50215726?v=4?s=100" width="100px;" alt="Rachael Stickland"><br><sub><b>Rachael Stickland</b></sub></a><br><a href="#content-RayStick" title="Content">🖋</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=RayStick" title="Documentation" class="external-link">📖</a> <a href="#maintenance-RayStick" title="Maintenance">🚧</a> <a href="#ideas-RayStick" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#projectManagement-RayStick" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARayStick" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=RayStick" title="Code" class="external-link">💻</a>
+<a href="http://linkedin.com/in/rstickland-phd" class="external-link"><img src="https://avatars.githubusercontent.com/u/50215726?v=4?s=100" width="100px;" alt="Rachael Stickland"><br><sub><b>Rachael Stickland</b></sub></a><br><a href="#content-RayStick" title="Content">🖋</a> <a href="https://github.com/ropensci/mapmetadata/commits?author=RayStick" title="Documentation" class="external-link">📖</a> <a href="#maintenance-RayStick" title="Maintenance">🚧</a> <a href="#ideas-RayStick" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#projectManagement-RayStick" title="Project Management">📆</a> <a href="https://github.com/ropensci/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARayStick" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="https://github.com/ropensci/mapmetadata/commits?author=RayStick" title="Code" class="external-link">💻</a>
 </td>
 <td align="center" valign="top" width="14.28%">
-<a href="https://batool-almarzouq.netlify.app/" class="external-link"><img src="https://avatars.githubusercontent.com/u/53487593?v=4?s=100" width="100px;" alt="Batool Almarzouq"><br><sub><b>Batool Almarzouq</b></sub></a><br><a href="#userTesting-BatoolMM" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ABatoolMM" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="#ideas-BatoolMM" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#projectManagement-BatoolMM" title="Project Management">📆</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=BatoolMM" title="Documentation" class="external-link">📖</a>
+<a href="https://batool-almarzouq.netlify.app/" class="external-link"><img src="https://avatars.githubusercontent.com/u/53487593?v=4?s=100" width="100px;" alt="Batool Almarzouq"><br><sub><b>Batool Almarzouq</b></sub></a><br><a href="#userTesting-BatoolMM" title="User Testing">📓</a> <a href="https://github.com/ropensci/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ABatoolMM" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="#ideas-BatoolMM" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#projectManagement-BatoolMM" title="Project Management">📆</a> <a href="https://github.com/ropensci/mapmetadata/commits?author=BatoolMM" title="Documentation" class="external-link">📖</a>
 </td>
 <td align="center" valign="top" width="14.28%">
-<a href="https://github.com/Rainiefantasy" class="external-link"><img src="https://avatars.githubusercontent.com/u/43926907?v=4?s=100" width="100px;" alt="Mahwish Mohammad"><br><sub><b>Mahwish Mohammad</b></sub></a><br><a href="#userTesting-Rainiefantasy" title="User Testing">📓</a> <a href="https://github.com/aim-rsf/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARainiefantasy" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="#ideas-Rainiefantasy" title="Ideas, Planning, &amp; Feedback">🤔</a>
+<a href="https://github.com/Rainiefantasy" class="external-link"><img src="https://avatars.githubusercontent.com/u/43926907?v=4?s=100" width="100px;" alt="Mahwish Mohammad"><br><sub><b>Mahwish Mohammad</b></sub></a><br><a href="#userTesting-Rainiefantasy" title="User Testing">📓</a> <a href="https://github.com/ropensci/mapmetadata/pulls?q=is%3Apr+reviewed-by%3ARainiefantasy" title="Reviewed Pull Requests" class="external-link">👀</a> <a href="#ideas-Rainiefantasy" title="Ideas, Planning, &amp; Feedback">🤔</a>
 </td>
 <td align="center" valign="top" width="14.28%">
 <a href="https://github.com/DDelbarre" class="external-link"><img src="https://avatars.githubusercontent.com/u/108824056?v=4?s=100" width="100px;" alt="Daniel Delbarre"><br><sub><b>Daniel Delbarre</b></sub></a><br><a href="#ideas-DDelbarre" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#userTesting-DDelbarre" title="User Testing">📓</a>
@@ -212,7 +216,7 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 <a href="https://github.com/NidaZiaS" class="external-link"><img src="https://avatars.githubusercontent.com/u/142920412?v=4?s=100" width="100px;" alt="NidaZiaS"><br><sub><b>NidaZiaS</b></sub></a><br><a href="#ideas-NidaZiaS" title="Ideas, Planning, &amp; Feedback">🤔</a>
 </td>
 <td align="center" valign="top" width="14.28%">
-<a href="https://masalmon.eu/" class="external-link"><img src="https://avatars.githubusercontent.com/u/8360597?v=4?s=100" width="100px;" alt="Maëlle Salmon"><br><sub><b>Maëlle Salmon</b></sub></a><br><a href="#ideas-maelle" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="https://github.com/aim-rsf/mapmetadata/commits?author=maelle" title="Code" class="external-link">💻</a>
+<a href="https://masalmon.eu/" class="external-link"><img src="https://avatars.githubusercontent.com/u/8360597?v=4?s=100" width="100px;" alt="Maëlle Salmon"><br><sub><b>Maëlle Salmon</b></sub></a><br><a href="#ideas-maelle" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="https://github.com/ropensci/mapmetadata/commits?author=maelle" title="Code" class="external-link">💻</a>
 </td>
 <td align="center" valign="top" width="14.28%">
 <a href="https://philosopher-analyst.netlify.app/" class="external-link"><img src="https://avatars.githubusercontent.com/u/39963221?v=4?s=100" width="100px;" alt="Zoë Turner"><br><sub><b>Zoë Turner</b></sub></a><br><a href="#ideas-Lextuga007" title="Ideas, Planning, &amp; Feedback">🤔</a> <a href="#userTesting-Lextuga007" title="User Testing">📓</a>
