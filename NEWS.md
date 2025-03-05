@@ -1,7 +1,7 @@
 mapmetadata 4.0.0 (2025-02-17)
 =========================
 
-Thanks to the brilliant reviewer comments via the rOpenSci software review (https://github.com/ropensci/software-review/issues/674), this release makes some major improvements to the clarity and functionality of the package.   See this issue for a summary of the changes: https://github.com/aim-rsf/mapmetadata/issues/184
+Thanks to the brilliant reviewer comments via the rOpenSci software review (https://github.com/ropensci/software-review/issues/674), this release makes some major improvements to the clarity and functionality of the package.   See this issue for a summary of the changes: https://github.com/ropensci/mapmetadata/issues/184
 
 Many of these changes relate to making the package easier to use, as there is a heavy dependence on user interaction, improving validation and testing, and complying with R package best practices. 
 
