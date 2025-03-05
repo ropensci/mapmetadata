@@ -25,13 +25,7 @@ Secondly, it helps the researcher address the question *Which variables map onto
 
 ### Installation and set-up
 
-Run in the R console:
-
-``` r
-install.packages("pak")
-pak::pak("aim-rsf/mapmetadata")
-```
-or 
+Run in the R console: 
 
 ```r
 install.packages("mapmetadata", repos = "https://ropensci.r-universe.dev")
