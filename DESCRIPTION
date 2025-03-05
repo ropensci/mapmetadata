@@ -27,8 +27,8 @@ Description: Prior to gaining full access to health datasets, explore
     package has been developed and tested on metadata files from this
     gateway only.
 License: GPL (>= 3)
-URL: https://aim-rsf.github.io/mapmetadata/
-BugReports: https://github.com/aim-rsf/mapmetadata/issues
+URL: https://docs.ropensci.org/mapmetadata/
+BugReports: https://github.com/ropensci/mapmetadata/issues
 Depends: 
     R (>= 2.10)
 Imports: 
