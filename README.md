@@ -119,13 +119,6 @@ You can use the output file from the `metadata_map()` function as input for subs
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/ropensci/mapmetadata/blob/main/LICENSE.md) file for details.  
 For more information, refer to [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-## Code of Conduct 
-
-Please note that this package is released with a [Contributor
-Code of Conduct](https://ropensci.org/code-of-conduct/). 
-By
-contributing to this project, you agree to abide by its terms.
-
 ## Citation
 
 To cite `mapmetadata` in publications:
@@ -146,7 +139,12 @@ A BibTeX entry for LaTeX users:
 
 ## Contributing
 
-We welcome contributions to `mapmetadata`. Please read our [Contribution Guidelines](https://github.com/ropensci/mapmetadata/blob/main/CONTRIBUTING.md) for details on how to contribute.
+Please note that this package is released with a [Contributor
+Code of Conduct](https://ropensci.org/code-of-conduct/). 
+By
+contributing to this project, you agree to abide by its terms.
+
+We welcome diverse contributions to `mapmetadata`. Please read our [Contribution Guidelines](https://github.com/ropensci/mapmetadata/blob/main/CONTRIBUTING.md) for details on how to contribute.
 
 -   **Report Issues**: Found a bug? Have a feature request? Report it on [GitHub Issues](https://github.com/ropensci/mapmetadata/issues).
 -   **Submit Pull Requests**: Follow our [Contribution Guidelines](https://github.com/ropensci/mapmetadata/blob/main/CONTRIBUTING.md) for pull requests.
