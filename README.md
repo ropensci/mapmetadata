@@ -123,7 +123,7 @@ For more information, refer to [GNU General Public License](https://www.gnu.org/
 
 To cite `mapmetadata` in publications:
 
-> Stickland R (2025). mapmetadata: map health metadata onto predefined research domains. R package version 4.0.0.
+> Stickland R (2025). mapmetadata: map health metadata onto predefined research domains. R package version 4.0.1.
 
 A BibTeX entry for LaTeX users:
 
@@ -132,7 +132,7 @@ A BibTeX entry for LaTeX users:
     title = {mapmetadata: map health metadata onto predefined research domains},
     author = {Rachael Stickland},
     year = {2025},
-    note = {R package version 4.0.0},
+    note = {R package version 4.0.1},
     doi = {https://doi.org/10.5281/zenodo.10581499}, 
   }
 ```

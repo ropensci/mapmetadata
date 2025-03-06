@@ -4,16 +4,16 @@
   "identifier": "mapmetadata",
   "description": "Prior to gaining full access to health datasets, explore publicly available metadata and map metadata onto predefined research domains. This package uses structural metadata files downloaded from the Health Data Research Gateway (https://healthdatagateway.org/en). In theory, any metadata file with the same structure as the files downloaded from this gateway can be used with this package, but the package has been developed and tested on metadata files from this gateway only.",
   "name": "mapmetadata: Map health metadata onto predefined research domains",
-  "codeRepository": "https://github.com/aim-rsf/mapmetadata",
-  "issueTracker": "https://github.com/aim-rsf/mapmetadata/issues",
+  "codeRepository": "https://github.com/ropensci/mapmetadata",
+  "issueTracker": "https://github.com/ropensci/mapmetadata/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
   "author": [
     {
       "@type": "Person",
@@ -214,7 +214,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "2452.122KB",
+  "fileSize": "1051.215KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -228,21 +228,21 @@
       ],
       "name": "mapmetadata: map health metadata onto predefined research domains",
       "identifier": "https://doi.org/10.5281/zenodo.10581499",
-      "url": "https://github.com/aim-rsf/mapmetadata",
-      "description": "R package version 4.0.0",
+      "url": "https://github.com/ropensci/mapmetadata",
+      "description": "R package version 4.0.1",
       "@id": "https://doi.org/10.5281/zenodo.10581499",
       "sameAs": "https://doi.org/10.5281/zenodo.10581499"
     }
   ],
-  "relatedLink": "https://aim-rsf.github.io/mapmetadata/",
-  "releaseNotes": "https://github.com/aim-rsf/mapmetadata/blob/master/NEWS.md",
-  "readme": "https://github.com/aim-rsf/mapmetadata/blob/main/README.md",
-  "contIntegration": ["https://github.com/aim-rsf/mapmetadata/actions/workflows/R-CMD-check.yaml", "https://github.com/aim-rsf/mapmetadata/actions?query=workflow%3Apkgcheck", "https://codecov.io/gh/aim-rsf/mapmetadata"],
+  "relatedLink": "https://docs.ropensci.org/mapmetadata/",
+  "releaseNotes": "https://github.com/ropensci/mapmetadata/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/mapmetadata/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/mapmetadata/actions/workflows/R-CMD-check.yaml", "https://github.com/ropensci/mapmetadata/actions?query=workflow%3Apkgcheck", "https://codecov.io/gh/ropensci/mapmetadata"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/674",
     "provider": "https://ropensci.org"
   },
-  "keywords": ["mltc", "r", "rpackage", "sail-databank", "health-data", "metadata", "hdruk", "hdruk-gateway"]
+  "keywords": ["r", "rpackage", "sail-databank", "health-data", "metadata", "hdruk", "hdruk-gateway"]
 }

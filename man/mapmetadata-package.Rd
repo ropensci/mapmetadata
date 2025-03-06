@@ -13,8 +13,8 @@ Prior to gaining full access to health datasets, explore publicly available meta
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://aim-rsf.github.io/mapmetadata/}
-  \item Report bugs at \url{https://github.com/aim-rsf/mapmetadata/issues}
+  \item \url{https://docs.ropensci.org/mapmetadata/}
+  \item Report bugs at \url{https://github.com/ropensci/mapmetadata/issues}
 }
 
 }
