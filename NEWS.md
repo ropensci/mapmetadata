@@ -1,3 +1,14 @@
+mapmetadata 4.0.1 (2025-03-06)
+=========================
+
+After peer-review with rOpenSci this package was accepted 🎆 and transferred to the rOpenSci GitHub organisation to be hosted and promoted. Mostly, this release contains documentation changes to reflect this repo transfer. Code functionality is unaltered. 
+
+### MINOR IMPROVEMENTS
+* test: use function factory instead of {mockery} by @maelle in https://github.com/ropensci/mapmetadata/pull/207
+* Small edits on messages by @Lextuga007 in https://github.com/ropensci/mapmetadata/pull/212
+* Contribution types updated in https://github.com/ropensci/mapmetadata/pull/209 and https://github.com/ropensci/mapmetadata/pull/208
+* Links corrected from 'aim-rsf' organisation to 'ropensci' in https://github.com/ropensci/mapmetadata/pull/219, https://github.com/ropensci/mapmetadata/pull/217 and https://github.com/ropensci/mapmetadata/pull/220
+
 mapmetadata 4.0.0 (2025-02-17)
 =========================
 
