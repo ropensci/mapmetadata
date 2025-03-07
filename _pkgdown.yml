@@ -1,10 +1,10 @@
-url: https://ropensci.github.io/mapmetadata/
+url: https://docs.ropensci.org/mapmetadata/ 
 home:
   title: Browse and categorise health metadata
   logo: man/figures/logo.png
 authors:
   Rachael Stickland:
-    href: https://www.turing.ac.uk/people/researchers/rachael-stickland
+    href: https://github.com/RayStick
 template:
   bootstrap: 5
   bslib:
