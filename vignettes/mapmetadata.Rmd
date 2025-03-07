@@ -14,13 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-For installation, set-up and basic usage refer to the package [README.md](https://docs.ropensci.org/mapmetadata/ index.html) file. In this tutorial, you will find more context on package inputs, how to interact with package functions and interpret package outputs.
+For installation, set-up and basic usage refer to the package [README.md](https://docs.ropensci.org/mapmetadata/index.html) file. In this tutorial, you will find more context on package inputs, how to interact with package functions and interpret package outputs.
 
 # Preparing for mapping
 
 <img src="https://raw.githubusercontent.com/ropensci/mapmetadata/main/inst/outputs/BAR_360_NCCHD_2025-02-14-18-14-01.png" alt="example bar plot showing number of variables for each table alongside counts of whether variables have missing descriptions"/>
 
-This bar plot is produced automatically when you run the [metadata_map](https://docs.ropensci.org/mapmetadata/ reference/metadata_map.html) function with the demo metadata file, which contains metadata about the **National Community Child Health Database (NCCHD).**
+This bar plot is produced automatically when you run the [metadata_map](https://docs.ropensci.org/mapmetadata/reference/metadata_map.html) function with the demo metadata file, which contains metadata about the **National Community Child Health Database (NCCHD).**
 
 The bar plot shows us there are 13 tables in the dataset. The height of the bar indicates the number of variables in that table:
 
