@@ -1,5 +1,5 @@
 
-# mapmetadata <a href="https://ropensci.github.io/mapmetadata/"><img src="man/figures/logo.png" align="right" height="180" alt="mapmetadata website" /></a>
+# mapmetadata <a href="https://docs.ropensci.org/mapmetadata/"><img src="man/figures/logo.png" align="right" height="180" alt="mapmetadata website" /></a>
 
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14605021.svg)](https://doi.org/10.5281/zenodo.10581499)
