@@ -19,7 +19,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Browse and categorise health metadata">
 <meta name="description" content="Prior to gaining full access to health datasets, explore publicly available metadata and map metadata onto predefined research domains. This package uses structural metadata files downloaded from the Health Data Research Gateway (https://healthdatagateway.org/en). In theory, any metadata file with the same structure as the files downloaded from this gateway can be used with this package, but the package has been developed and tested on metadata files from this gateway only.">
 <meta property="og:description" content="Prior to gaining full access to health datasets, explore publicly available metadata and map metadata onto predefined research domains. This package uses structural metadata files downloaded from the Health Data Research Gateway (https://healthdatagateway.org/en). In theory, any metadata file with the same structure as the files downloaded from this gateway can be used with this package, but the package has been developed and tested on metadata files from this gateway only.">
-<meta property="og:image" content="https://ropensci.github.io/mapmetadata/logo.png">
+<meta property="og:image" content="https://docs.ropensci.org/mapmetadata/logo.png">
 <script defer data-domain="pkgdown.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script>
 </head>
 <body>
@@ -72,7 +72,7 @@
 <div class="section level2">
 <h2 id="what-is-the-mapmetadata-package">What is the <code>mapmetadata</code> package?<a class="anchor" aria-label="anchor" href="#what-is-the-mapmetadata-package"></a>
 </h2>
-<p>For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata in our <a href="https://docs.ropensci.org/mapmetadata/articles/HealthMetadata.html" class="external-link">Health Metadata article hosted on the package website</a>.</p>
+<p>For researchers working with health datasets, there are many great resources that summarise features about these datasets (often termed metadata) and how to access them. Access to metadata can help researchers plan projects prior to gaining full access to health datasets. Learn more about health metadata in our <a href="https://docs.ropensci.org/mapmetadata/articles/HealthMetadata.html">Health Metadata article hosted on the package website</a>.</p>
 <p>One comprehensive open resource is the <a href="https://healthdatagateway.org/search?search=&amp;datasetSort=latest&amp;tab=Datasets" class="external-link">Health Data Research Gateway</a>, managed by <a href="https://www.hdruk.ac.uk/" class="external-link">Health Data Research UK</a> in collaboration with the <a href="https://ukhealthdata.org/" class="external-link">UK Health Data Research Alliance</a>. The gateway can help a researcher address questions such as: <em>What datasets are available? What are the features of these datasets? Which datasets fit my research? How do I access these datasets? How have these datasets been used by the community before, and do they link to others? What publications, or other resources exist, using these datasets?</em></p>
 <p>This <code>mapmetadata</code> package uses structural metadata files, downloaded from the Health Data Research Gateway. In theory, any metadata file with the same structure as the the files downloaded from this gateway can be used with this package. The <code>mapmetadata</code> package goes beyond just browsing structural metadata, and helps a researcher interact with this metadata and map it to their research domains/concepts. Firstly, it creates a plot (see example below) displaying number of variables in each table, number of tables, and the completeness of the metadata (i.e. whether the description for each variable in a table exists).</p>
 <p>Secondly, it helps the researcher address the question <em>Which variables map onto with my research domains?</em> (e.g. socioeconomic, childhood adverse events, diagnoses, culture and community). The package guides users in mapping each variable into predefined research domains. Research domains could otherwise be called concepts or latent variables. To speed up this manual mapping process, the package automatically categorises variables that frequently occur in health datasets (e.g. ID, Sex, Age). The package also accounts for variables that appear across multiple tables within a dataset and allows users to copy their categorisations to ensure consistency. The output files can be used in later analyses to filter and visualise variables by category.</p>
@@ -89,7 +89,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mapmetadata"</span>, repos <span class="op">=</span> <span class="st">"https://ropensci.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
 <p>Load the library:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/mapmetadata/" class="external-link">mapmetadata</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/mapmetadata/">mapmetadata</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="demo-using-the-r-studio-ide">Demo (using the <code>R Studio</code> IDE)<a class="anchor" aria-label="anchor" href="#demo-using-the-r-studio-ide"></a>
@@ -149,7 +149,7 @@ Response to be saved is ' 8 '. Would you like to re-do? (y/n): n</code></pre>
 </li>
 <li><p>Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.</p></li>
 </ul>
-<p>You can use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the <a href="https://ropensci.github.io/mapmetadata/articles/mapmetadata.html">mapmetadata tutorial</a> page on the package website.</p>
+<p>You can use the output file from the <code><a href="reference/metadata_map.html">metadata_map()</a></code> function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the <a href="https://ropensci.github.io/mapmetadata/articles/mapmetadata.html" class="external-link">mapmetadata tutorial</a> page on the package website.</p>
 </div>
 </div>
 <div class="section level2">
@@ -268,7 +268,7 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://www.turing.ac.uk/people/researchers/rachael-stickland" class="external-link">Rachael Stickland</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3398-4272" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://github.com/RayStick" class="external-link">Rachael Stickland</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3398-4272" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -280,7 +280,7 @@ For more information, refer to <a href="https://www.gnu.org/licenses/gpl-3.0.en.
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://www.turing.ac.uk/people/researchers/rachael-stickland" class="external-link">Rachael Stickland</a>.</p>
+  <p>Developed by <a href="https://github.com/RayStick" class="external-link">Rachael Stickland</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
