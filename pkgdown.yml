@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   HealthMetadata: HealthMetadata.html
   mapmetadata: mapmetadata.html
-last_built: 2025-03-07T11:49Z
+last_built: 2025-03-07T11:53Z
 urls:
   reference: https://docs.ropensci.org/mapmetadata/reference
   article: https://docs.ropensci.org/mapmetadata/articles
