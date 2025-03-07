@@ -112,7 +112,7 @@ Repeat the categorisation for the 5th variable to finish. You will then be asked
     
 - Second, you will be asked if you want to review your own categorisations. Select Yes(1) and follow the instructions.
 
-You can use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the [mapmetadata tutorial](https://ropensci.github.io/mapmetadata/articles/mapmetadata.html) page on the package website. 
+You can use the output file from the `metadata_map()` function as input for subsequent analysis to filter and visualise variables by research domain. For more information on custom inputs (metadata file, domain list and lookup) and how to understand the outputs, see the [mapmetadata tutorial](https://docs.ropensci.org/mapmetadata/articles/mapmetadata.html) page on the package website. 
 
 ## License
 
