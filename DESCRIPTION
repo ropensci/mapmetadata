@@ -3,7 +3,7 @@ Package: mapmetadata
 Title: Map health metadata onto predefined research domains
 Version: 4.0.1
 Authors@R: c(
-    person("Rachael", "Stickland", , "rstickland@turing.ac.uk", role = c("aut", "cre"),
+    person("Rachael", "Stickland", , "r.stickland@bham.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3398-4272")),
     person("Batool", "Almarzouq", role = "ctb",
            comment = c(ORCID = "0000-0002-3905-2751")),
